@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Home } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import AboutModal from '../components/AboutModal';
 
 interface NavbarProps {
   forceSolid?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ forceSolid }) => {
+const Navbar: React.FC<NavbarProps> = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -22,6 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ forceSolid }) => {
   const navLinks = [
     { label: 'Soluzioni', href: '/#soluzioni' },
     { label: 'Casi Studio', href: '/#casi-studio' },
+    { label: 'Prodotti', href: '/#soluzioni' },
     { label: 'Chi Sono', href: '#', isModal: true },
   ];
 
@@ -32,11 +31,8 @@ const Navbar: React.FC<NavbarProps> = ({ forceSolid }) => {
       setIsMobileMenuOpen(false);
       return;
     }
-
     if (href.startsWith('/#')) {
-      const id = href.replace('/', '');
-      const element = document.querySelector(id);
-      
+      const element = document.querySelector(href.replace('/', ''));
       if (element) {
         e.preventDefault();
         element.scrollIntoView({ behavior: 'smooth' });
@@ -49,124 +45,94 @@ const Navbar: React.FC<NavbarProps> = ({ forceSolid }) => {
     }
   };
 
-  const showBackground = isScrolled || forceSolid;
-
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-500 ${
-          showBackground
-            ? 'bg-[#050505]/95 backdrop-blur-xl border-b border-white/5'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
-            <div className="flex items-center">
-              <a
-                href="/"
-                className="flex items-center gap-2 group"
-                onClick={(e) => handleLinkClick(e, '/')}
-              >
-                <img 
-                  src="https://i.ibb.co/zh2W9Mcs/Chat-GPT-Image-4-feb-2026-10-54-50.png" 
-                  alt="Patrick Automation Logo" 
-                  className="h-[75px] w-auto transition-all duration-300 group-hover:scale-105 filter drop-shadow-[0_0_10px_rgba(37,99,235,0.5)]" 
-                />
-              </a>
-            </div>
-
-            <div className="hidden md:flex items-center gap-10">
-              <a 
-                href="/" 
-                onClick={(e) => handleLinkClick(e, '/')}
-                className="text-white opacity-70 hover:opacity-100 hover:text-[#00D1FF] transition-all duration-300 hover:drop-shadow-[0_0_8px_#00D1FF] flex items-center justify-center"
-                title="Home"
-              >
-                <Home className="w-[17px] h-[17px]" />
-              </a>
-
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href, link.isModal)}
-                  className="text-white/70 hover:text-white text-xs uppercase tracking-widest font-bold transition-colors duration-300 relative group cursor-pointer"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
-            </div>
-
-            <div className="hidden md:flex items-center gap-6">
-              <a
-                href="tel:3518302839"
-                className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors font-medium"
-              >
-                <Phone className="w-4 h-4 text-blue-500" />
-                <span>351 830 2839</span>
-              </a>
-              <a
-                href="/#contatti"
-                onClick={(e) => handleLinkClick(e, '/#contatti')}
-                className="bg-[#FFBF00] text-black font-black px-8 py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,191,0,0.6)] hover:scale-105 active:scale-95"
-              >
-                Prenota Call
-              </a>
-            </div>
-
-            <button
-              className="md:hidden text-white p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={`md:hidden absolute top-full left-0 right-0 bg-[#050505]/98 backdrop-blur-2xl border-b border-white/5 transition-all duration-300 ${
-            isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
-          }`}
+      {/* Pill Navbar */}
+      <div className="fixed top-5 left-0 right-0 z-[200] flex justify-center px-4">
+        <nav
+          style={{
+            background: 'rgba(0,0,0,0.8)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '50px',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+          }}
+          className="flex items-center gap-2 px-4 py-2"
         >
-          <div className="px-6 py-10 space-y-6">
-            <a
-              href="/"
-              onClick={(e) => handleLinkClick(e, '/')}
-              className="flex items-center gap-3 text-white hover:text-[#00D1FF] text-xl font-black uppercase tracking-tighter transition-colors"
-            >
-              <Home className="w-6 h-6" /> Home
-            </a>
+          {/* Logo */}
+          <a href="/" onClick={(e) => handleLinkClick(e, '/')} className="flex items-center mr-3">
+            <img
+              src="https://i.ibb.co/zh2W9Mcs/Chat-GPT-Image-4-feb-2026-10-54-50.png"
+              alt="PatrickAI Logo"
+              className="h-9 w-auto filter drop-shadow-[0_0_8px_rgba(0,102,255,0.3)] hover:scale-105 transition-transform"
+            />
+          </a>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href, link.isModal)}
-                className="block w-full text-left text-white/80 hover:text-white text-xl font-black uppercase tracking-tighter transition-colors cursor-pointer"
+                className="text-white/60 hover:text-white text-[11px] tracking-widest font-semibold px-4 py-2 rounded-full hover:bg-white/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-8 border-t border-white/10 space-y-6">
-              <a
-                href="tel:3518302839"
-                className="flex items-center gap-3 text-white/70 hover:text-white text-lg font-medium"
-              >
-                <Phone className="w-5 h-5 text-blue-500" />
-                <span>351 830 2839</span>
-              </a>
-              <a
-                href="/#contatti"
-                onClick={(e) => handleLinkClick(e, '/#contatti')}
-                className="block w-full text-center bg-[#FFBF00] text-black font-black py-5 rounded-2xl text-lg uppercase tracking-widest active:scale-95 transition-transform"
-              >
-                Prenota Call
-              </a>
-            </div>
+          </div>
+
+          {/* CTA */}
+          <a
+            href="/#contatti"
+            onClick={(e) => handleLinkClick(e, '/#contatti')}
+            className="hidden md:block ml-2 bg-[#0066FF] text-white font-black px-6 py-2 text-[11px] tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] hover:scale-105 active:scale-95 whitespace-nowrap"
+            style={{ borderRadius: '50px' }}
+          >
+            Contattaci
+          </a>
+
+          {/* Mobile hamburger */}
+          <button className="md:hidden text-white p-2 ml-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile menu */}
+      <div className={`md:hidden fixed top-20 left-4 right-4 z-[199] transition-all duration-300 ${
+        isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
+      }`}
+        style={{
+          background: 'rgba(0,0,0,0.95)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '24px',
+          backdropFilter: 'blur(10px)',
+        }}
+      >
+        <div className="px-6 py-8 space-y-4">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href, link.isModal)}
+              className="block text-white/70 hover:text-white text-lg font-bold tracking-widest transition-colors cursor-pointer py-2"
+            >
+              {link.label}
+            </a>
+          ))}
+          <div className="pt-4 border-t border-white/10">
+            <a
+              href="/#contatti"
+              onClick={(e) => handleLinkClick(e, '/#contatti')}
+              className="block w-full text-center bg-[#0066FF] text-white font-black py-4 text-sm tracking-widest active:scale-95 transition-transform"
+              style={{ borderRadius: '50px' }}
+            >
+              Contattaci
+            </a>
           </div>
         </div>
-      </nav>
+      </div>
 
       <AboutModal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} />
     </>

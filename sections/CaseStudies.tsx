@@ -1,98 +1,183 @@
 
 import React, { useState } from 'react';
-import { Briefcase, FileText, Search } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useMouseGlow, glowDivStyle } from '../hooks/useMouseGlow';
+
+const caseStudies = [
+  {
+    tab: 'Studio Consulenza',
+    category: 'Lead Generation',
+    title: 'Studio Consulenza',
+    challenge: 'Raccolta manuale di contatti potenziali da diverse fonti, processo lungo e poco efficiente che sottraeva ore preziose ogni giorno al team commerciale.',
+    solution: 'Sistema automatizzato di raccolta e qualifica lead da multiple fonti con scoring automatico e notifiche in tempo reale al team di vendita.',
+    results: [
+      { value: '+300%', label: 'Lead qualificati' },
+      { value: '-80%', label: 'Tempo di raccolta' },
+    ],
+  },
+  {
+    tab: 'Commercialista',
+    category: 'Automazione Fiscale',
+    title: 'Studio Commercialista',
+    challenge: 'Compilazione manuale ripetitiva del Modello F24 per decine di clienti ogni mese, con alto rischio di errori e tempi di consegna imprevedibili.',
+    solution: 'Automazione completa della compilazione F24 con pre-compilazione dati da gestionale, verifica automatica degli errori e archiviazione digitale.',
+    results: [
+      { value: '10h', label: 'Risparmiate ogni mese' },
+      { value: '0', label: 'Errori di compilazione' },
+    ],
+  },
+  {
+    tab: 'Agenzia Recruitment',
+    category: 'Social Automation',
+    title: 'Agenzia Recruitment',
+    challenge: 'Ricerca manuale di annunci lavorativi e pubblicazione su Facebook richiedeva 2 ore al giorno, sottraendo tempo alla gestione dei candidati.',
+    solution: 'Sistema automatizzato di scraping annunci, filtro per rilevanza e pubblicazione programmata sui canali social con report settimanale.',
+    results: [
+      { value: '2h', label: 'Risparmio al giorno' },
+      { value: '24/7', label: 'Operatività continua' },
+    ],
+  },
+];
+
+const cardVariants = {
+  enter: { opacity: 0, y: 20 },
+  center: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+};
 
 const CaseStudies: React.FC = () => {
-  const [activeCase, setActiveCase] = useState(0);
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal<HTMLDivElement>();
-
-  const caseStudies = [
-    {
-      id: 0,
-      title: 'Lead Generation',
-      client: 'Studio Consulenza',
-      icon: Briefcase,
-      challenge: 'Raccolta manuale di contatti potenziali da diverse fonti, processo lungo e poco efficiente.',
-      solution: 'Sistema automatizzato di raccolta e qualifica lead da multiple fonti con scoring automatico.',
-      results: [{ value: '+300%', label: 'Lead qualificati' }, { value: '-80%', label: 'Tempo raccolta' }],
-    },
-    {
-      id: 1,
-      title: 'Modello F24',
-      client: 'Commercialista',
-      icon: FileText,
-      challenge: 'Compilazione manuale ripetitiva del Modello F24 per decine di clienti ogni mese.',
-      solution: 'Automazione completa della compilazione F24 con pre-compilazione dati e verifica errori.',
-      results: [{ value: '10h', label: 'Risparmiate/mese' }, { value: '0', label: 'Errori' }],
-    },
-    {
-      id: 2,
-      title: 'Social Automation',
-      client: 'Agenzia Recruitment',
-      icon: Search,
-      challenge: 'Ricerca manuale di annunci lavorativi e pubblicazione su Facebook, 2 ore al giorno.',
-      solution: 'Sistema automatizzato di scraping annunci e pubblicazione programmata sui canali social.',
-      results: [{ value: '2h', label: 'Risparmio/giorno' }, { value: '24/7', label: 'Operatività' }],
-    },
-  ];
-
-  const activeStudy = caseStudies[activeCase];
+  const [active, setActive] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const { glowRef, onMouseMove, onMouseLeave } = useMouseGlow();
 
   return (
-    <section id="casi-studio" className="py-24 bg-[#050505] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div ref={headerRef} className={`text-center mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-montserrat uppercase tracking-tight">
-            Casi di <span className="text-blue-600">Successo</span>
+    <section id="casi-studio" className="bg-black relative py-32">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/20 to-transparent" />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div
+          ref={headerRef}
+          className={`text-center mb-14 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          <p className="text-[#0066FF] text-xs tracking-[0.3em] font-black mb-4">— Case studies —</p>
+          <h2 className="text-4xl md:text-6xl font-black text-white mb-4 font-montserrat tracking-tight">
+            Casi di <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#0066FF]">Successo</span>
           </h2>
-          <p className="text-white/50 text-lg">Esempi concreti di processi trasformati dall'AI.</p>
+          <p className="text-white/40 text-lg">Esempi concreti di processi trasformati dall'AI.</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-20">
-          {caseStudies.map((study) => (
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {caseStudies.map((s, i) => (
             <button
-              key={study.id}
-              onClick={() => setActiveCase(study.id)}
-              className={`px-10 py-4 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 ${
-                activeCase === study.id 
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white scale-105 shadow-lg shadow-blue-600/20' 
-                  : 'bg-white/5 text-white/40 hover:bg-white/10 hover:text-white'
-              }`}
+              key={i}
+              onClick={() => setActive(i)}
+              className="px-6 py-2.5 rounded-full text-xs font-bold tracking-widest transition-all duration-300"
+              style={
+                active === i
+                  ? { background: '#fff', color: '#000', border: '1px solid #fff' }
+                  : { background: 'transparent', color: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.15)' }
+              }
             >
-              {study.title}
+              {s.tab}
             </button>
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="aspect-square max-w-md mx-auto relative rounded-full overflow-hidden border border-white/10 bg-white/5 flex items-center justify-center p-20 shadow-2xl">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.15)_0%,transparent_70%)] animate-pulse" />
-              <activeStudy.icon className="w-32 h-32 text-blue-500 relative z-10 drop-shadow-[0_0_15px_rgba(37,99,235,0.4)]" />
-            </div>
-          </div>
+        {/* Card */}
+        <div style={{ position: 'relative', minHeight: '340px' }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              variants={cardVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              whileHover={{ y: -4, boxShadow: '0 20px 40px rgba(0,102,255,0.15)' }}
+              className="relative overflow-hidden"
+              style={{
+                background: '#0D1117',
+                border: isHovered ? '1px solid rgba(0,102,255,0.6)' : '1px solid rgba(0,102,255,0.15)',
+                borderRadius: '24px',
+                transition: 'border-color 0.3s ease',
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseMove={(e) => { setIsHovered(true); onMouseMove(e); }}
+              onMouseLeave={() => { setIsHovered(false); onMouseLeave(); }}
+            >
+              <div ref={glowRef} style={glowDivStyle} />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0066FF]/25 to-transparent" />
 
-          <div className="space-y-10">
-            <div>
-              <span className="text-blue-500 font-black text-xs tracking-[0.3em] uppercase mb-3 block">{activeStudy.client}</span>
-              <h3 className="text-4xl font-black text-white mb-8 font-montserrat tracking-tight">{activeStudy.title}</h3>
-              <p className="text-white/70 text-lg leading-relaxed mb-10 border-l-2 border-white/10 pl-6">{activeStudy.challenge}</p>
-              <div className="p-8 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group transition-all duration-300 hover:border-blue-600 hover:shadow-[0_0_20px_rgba(37,99,235,0.3)]">
-                <h4 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-black uppercase tracking-widest text-sm mb-3">La Nostra Soluzione:</h4>
-                <p className="text-white/80 text-lg">{activeStudy.solution}</p>
-              </div>
-            </div>
+              {/* Vertical divider */}
+              <div
+                className="hidden md:block absolute top-0 bottom-0 w-px pointer-events-none"
+                style={{
+                  left: 'calc(60% - 0.5px)',
+                  background: isHovered ? 'rgba(0,102,255,0.8)' : 'rgba(0,102,255,0.2)',
+                  boxShadow: isHovered ? '0 0 8px rgba(0,102,255,0.5)' : 'none',
+                  transition: 'background 0.3s ease, box-shadow 0.3s ease',
+                }}
+              />
 
-            <div className="grid grid-cols-2 gap-8">
-              {activeStudy.results.map((r, i) => (
-                <div key={i} className="text-center p-8 rounded-3xl border border-white/5 bg-white/5 transition-all duration-300 hover:border-blue-600 hover:shadow-[0_0_15px_rgba(37,99,235,0.25)]">
-                  <div className="text-5xl font-black text-white mb-2 font-montserrat">{r.value}</div>
-                  <div className="text-white/40 text-xs uppercase tracking-widest font-bold">{r.label}</div>
+              <div className="grid md:grid-cols-[3fr_2fr] gap-0">
+                {/* Left column */}
+                <div className="p-12 md:p-16">
+                  <span className="text-[#0066FF] text-xs font-black tracking-[0.3em] mb-6 block">
+                    — {caseStudies[active].category} —
+                  </span>
+                  <h3
+                    className="text-5xl md:text-6xl text-white mb-12 leading-tight tracking-tighter"
+                    style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 800 }}
+                  >
+                    {caseStudies[active].title}
+                  </h3>
+
+                  <div className="space-y-8">
+                    <div>
+                      <h4 className="text-white/40 text-xs tracking-[0.25em] font-black mb-4">La Sfida</h4>
+                      <p className="text-white/65 text-base leading-relaxed">{caseStudies[active].challenge}</p>
+                    </div>
+                    <div>
+                      <h4 className="text-[#0066FF] text-xs tracking-[0.25em] font-black mb-4">La Nostra Soluzione</h4>
+                      <p className="text-white/65 text-base leading-relaxed">{caseStudies[active].solution}</p>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
+
+                {/* Right column */}
+                <div className="p-12 md:p-16 flex flex-col justify-center gap-12">
+                  {caseStudies[active].results.map((r, ri) => (
+                    <div key={ri} className="flex items-start gap-3">
+                      {ri === 0 && (
+                        <span
+                          className="mt-4 w-2.5 h-2.5 rounded-full flex-shrink-0"
+                          style={{ background: '#0066FF', boxShadow: '0 0 10px rgba(0,102,255,0.7)' }}
+                        />
+                      )}
+                      <div className={ri !== 0 ? 'pl-5' : ''}>
+                        <div
+                          className="leading-none mb-2"
+                          style={{
+                            fontFamily: 'Outfit, sans-serif',
+                            fontWeight: 900,
+                            fontSize: 'clamp(3.5rem, 6vw, 5.5rem)',
+                            color: '#fff',
+                          }}
+                        >
+                          {r.value}
+                        </div>
+                        <div className="text-white/40 text-xs tracking-widest font-bold">{r.label}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

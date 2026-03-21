@@ -10,7 +10,7 @@ const LogoMarquee: React.FC = () => {
 
     let animationId: number;
     let position = 0;
-    const speed = 0.04;
+    const speed = 0.025;
 
     const animate = () => {
       position -= speed;
@@ -41,14 +41,14 @@ const LogoMarquee: React.FC = () => {
   const allTools = [...tools, ...tools, ...tools, ...tools];
 
   return (
-    <section className="py-20 bg-transparent border-y border-white/5 overflow-hidden">
+    <section className="py-32 bg-black border-y border-[#0066FF]/10 overflow-hidden">
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
 
         <div
           ref={marqueeRef}
-          className="flex items-center gap-20 whitespace-nowrap"
+          className="flex items-center gap-40 whitespace-nowrap"
           style={{ width: 'fit-content' }}
         >
           {allTools.map((tool, index) => (
@@ -59,16 +59,16 @@ const LogoMarquee: React.FC = () => {
               <img 
                 src={`https://cdn.simpleicons.org/${tool.slug}/white`} 
                 alt={tool.name} 
-                className="h-12 w-12 object-contain"
+                className="h-24 w-24 object-contain"
                 loading="lazy"
               />
-              <span className="text-white/40 text-[10px] uppercase tracking-widest font-bold">{tool.name}</span>
+              <span className="text-white/40 text-[10px] tracking-widest font-bold">{tool.name}</span>
             </div>
           ))}
         </div>
       </div>
       <div className="text-center mt-12">
-        <p className="text-blue-500/50 text-[10px] uppercase tracking-[0.4em] font-black">
+        <p className="text-[#0066FF]/40 text-[10px] tracking-[0.4em] font-black">
           Powered by Industry Leading Tech
         </p>
       </div>

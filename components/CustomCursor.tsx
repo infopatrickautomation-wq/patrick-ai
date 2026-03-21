@@ -93,12 +93,12 @@ const CustomCursor: React.FC = () => {
       <div
         ref={cursorRef}
         className={`fixed top-0 left-0 w-2.5 h-2.5 rounded-full z-[9999] pointer-events-none transition-colors duration-300 ${
-          isHovering ? 'bg-[#FFBF00]' : 'bg-blue-600'
+          isHovering ? 'bg-[#0066FF]' : 'bg-blue-600'
         }`}
         style={{
           margin: '-5px 0 0 -5px',
           boxShadow: isHovering 
-            ? '0 0 15px rgba(255,191,0,0.8)' 
+            ? '0 0 15px rgba(0,102,255,0.8)' 
             : '0 0 15px rgba(37,99,235,0.8)',
           willChange: 'transform',
           pointerEvents: 'none' // CRITICO: non blocca i click sottostanti
@@ -110,7 +110,7 @@ const CustomCursor: React.FC = () => {
         ref={cursorOutlineRef}
         className={`fixed top-0 left-0 rounded-full border z-[9998] pointer-events-none transition-all duration-300 ${
           isHovering 
-            ? 'w-14 h-14 border-[#FFBF00]/40 bg-[#FFBF00]/5' 
+            ? 'w-14 h-14 border-[#0066FF]/40 bg-[#0066FF]/5' 
             : 'w-10 h-10 border-blue-600/20 bg-blue-600/5'
         } ${isClicking ? 'scale-75 opacity-50' : 'scale-100 opacity-100'}`}
         style={{

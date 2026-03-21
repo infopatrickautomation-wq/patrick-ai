@@ -1,41 +1,106 @@
 
 import React from 'react';
-import { Linkedin, Mail, Phone } from 'lucide-react';
+import { Linkedin, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const linkClass = "block text-[#666] hover:text-[#0066FF] transition-colors duration-200 text-sm leading-relaxed";
+
   return (
-    <footer className="bg-black border-t border-white/5 py-20 text-white/50">
-      <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-16">
-        <div>
-          <img 
-            src="https://i.ibb.co/zh2W9Mcs/Chat-GPT-Image-4-feb-2026-10-54-50.png" 
-            alt="Patrick Automation Logo" 
-            className="h-[80px] w-auto mb-6 brightness-125 opacity-90 transition-all hover:scale-105 filter drop-shadow-[0_0_15px_rgba(37,99,235,0.4)]" 
-          />
-          <p className="leading-relaxed font-light">Trasformiamo il modo in cui le aziende lavorano attraverso l'Intelligenza Artificiale.</p>
-        </div>
-        <div>
-          <h4 className="text-white font-bold mb-6 font-montserrat uppercase tracking-tight">Contatti</h4>
-          <div className="space-y-4">
-            <div className="flex gap-4 items-center hover:text-white transition-colors cursor-pointer font-light">
-              <Phone className="w-5 h-5 text-blue-500" /> 351 830 2839
-            </div>
-            <div className="flex gap-4 items-center hover:text-white transition-colors cursor-pointer font-light">
-              <Mail className="w-5 h-5 text-purple-500" /> info.patrickautomation@gmail.com
+    <footer style={{ background: '#0A0A0A' }} className="border-t border-white/5">
+      {/* Main grid */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
+
+          {/* Col 1 — Brand */}
+          <div className="md:col-span-1">
+            <img
+              src="https://i.ibb.co/zh2W9Mcs/Chat-GPT-Image-4-feb-2026-10-54-50.png"
+              alt="PatrickAI Logo"
+              className="h-14 w-auto mb-5 opacity-90"
+            />
+            <p className="text-white text-base font-semibold leading-snug mb-3">
+              L'Evoluzione Intelligente<br />del Business
+            </p>
+            <p className="text-[#666] text-sm leading-relaxed mb-6">
+              Automazioni su misura e intelligenza artificiale per far crescere il tuo business.
+            </p>
+            <div className="space-y-1.5 text-[#555] text-xs leading-relaxed">
+              <p>PatrickAI Automation</p>
+              <p>Molinella, Bologna</p>
+              <a href="mailto:info.patrickautomation@gmail.com" className="hover:text-[#0066FF] transition-colors block">
+                info.patrickautomation@gmail.com
+              </a>
+              <a href="tel:3518302839" className="hover:text-[#0066FF] transition-colors block">
+                351 830 2839
+              </a>
             </div>
           </div>
-        </div>
-        <div>
-          <h4 className="text-white font-bold mb-6 font-montserrat uppercase tracking-tight">Social</h4>
-          <div className="flex gap-6">
-            <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:border-transparent transition-all">
-              <Linkedin className="w-6 h-6 text-white" />
-            </a>
+
+          {/* Col 2 — Servizi */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <span
+                className="w-2 h-2 rounded-full flex-shrink-0"
+                style={{ background: '#0066FF', boxShadow: '0 0 6px rgba(0,102,255,0.6)' }}
+              />
+              <h4 className="text-white text-xs font-black tracking-widest">Servizi</h4>
+            </div>
+            <ul className="space-y-3">
+              <li><a href="/#soluzioni" className={linkClass}>Automazione Processi</a></li>
+              <li><a href="/#soluzioni" className={linkClass}>AI Agent</a></li>
+              <li><a href="/#soluzioni" className={linkClass}>Analisi &amp; Progettazione</a></li>
+              <li><a href="/#casi-studio" className={linkClass}>Casi Studio</a></li>
+            </ul>
+          </div>
+
+          {/* Col 3 — Risorse */}
+          <div>
+            <h4 className="text-white text-xs font-black tracking-widest mb-5">Risorse</h4>
+            <ul className="space-y-3">
+              <li><a href="/#chi-siamo" className={linkClass}>Chi Sono</a></li>
+              <li><a href="#" className={linkClass}>Blog</a></li>
+              <li><a href="/#contatti" className={linkClass}>Contattaci</a></li>
+              <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className={linkClass}>LinkedIn</a></li>
+            </ul>
+          </div>
+
+          {/* Col 4 — Legal */}
+          <div>
+            <h4 className="text-white text-xs font-black tracking-widest mb-5">Legal</h4>
+            <ul className="space-y-3">
+              <li><a href="#" className={linkClass}>Privacy Policy</a></li>
+              <li><a href="#" className={linkClass}>Termini di Servizio</a></li>
+              <li><a href="#" className={linkClass}>Cookie Policy</a></li>
+            </ul>
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 mt-20 pt-10 border-t border-white/5 text-center text-sm font-light">
-        © {new Date().getFullYear()} Patrick-AI. Patrick Boccia - Automazione & Ottimizzazione Processi.
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[#444] text-xs">
+            © {new Date().getFullYear()} PatrickAI Automation. Tutti i diritti riservati.
+          </p>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 transition-all duration-200"
+            >
+              <Linkedin className="w-4 h-4 text-[#666]" />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 transition-all duration-200"
+            >
+              <Instagram className="w-4 h-4 text-[#666]" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -39,7 +39,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         {/* Header */}
         <div className="sticky top-0 bg-[#0A0A0A]/95 backdrop-blur-xl border-b border-white/10 p-6 flex justify-between items-center z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
-            <span className="w-2 h-2 rounded-full bg-[#FFBF00] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse" />
             <span className="text-[#E6E8EB] text-sm font-medium">Chi Sono</span>
           </div>
           <button
@@ -54,15 +54,15 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         <div className="p-8 md:p-12">
           {/* Story Section */}
           <div className="mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-montserrat uppercase tracking-tight">
-              Da <span className="text-blue-600">appassionato</span> a <span className="text-[#FFBF00]">imprenditore digitale</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-montserrat tracking-tight">
+              Da <span className="text-[#0066FF]">appassionato</span> a <span className="text-[#0066FF]">imprenditore digitale</span>
             </h2>
             <div className="space-y-6 text-[#E6E8EB] text-lg leading-relaxed">
               <p>
                 Mi chiamo <strong className="text-white">Patrick Boccia</strong> e sono un appassionato di tecnologia che ha sempre sognato di diventare un imprenditore digitale.
               </p>
               <p>
-                Oggi, grazie a strumenti come <strong className="text-blue-400">n8n</strong> e <strong className="text-blue-400">l'intelligenza artificiale</strong>, mi sono reso conto che <strong className="text-[#FFBF00]">tutti possiamo creare qualcosa di concreto</strong>, anche senza essere programmatori esperti.
+                Oggi, grazie a strumenti come <strong className="text-blue-400">n8n</strong> e <strong className="text-blue-400">l'intelligenza artificiale</strong>, mi sono reso conto che <strong className="text-[#0066FF]">tutti possiamo creare qualcosa di concreto</strong>, anche senza essere programmatori esperti.
               </p>
               <p>
                 Ho fondato <strong className="text-white">PatrickAi Automation</strong> con una missione chiara: aiutare <strong className="text-white">ristoranti e hotel</strong> a risparmiare tempo prezioso attraverso automazioni intelligenti, lavorando fianco a fianco con un approccio naturale e umano.
@@ -72,11 +72,11 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
 
           {/* Values Grid */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Il mio approccio</h3>
+            <h3 className="text-2xl font-bold text-white mb-6 tracking-tight">Il mio approccio</h3>
             <div className="grid md:grid-cols-3 gap-6">
               {values.map((v, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-blue-600/30 transition-all">
-                  <div className="p-3 rounded-xl bg-blue-600/10 text-[#FFBF00] w-fit mb-4">
+                <div key={i} className="p-6 rounded-2xl bg-[#161B22] border border-[rgba(255,255,255,0.08)] hover:border-[#0066FF]/30 transition-all">
+                  <div className="p-3 rounded-xl bg-[#0066FF]/10 text-[#0066FF] w-fit mb-4">
                     <v.icon className="w-7 h-7" />
                   </div>
                   <h4 className="text-lg font-bold text-white mb-2">{v.title}</h4>
@@ -88,12 +88,12 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
 
           {/* Results */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Cosa ottieni</h3>
+            <h3 className="text-2xl font-bold text-white mb-6 tracking-tight">Cosa ottieni</h3>
             <div className="space-y-4">
               {results.map((r, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="p-2 rounded-lg bg-[#FFBF00]/10">
-                    <r.icon className="w-5 h-5 text-[#FFBF00]" />
+                <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-[#161B22] border border-[rgba(255,255,255,0.08)]">
+                  <div className="p-2 rounded-lg bg-[#0066FF]/10">
+                    <r.icon className="w-5 h-5 text-[#0066FF]" />
                   </div>
                   <span className="text-[#E6E8EB] text-lg">{r.text}</span>
                 </div>
@@ -102,15 +102,15 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Vision */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-600/10 to-[#FFBF00]/10 border border-blue-600/20">
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0066FF]/10 to-[#0066FF]/10 border border-[#0066FF]/20">
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <Rocket className="w-6 h-6 text-[#FFBF00]" />
+              <Rocket className="w-6 h-6 text-[#0066FF]" />
               La mia visione
             </h3>
             <p className="text-[#E6E8EB] leading-relaxed">
               Voglio costruire un'agenzia con <strong className="text-white">5-10 clienti fissi</strong>, 
               crescere insieme a loro ed esplorare nuove esperienze nel mondo dell'automazione. 
-              Non mi presento come un esperto tecnico, ma come qualcuno che vuole davvero <strong className="text-[#FFBF00]">aiutare 
+              Non mi presento come un esperto tecnico, ma come qualcuno che vuole davvero <strong className="text-[#0066FF]">aiutare 
               e integrare soluzioni</strong> che fanno la differenza nella vita quotidiana delle aziende.
             </p>
           </div>
@@ -119,10 +119,10 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         {/* Footer CTA */}
         <div className="sticky bottom-0 bg-gradient-to-t from-[#0A0A0A] to-transparent p-6 border-t border-white/10">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            
+            <a
               href="/#contatti"
               onClick={onClose}
-              className="bg-[#FFBF00] text-black font-black px-10 py-4 rounded-full text-sm uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,191,0,0.6)] hover:scale-105 active:scale-95"
+              className="bg-[#0066FF] text-white font-black px-10 py-4 rounded-full text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,102,255,0.6)] hover:scale-105 active:scale-95"
             >
               Prenota una Call
             </a>

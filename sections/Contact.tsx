@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
 import { Phone, Mail, Send, CheckCircle } from 'lucide-react';
+import { useMouseGlow, glowDivStyle } from '../hooks/useMouseGlow';
 
 const Contact: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { glowRef, onMouseMove, onMouseLeave } = useMouseGlow();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,57 +14,85 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contatti" className="py-24 bg-[#050505] relative">
+    <section id="contatti" className="py-32 bg-black relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/20 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,102,255,0.05)_0%,transparent_60%)]" />
+
       <div className="max-w-4xl mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-montserrat uppercase tracking-tight">Lavoriamo Insieme</h2>
-          <p className="text-white/50 text-lg font-light">Compila il form per una consulenza gratuita personalizzata.</p>
+          <p className="text-[#0066FF] text-xs tracking-[0.3em] font-black mb-4">— Contattaci —</p>
+          <h2 className="text-4xl md:text-6xl font-black text-white mb-4 font-montserrat tracking-tight">
+            Lavoriamo<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#0066FF]">Insieme</span>
+          </h2>
+          <p className="text-white/40 text-lg font-light">Consulenza gratuita e personalizzata. Rispondo entro 24 ore.</p>
         </div>
 
-        <div className="bg-white/[0.03] backdrop-blur-sm rounded-[2.5rem] p-10 md:p-16 border border-white/5 shadow-2xl">
+        <div
+          className="bg-black/50 backdrop-blur-sm rounded-[2.5rem] p-10 md:p-16 border border-[rgba(0,102,255,0.15)] hover:border-[#0066FF]/60 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,102,255,0.15)] transition-all duration-300 shadow-2xl relative overflow-hidden"
+          onMouseMove={onMouseMove}
+          onMouseLeave={onMouseLeave}
+        >
+          <div ref={glowRef} style={glowDivStyle} />
           {isSubmitted ? (
-            <div className="text-center py-10 animate-in fade-in zoom-in duration-500">
-              <CheckCircle className="w-20 h-20 text-blue-500 mx-auto mb-6" />
-              <h3 className="text-3xl font-bold text-white uppercase font-montserrat">Richiesta Inviata!</h3>
-              <p className="text-white/50 mt-2">Ti ricontatterò personalmente entro 24 ore.</p>
+            <div className="text-center py-10 relative z-10">
+              <CheckCircle className="w-20 h-20 text-[#0066FF] mx-auto mb-6 drop-shadow-[0_0_20px_rgba(0,102,255,0.5)]" />
+              <h3 className="text-3xl font-black text-white font-montserrat">Richiesta Inviata!</h3>
+              <p className="text-white/40 mt-3">Ti ricontatterò personalmente entro 24 ore.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-white/40 ml-2">Nome</label>
-                  <input required className="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white focus:border-blue-500 transition-colors outline-none" placeholder="Inserisci il tuo nome" />
+                  <label className="text-xs tracking-widest font-bold text-white/30 ml-2">Nome</label>
+                  <input
+                    required
+                    className="w-full bg-white/[0.04] border border-white/10 p-5 rounded-2xl text-white placeholder-white/20 focus:border-[#0066FF]/50 focus:shadow-[0_0_0_3px_rgba(0,102,255,0.05)] transition-all outline-none"
+                    placeholder="Inserisci il tuo nome"
+                  />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-white/40 ml-2">Email</label>
-                  <input required type="email" className="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white focus:border-blue-500 transition-colors outline-none" placeholder="nome@azienda.com" />
+                  <label className="text-xs tracking-widest font-bold text-white/30 ml-2">Email</label>
+                  <input
+                    required
+                    type="email"
+                    className="w-full bg-white/[0.04] border border-white/10 p-5 rounded-2xl text-white placeholder-white/20 focus:border-[#0066FF]/50 focus:shadow-[0_0_0_3px_rgba(0,102,255,0.05)] transition-all outline-none"
+                    placeholder="nome@azienda.com"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest font-bold text-white/40 ml-2">Messaggio</label>
-                <textarea required className="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white focus:border-blue-500 transition-colors outline-none min-h-[150px]" placeholder="Descrivi brevemente il tuo progetto o le tue necessità..." />
+                <label className="text-xs tracking-widest font-bold text-white/30 ml-2">Messaggio</label>
+                <textarea
+                  required
+                  className="w-full bg-white/[0.04] border border-white/10 p-5 rounded-2xl text-white placeholder-white/20 focus:border-[#0066FF]/50 focus:shadow-[0_0_0_3px_rgba(0,102,255,0.05)] transition-all outline-none min-h-[150px] resize-none"
+                  placeholder="Descrivi brevemente il tuo progetto o le tue necessità..."
+                />
               </div>
-              <button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-black py-6 rounded-2xl text-xl uppercase tracking-widest hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
+              <button
+                type="submit"
+                className="w-full bg-[#0066FF] text-white font-black py-6 rounded-2xl text-sm tracking-widest hover:shadow-[0_0_40px_rgba(0,102,255,0.4)] transition-all flex items-center justify-center gap-3 active:scale-[0.98] hover:scale-[1.01]"
+              >
                 Invia Richiesta
-                <Send className="w-6 h-6" />
+                <Send className="w-5 h-5" />
               </button>
             </form>
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row justify-center gap-12 mt-16 text-white/60">
-          <div className="flex items-center gap-4 group">
-            <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
-              <Phone className="w-5 h-5 text-blue-500" />
+        <div className="flex flex-col md:flex-row justify-center gap-10 mt-16 text-white/50">
+          <a href="tel:3518302839" className="flex items-center gap-4 group hover:text-white transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-[#0066FF]/10 border border-[#0066FF]/20 flex items-center justify-center group-hover:bg-[#0066FF]/20 transition-colors">
+              <Phone className="w-5 h-5 text-[#0066FF]" />
             </div>
             <span className="text-lg font-medium">351 830 2839</span>
-          </div>
-          <div className="flex items-center gap-4 group">
-            <div className="w-12 h-12 rounded-xl bg-purple-600/10 flex items-center justify-center group-hover:bg-purple-600/20 transition-colors">
-              <Mail className="w-5 h-5 text-purple-500" />
+          </a>
+          <a href="mailto:info.patrickautomation@gmail.com" className="flex items-center gap-4 group hover:text-white transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-[#0066FF]/10 border border-[#0066FF]/20 flex items-center justify-center group-hover:bg-[#0066FF]/20 transition-colors">
+              <Mail className="w-5 h-5 text-[#0066FF]" />
             </div>
-            <span className="text-lg font-medium underline underline-offset-4 decoration-white/10 hover:decoration-purple-500 transition-colors tracking-tight">info.patrickautomation@gmail.com</span>
-          </div>
+            <span className="text-lg font-medium">info.patrickautomation@gmail.com</span>
+          </a>
         </div>
       </div>
     </section>
