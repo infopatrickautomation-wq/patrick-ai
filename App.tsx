@@ -11,10 +11,42 @@ import Footer from './sections/Footer';
 import CustomCursor from './components/CustomCursor';
 import CVAnalysisModal from './components/CVAnalysisModal';
 import VoiceAgentModal from './components/VoiceAgentModal';
+import ContactPage from './pages/ContactPage';
+import ProductsPage from './pages/ProductsPage';
+import FluxAgentPage from './pages/FluxAgentPage';
+import NovaAgentPage from './pages/NovaAgentPage';
+import AxisPartnerPage from './pages/AxisPartnerPage';
+import ChiSonePage from './pages/ChiSonePage';
+import { useRoute } from './hooks/useRoute';
 
 const App: React.FC = () => {
+  const path = useRoute();
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
+
+  if (path === '/contatti') {
+    return <ContactPage />;
+  }
+
+  if (path === '/prodotti') {
+    return <ProductsPage />;
+  }
+
+  if (path === '/flux-agent') {
+    return <FluxAgentPage />;
+  }
+
+  if (path === '/nova-agent') {
+    return <NovaAgentPage />;
+  }
+
+  if (path === '/axis-partner') {
+    return <AxisPartnerPage />;
+  }
+
+  if (path === '/chi-sono') {
+    return <ChiSonePage />;
+  }
 
   const isAnyModalOpen = isCVModalOpen || isVoiceModalOpen;
 
@@ -26,10 +58,7 @@ const App: React.FC = () => {
       <main className="relative z-10">
         <Hero />
         <LogoMarquee />
-        <Services
-          onOpenCaseStudy={() => setIsCVModalOpen(true)}
-          onOpenVoiceAgent={() => setIsVoiceModalOpen(true)}
-        />
+        <Services />
         <Stats />
         <CaseStudies />
         <Contact />

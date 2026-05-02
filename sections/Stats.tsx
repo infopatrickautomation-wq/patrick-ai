@@ -37,7 +37,14 @@ const AnimatedNumber: React.FC<{ stat: StatItem; trigger: boolean }> = ({ stat, 
   }, [trigger, stat.value]);
 
   return (
-    <span className="text-5xl sm:text-6xl md:text-7xl font-black font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#0066FF]">
+    <span
+      className="text-5xl sm:text-6xl md:text-7xl font-black"
+      style={{
+        fontFamily: 'Outfit, sans-serif',
+        color: 'white',
+        textShadow: '0 0 30px rgba(74,111,255,0.35)',
+      }}
+    >
       {stat.prefix}{count}{stat.suffix}
     </span>
   );
@@ -58,20 +65,20 @@ const Stats: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-black relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/10 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,102,255,0.04)_0%,transparent_70%)]" />
+    <section className="py-24 bg-[#050d1a] relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/10 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(59,130,246,0.04)_0%,transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-[#0066FF] text-xs tracking-[0.3em] font-black mb-16">
+        <p className="text-center text-[#4A9FFF] text-xs tracking-[0.3em] font-black mb-16">
           — Risultati misurabili —
         </p>
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="text-center p-8 rounded-3xl border border-[rgba(0,102,255,0.15)] bg-[#161B22] hover:border-[#0066FF]/60 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,102,255,0.15)] transition-all duration-300 group relative overflow-hidden"
+              className="neon-card text-center p-8 rounded-3xl border border-[rgba(59,130,246,0.15)] bg-[#0a1628] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
               onMouseMove={onMouseMove(i)}
               onMouseLeave={onMouseLeave(i)}
             >

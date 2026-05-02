@@ -16,18 +16,18 @@ const Solutions: React.FC = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <section className="py-32 bg-black relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/15 to-transparent" />
+    <section className="py-32 bg-[#050d1a] relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/15 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4">
         <div
           ref={headerRef}
           className={`text-center mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <p className="text-[#0066FF] text-xs tracking-[0.3em] font-black mb-4">— Suite completa —</p>
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-4 font-montserrat tracking-tight">
+          <p className="text-[#3B82F6] text-xs tracking-[0.3em] font-black mb-4">— Suite completa —</p>
+          <h2 className="text-white mb-4 tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
             Soluzioni<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#0066FF]">Complete</span>
+            <span className="accent-italic">Complete.</span>
           </h2>
           <p className="text-white/40 text-lg max-w-2xl mx-auto font-light">Una suite di strumenti pronti a scalare il tuo business.</p>
         </div>
@@ -36,11 +36,11 @@ const Solutions: React.FC = () => {
           {solutions.map((s, i) => (
             <div
               key={i}
-              className="group p-10 rounded-[2rem] bg-[#161B22] border border-[rgba(255,255,255,0.08)] hover:border-[#0066FF]/25 hover:shadow-[0_0_30px_rgba(0,102,255,0.06)] transition-all duration-500 relative overflow-hidden"
+              className="neon-card group p-10 rounded-[2rem] bg-[#0a1628] border border-[rgba(255,255,255,0.08)] transition-all duration-500 relative overflow-hidden"
             >
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0066FF]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-14 h-14 rounded-2xl bg-[#0066FF]/10 border border-[#0066FF]/15 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#0066FF]/20 transition-all duration-300">
-                <s.icon className="w-7 h-7 text-[#0066FF]" />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#3B82F6]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-14 h-14 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/15 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#3B82F6]/20 transition-all duration-300">
+                <s.icon className="w-7 h-7 text-[#3B82F6]" />
               </div>
               <h3 className="text-xl font-black text-white mb-3 tracking-tight">{s.title}</h3>
               <p className="text-white/40 leading-relaxed font-light">{s.desc}</p>

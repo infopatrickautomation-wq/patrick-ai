@@ -91,11 +91,11 @@ const VoiceAgentModal: React.FC<VoiceAgentModalProps> = ({ isOpen, onClose }) =>
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 pt-24">
       <div 
-        className="absolute inset-0 bg-[#050505]/95 backdrop-blur-md transition-opacity duration-300"
+        className="absolute inset-0 bg-[#050d1a]/95 backdrop-blur-md transition-opacity duration-300"
         onClick={onClose}
       />
       
-      <div className="relative w-full max-w-7xl max-h-[calc(100vh-120px)] overflow-y-auto bg-[#050505] rounded-[2.5rem] border border-white/5 shadow-[0_0_80px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in duration-300 scrollbar-hide">
+      <div className="relative w-full max-w-7xl max-h-[calc(100vh-120px)] overflow-y-auto bg-[#050d1a] rounded-[2.5rem] border border-white/5 shadow-[0_0_80px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in duration-300 scrollbar-hide">
         
         <button 
           onClick={onClose}
@@ -112,7 +112,7 @@ const VoiceAgentModal: React.FC<VoiceAgentModalProps> = ({ isOpen, onClose }) =>
               VOICE AI INTEGRATION
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white font-montserrat leading-tight mb-8 tracking-tight px-4">
+            <h1 className="text-white leading-tight mb-8 tracking-tight px-4" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '96px', fontWeight: 500, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
               Agente Vocale per <br />
               <span className="text-white inline-block pr-6">Artigiani</span>
             </h1>
@@ -126,14 +126,14 @@ const VoiceAgentModal: React.FC<VoiceAgentModalProps> = ({ isOpen, onClose }) =>
                   className={`w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl ${
                     isPlaying 
                     ? 'bg-blue-600 text-white animate-pulse' 
-                    : 'bg-[#0066FF] text-white hover:scale-110'
+                    : 'bg-[#3B82F6] text-white hover:scale-110'
                   }`}
                 >
                   {isPlaying ? <Pause className="w-10 h-10 fill-current" /> : <Play className="w-10 h-10 fill-current ml-2" />}
                 </button>
 
                 <div className="text-center">
-                  <span className="block text-[10px] font-black tracking-[0.3em] text-[#0066FF] mb-2">Demo Vocale Interattiva</span>
+                  <span className="block text-[10px] font-black tracking-[0.3em] text-[#3B82F6] mb-2">Demo Vocale Interattiva</span>
                   <h3 className="text-2xl font-bold text-white mb-4">Sara - Marco Coperture</h3>
                   
                   <div className="flex justify-center items-center gap-1 h-8 mb-6">
@@ -177,11 +177,11 @@ const VoiceAgentModal: React.FC<VoiceAgentModalProps> = ({ isOpen, onClose }) =>
               </div>
             </div>
 
-            <div className="bg-[#0066FF]/5 border-2 border-[#0066FF] rounded-[2.5rem] p-10 shadow-[0_0_40px_rgba(0,102,255,0.1)] relative overflow-hidden">
-               <div className="w-12 h-12 rounded-xl bg-[#0066FF]/20 flex items-center justify-center mb-8">
-                <Mic className="w-6 h-6 text-[#0066FF]" />
+            <div className="bg-[#3B82F6]/5 border-2 border-[#3B82F6] rounded-[2.5rem] p-10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative overflow-hidden">
+               <div className="w-12 h-12 rounded-xl bg-[#3B82F6]/20 flex items-center justify-center mb-8">
+                <Mic className="w-6 h-6 text-[#3B82F6]" />
               </div>
-              <h3 className="text-3xl font-black text-[#0066FF] mb-6 font-montserrat leading-tight">La Soluzione <br/><span className="text-xs tracking-widest opacity-70 text-white">(n8n + Agente Vocale)</span></h3>
+              <h3 className="text-3xl font-black text-[#3B82F6] mb-6 font-montserrat leading-tight">La Soluzione <br/><span className="text-xs tracking-widest opacity-70 text-white">(n8n + Agente Vocale)</span></h3>
               <ul className="space-y-6">
                 {[
                   { label: "Risposta 24/7", text: "L'AI risponde immediatamente con voce professionale." },
@@ -190,9 +190,9 @@ const VoiceAgentModal: React.FC<VoiceAgentModalProps> = ({ isOpen, onClose }) =>
                   { label: "Notifica Automatica", text: "Invia riepilogo scritto su WhatsApp all'artigiano." }
                 ].map((item, i) => (
                   <li key={i} className="flex gap-4 items-start">
-                    <Check className="w-5 h-5 text-[#0066FF] mt-1 flex-shrink-0" />
+                    <Check className="w-5 h-5 text-[#3B82F6] mt-1 flex-shrink-0" />
                     <span className="text-white text-base font-medium leading-snug">
-                      <strong className="text-[#0066FF] text-[10px] tracking-widest block mb-0.5">{item.label}</strong>
+                      <strong className="text-[#3B82F6] text-[10px] tracking-widest block mb-0.5">{item.label}</strong>
                       {item.text}
                     </span>
                   </li>
@@ -283,12 +283,12 @@ const VoiceAgentModal: React.FC<VoiceAgentModalProps> = ({ isOpen, onClose }) =>
             <div className="flex gap-4 w-full sm:w-auto">
               <button 
                 onClick={onClose}
-                className="flex-1 sm:flex-none px-10 py-5 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-all tracking-widest text-sm"
+                className="flex-1 sm:flex-none px-7 py-[14px] rounded-full bg-white/5 text-white font-semibold hover:bg-white/10 transition-all tracking-widest text-sm"
               >
                 Chiudi
               </button>
               <button 
-                className="flex-1 sm:flex-none bg-[#0066FF] text-white font-black px-12 py-5 rounded-2xl text-sm tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,102,255,0.3)] flex items-center justify-center gap-3"
+                className="flex-1 sm:flex-none bg-[#3B82F6] text-white font-semibold px-7 py-[14px] rounded-full text-sm tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(59,130,246,0.3)] flex items-center justify-center gap-3"
                 onClick={handleContactClick}
               >
                 Configura Ora

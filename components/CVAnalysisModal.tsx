@@ -63,11 +63,11 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 pt-24">
       <div 
-        className="absolute inset-0 bg-[#050505]/95 backdrop-blur-md transition-opacity duration-300"
+        className="absolute inset-0 bg-[#050d1a]/95 backdrop-blur-md transition-opacity duration-300"
         onClick={onClose}
       />
       
-      <div className="relative w-full max-w-7xl max-h-[calc(100vh-120px)] overflow-y-auto bg-[#050505] rounded-[2.5rem] border border-white/5 shadow-[0_0_80px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in duration-300 scrollbar-hide">
+      <div className="relative w-full max-w-7xl max-h-[calc(100vh-120px)] overflow-y-auto bg-[#050d1a] rounded-[2.5rem] border border-white/5 shadow-[0_0_80px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in duration-300 scrollbar-hide">
         
         {/* Adjusted Close Button to be inside the modal body or slightly shifted */}
         <button 
@@ -85,7 +85,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
               OPERATIVO IN 48 ORE
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white font-montserrat leading-tight mb-12 tracking-tight">
+            <h1 className="text-white leading-tight mb-12 tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '96px', fontWeight: 500, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
               Fino a <span className="marker-underline">100 Ore</span> <br className="hidden md:block" />
               Risparmiate.
             </h1>
@@ -93,7 +93,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
             <div className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl">
               <button 
                 onClick={() => window.location.href = 'tel:3518302839'}
-                className="flex-1 bg-[#0066FF] text-white font-black px-8 py-5 rounded-2xl text-xs tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,102,255,0.2)] flex items-center justify-center gap-3"
+                className="flex-1 bg-[#3B82F6] text-white font-semibold px-7 py-[14px] rounded-full text-xs tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(59,130,246,0.2)] flex items-center justify-center gap-3"
               >
                 <Calendar className="w-4 h-4" />
                 Prenota una Call
@@ -103,7 +103,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
                   const el = document.getElementById('calcolatore');
                   el?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="flex-1 bg-transparent border border-white/10 text-white font-black px-8 py-5 rounded-2xl text-xs tracking-widest hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-3"
+                className="flex-1 bg-transparent border border-white/10 text-white font-semibold px-7 py-[14px] rounded-full text-xs tracking-widest hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-3"
               >
                 <Calculator className="w-4 h-4 text-blue-500" />
                 Calcola il tuo Risparmio
@@ -112,7 +112,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
           </div>
 
           <div className="mb-16 border-t border-white/5 pt-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white font-montserrat tracking-tight mb-4">
+            <h2 className="text-white tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
               Automazione Screening <br />
               <span className="text-blue-600">CV & Recruitment</span>
             </h2>
@@ -131,8 +131,8 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
                 </div>
               </div>
 
-              <div className="bg-blue-900/10 border-2 border-[#0066FF] rounded-[2.5rem] p-10 flex flex-col shadow-[0_0_40px_rgba(0,102,255,0.1)] hover:shadow-[0_0_25px_rgba(0,102,255,0.4)] transition-all duration-300 relative">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#0066FF] text-white text-[10px] font-black tracking-widest px-4 py-1 rounded-full shadow-lg">
+              <div className="bg-blue-900/10 border-2 border-[#3B82F6] rounded-[2.5rem] p-10 flex flex-col shadow-[0_0_40px_rgba(59,130,246,0.1)] hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#3B82F6] text-white text-[10px] font-black tracking-widest px-4 py-1 rounded-full shadow-lg">
                   Consigliato
                 </div>
                 <h3 className="text-3xl font-black text-blue-500 mb-10 font-montserrat leading-tight">La Soluzione <br/><span className="text-xs tracking-widest opacity-70">(n8n + AI)</span></h3>
@@ -175,7 +175,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
               </div>
             </div>
 
-            <div id="calcolatore" className="max-w-4xl mx-auto bg-[#0a0a0a] border border-white/5 rounded-[3rem] p-8 md:p-14 mb-20">
+            <div id="calcolatore" className="max-w-4xl mx-auto bg-[#050d1a] border border-white/5 rounded-[3rem] p-8 md:p-14 mb-20">
               <h3 className="text-3xl md:text-5xl font-black text-white text-center mb-16 font-montserrat leading-tight">
                 Quanto puoi <span className="marker-underline">risparmiare</span> con <br /> il nostro <span className="text-blue-600">Sistema</span>?
               </h3>
@@ -188,7 +188,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
                       <button
                         key={s}
                         onClick={() => { setSector(s); setShowResult(false); }}
-                        className={`py-4 rounded-xl text-sm font-bold border transition-all ${
+                        className={`px-7 py-[14px] rounded-full text-sm font-semibold border transition-all ${
                           sector === s 
                             ? 'bg-white text-black border-white' 
                             : 'bg-transparent border-white/10 text-white/50 hover:border-white/20'
@@ -246,7 +246,7 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
               <div className="mt-16 flex justify-center">
                 <button 
                   onClick={() => setShowResult(true)}
-                  className="bg-[#0066FF] hover:scale-105 text-white font-black px-12 py-6 rounded-2xl text-sm tracking-widest transition-all shadow-[0_15px_40px_rgba(0,102,255,0.3)] flex items-center gap-3"
+                  className="bg-[#3B82F6] hover:scale-105 text-white font-semibold px-7 py-[14px] rounded-full text-sm tracking-widest transition-all shadow-[0_15px_40px_rgba(59,130,246,0.3)] flex items-center gap-3"
                 >
                   <TrendingUp className="w-5 h-5" />
                   Scopri il Risparmio
@@ -262,12 +262,12 @@ const CVAnalysisModal: React.FC<CVAnalysisModalProps> = ({ isOpen, onClose }) =>
             <div className="flex gap-4 w-full sm:w-auto">
               <button 
                 onClick={onClose}
-                className="flex-1 sm:flex-none px-10 py-5 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-all tracking-widest text-sm"
+                className="flex-1 sm:flex-none px-7 py-[14px] rounded-full bg-white/5 text-white font-semibold hover:bg-white/10 transition-all tracking-widest text-sm"
               >
                 Chiudi
               </button>
               <button 
-                className="flex-1 sm:flex-none bg-[#0066FF] text-white font-black px-12 py-5 rounded-2xl text-sm tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,102,255,0.3)] flex items-center justify-center gap-3"
+                className="flex-1 sm:flex-none bg-[#3B82F6] text-white font-semibold px-7 py-[14px] rounded-full text-sm tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(59,130,246,0.3)] flex items-center justify-center gap-3"
                 onClick={handleContactClick}
               >
                 Contattami Ora

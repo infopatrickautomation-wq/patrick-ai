@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import AboutModal from '../components/AboutModal';
+import { navigate } from '../hooks/useRoute';
 
 interface NavbarProps {
   forceSolid?: boolean;
+  ctaLabel?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -18,17 +18,17 @@ const Navbar: React.FC<NavbarProps> = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Soluzioni', href: '/#soluzioni' },
+    { label: 'Home', href: '/' },
     { label: 'Casi Studio', href: '/#casi-studio' },
-    { label: 'Prodotti', href: '/#soluzioni' },
-    { label: 'Chi Sono', href: '#', isModal: true },
+    { label: 'Prodotti', href: '/prodotti', isPage: true },
+    { label: 'Chi Sono', href: '/chi-sono', isPage: true },
   ];
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string, isModal?: boolean) => {
-    if (isModal) {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string, isModal?: boolean, isPage?: boolean) => {
+    if (isPage) {
       e.preventDefault();
-      setIsAboutModalOpen(true);
       setIsMobileMenuOpen(false);
+      navigate(href);
       return;
     }
     if (href.startsWith('/#')) {
@@ -39,9 +39,13 @@ const Navbar: React.FC<NavbarProps> = () => {
         setIsMobileMenuOpen(false);
       }
     } else if (href === '/') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+      if (window.location.pathname !== '/') {
+        // navigate back to home
+      } else {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsMobileMenuOpen(false);
+      }
     }
   };
 
@@ -51,8 +55,8 @@ const Navbar: React.FC<NavbarProps> = () => {
       <div className="fixed top-5 left-0 right-0 z-[200] flex justify-center px-4">
         <nav
           style={{
-            background: 'rgba(0,0,0,0.8)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'rgba(5,13,26,0.85)',
+            border: '1px solid #1e3a5f',
             borderRadius: '50px',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
@@ -74,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href, link.isModal)}
+                onClick={(e) => handleLinkClick(e, link.href, link.isModal, link.isPage)}
                 className="text-white/60 hover:text-white text-[11px] tracking-widest font-semibold px-4 py-2 rounded-full hover:bg-white/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
               >
                 {link.label}
@@ -83,14 +87,13 @@ const Navbar: React.FC<NavbarProps> = () => {
           </div>
 
           {/* CTA */}
-          <a
-            href="/#contatti"
-            onClick={(e) => handleLinkClick(e, '/#contatti')}
-            className="hidden md:block ml-2 bg-[#0066FF] text-white font-black px-6 py-2 text-[11px] tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] hover:scale-105 active:scale-95 whitespace-nowrap"
+          <button
+            onClick={() => navigate('/contatti')}
+            className="hidden md:block ml-2 bg-[#3B82F6] text-white font-semibold px-7 py-[14px] text-[11px] tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] hover:scale-105 active:scale-95 whitespace-nowrap"
             style={{ borderRadius: '50px' }}
           >
-            Contattaci
-          </a>
+            {ctaLabel}
+          </button>
 
           {/* Mobile hamburger */}
           <button className="md:hidden text-white p-2 ml-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -115,26 +118,25 @@ const Navbar: React.FC<NavbarProps> = () => {
             <a
               key={link.label}
               href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href, link.isModal)}
-              className="block text-white/70 hover:text-white text-lg font-bold tracking-widest transition-colors cursor-pointer py-2"
+              onClick={(e) => handleLinkClick(e, link.href, link.isModal, link.isPage)}
+              className="block text-white/70 hover:text-white font-bold tracking-widest transition-colors cursor-pointer py-2"
+              style={{ fontSize: '12px' }}
             >
               {link.label}
             </a>
           ))}
           <div className="pt-4 border-t border-white/10">
-            <a
-              href="/#contatti"
-              onClick={(e) => handleLinkClick(e, '/#contatti')}
-              className="block w-full text-center bg-[#0066FF] text-white font-black py-4 text-sm tracking-widest active:scale-95 transition-transform"
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); navigate('/contatti'); }}
+              className="block w-full text-center bg-[#3B82F6] text-white font-semibold px-7 py-[14px] text-sm tracking-widest active:scale-95 transition-transform"
               style={{ borderRadius: '50px' }}
             >
-              Contattaci
-            </a>
+              {ctaLabel}
+            </button>
           </div>
         </div>
       </div>
 
-      <AboutModal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} />
     </>
   );
 };

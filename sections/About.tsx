@@ -15,17 +15,17 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="chi-siamo" className="py-24 bg-black relative overflow-hidden">
+    <section id="chi-siamo" className="py-24 bg-[#050d1a] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div ref={contentRef} className={`transition-all duration-700 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse" />
               <span className="text-[#E6E8EB] text-sm font-medium">Chi Sono</span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-montserrat tracking-tight">
-              Trasformo il tuo modo di <span className="text-blue-600">lavorare con l'AI</span>
+            <h2 className="text-white mb-6 tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
+              Trasformo il tuo modo di <span className="accent-italic">lavorare con l'AI.</span>
             </h2>
 
             <div className="space-y-6 text-[#E6E8EB] text-lg leading-relaxed mb-10">
@@ -43,7 +43,7 @@ const About: React.FC = () => {
               {['Analisi personalizzata', 'Soluzioni su misura', 'Formazione e supporto', 'Integrazione seamless'].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-[#3D52A0]/20 flex items-center justify-center">
-                    <Check className="w-4 h-4 text-[#0066FF]" />
+                    <Check className="w-4 h-4 text-[#3B82F6]" />
                   </div>
                   <span className="text-[#E6E8EB]">{item}</span>
                 </div>
@@ -54,10 +54,10 @@ const About: React.FC = () => {
           <div className="space-y-8">
             <div className="grid grid-cols-1 gap-6">
               {benefits.map((b, i) => (
-                <div key={i} className="p-8 rounded-3xl bg-white/5 border border-[rgba(0,102,255,0.15)] hover:border-[#0066FF]/60 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,102,255,0.15)] transition-all duration-300 relative overflow-hidden" onMouseMove={onMouseMove(i)} onMouseLeave={onMouseLeave(i)}>
+                <div key={i} className="neon-card p-8 rounded-3xl bg-white/5 border border-[rgba(59,130,246,0.15)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden" onMouseMove={onMouseMove(i)} onMouseLeave={onMouseLeave(i)}>
                   <div ref={el => { glowRefs.current[i] = el; }} style={glowDivStyle} />
                   <div className="flex gap-6 items-start relative z-10">
-                    <div className="p-4 rounded-2xl bg-blue-600/10 text-[#0066FF]">
+                    <div className="p-4 rounded-2xl bg-blue-600/10 text-[#3B82F6]">
                       <b.icon className="w-8 h-8" />
                     </div>
                     <div>

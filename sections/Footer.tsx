@@ -3,10 +3,10 @@ import React from 'react';
 import { Linkedin, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const linkClass = "block text-[#666] hover:text-[#0066FF] transition-colors duration-200 text-sm leading-relaxed";
+  const linkClass = "block text-[#666] hover:text-[#3B82F6] transition-colors duration-200 text-sm leading-relaxed";
 
   return (
-    <footer style={{ background: '#0A0A0A' }} className="border-t border-white/5">
+    <footer style={{ background: '#050d1a' }} className="border-t border-white/5">
       {/* Main grid */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
@@ -27,10 +27,10 @@ const Footer: React.FC = () => {
             <div className="space-y-1.5 text-[#555] text-xs leading-relaxed">
               <p>PatrickAI Automation</p>
               <p>Molinella, Bologna</p>
-              <a href="mailto:info.patrickautomation@gmail.com" className="hover:text-[#0066FF] transition-colors block">
+              <a href="mailto:info.patrickautomation@gmail.com" className="hover:text-[#3B82F6] transition-colors block">
                 info.patrickautomation@gmail.com
               </a>
-              <a href="tel:3518302839" className="hover:text-[#0066FF] transition-colors block">
+              <a href="tel:3518302839" className="hover:text-[#3B82F6] transition-colors block">
                 351 830 2839
               </a>
             </div>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-2 mb-5">
               <span
                 className="w-2 h-2 rounded-full flex-shrink-0"
-                style={{ background: '#0066FF', boxShadow: '0 0 6px rgba(0,102,255,0.6)' }}
+                style={{ background: '#3B82F6', boxShadow: '0 0 6px rgba(0,102,255,0.6)' }}
               />
               <h4 className="text-white text-xs font-black tracking-widest">Servizi</h4>
             </div>
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 transition-all duration-200"
+              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[#3B82F6]/50 hover:bg-[#3B82F6]/10 transition-all duration-200"
             >
               <Linkedin className="w-4 h-4 text-[#666]" />
             </a>
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
               href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 transition-all duration-200"
+              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[#3B82F6]/50 hover:bg-[#3B82F6]/10 transition-all duration-200"
             >
               <Instagram className="w-4 h-4 text-[#666]" />
             </a>

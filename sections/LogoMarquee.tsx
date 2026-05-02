@@ -41,10 +41,10 @@ const LogoMarquee: React.FC = () => {
   const allTools = [...tools, ...tools, ...tools, ...tools];
 
   return (
-    <section className="py-32 bg-black border-y border-[#0066FF]/10 overflow-hidden">
+    <section className="py-32 bg-[#050d1a] border-y border-[#3B82F6]/10 overflow-hidden">
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050d1a] to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050d1a] to-transparent z-10" />
 
         <div
           ref={marqueeRef}
@@ -68,7 +68,7 @@ const LogoMarquee: React.FC = () => {
         </div>
       </div>
       <div className="text-center mt-12">
-        <p className="text-[#0066FF]/40 text-[10px] tracking-[0.4em] font-black">
+        <p className="text-[#3B82F6]/40 text-[10px] tracking-[0.4em] font-black">
           Powered by Industry Leading Tech
         </p>
       </div>
