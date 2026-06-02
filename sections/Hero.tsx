@@ -1,16 +1,38 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Zap } from 'lucide-react';
-import ParticlesBackground from '../components/ParticlesBackground';
+import { Stars } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import {
+  useMotionTemplate,
+  useMotionValue,
+  motion,
+  animate,
+} from 'framer-motion';
+
+const NEON_GREEN = '#00ff88';
 
 const Hero: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const color = useMotionValue(NEON_GREEN);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    animate(color, ['#00ff88', '#2AFF7A', '#00cc66', '#00ff88'], {
+      ease: 'easeInOut',
+      duration: 8,
+      repeat: Infinity,
+      repeatType: 'mirror',
+    });
+  }, []);
+
+  const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #050d1a 50%, ${color})`;
+  const border = useMotionTemplate`1px solid ${color}`;
+  const boxShadow = useMotionTemplate`0px 4px 28px ${color}`;
 
   const scrollToSection = (id: string) => {
     const el = document.querySelector(id);
@@ -18,83 +40,117 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050d1a]">
-      <ParticlesBackground />
-      {/* Radial glow — centro blu-viola */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgba(74,63,255,0.18)_0%,rgba(0,191,255,0.06)_45%,transparent_70%)] z-0 pointer-events-none" />
-      {/* Radial glow — laterale cyan */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(0,191,255,0.08)_0%,transparent_50%)] z-0 pointer-events-none" />
+    <motion.section
+      style={{ backgroundImage }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4"
+    >
+      {/* Stars canvas */}
+      <div className="absolute inset-0 z-0">
+        <Canvas>
+          <Stars radius={50} count={2500} factor={4} fade speed={1.5} />
+        </Canvas>
+      </div>
 
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-32 pb-24">
+      <div className="relative z-10 text-center max-w-7xl mx-auto pt-32 pb-24">
 
         {/* Badge */}
-        <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#4A9FFF]/30 bg-[#4A6FFF]/8 mb-10 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-          <Zap className="w-4 h-4 text-[#4A9FFF]" />
-          <span className="text-[#4A9FFF] text-xs font-bold uppercase" style={{ letterSpacing: '0.25em' }}>AI Automation Agency</span>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-10"
+          style={{ border: '1px solid rgba(0,255,136,0.4)', background: 'rgba(0,255,136,0.06)' }}
+        >
+          <Zap className="w-4 h-4" style={{ color: NEON_GREEN }} />
+          <span className="text-xs font-bold uppercase" style={{ color: NEON_GREEN, letterSpacing: '0.25em' }}>
+            AI Automation Agency
+          </span>
+        </motion.div>
 
         {/* Logo */}
-        <div className={`mb-10 flex justify-center transition-all duration-1000 delay-100 ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-          <div className="relative group">
-            <div className="absolute inset-0 bg-[#3B82F6]/20 blur-[120px] rounded-full scale-150 animate-pulse" />
-            <div className="absolute inset-0 bg-[#3B82F6]/10 blur-[100px] rounded-full scale-125 animate-pulse delay-700" />
-            <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-              <img
-                src="https://i.ibb.co/zh2W9Mcs/Chat-GPT-Image-4-feb-2026-10-54-50.png"
-                alt="PatrickAI Logo"
-                className="w-full h-auto drop-shadow-[0_0_60px_rgba(59,130,246,0.6)] filter brightness-110"
-              />
-            </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={visible ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1, delay: 0.1 }}
+          className="mb-10 flex justify-center"
+        >
+          <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 flex items-center justify-center transition-transform duration-700 hover:scale-105">
+            <img
+              src="/logo.png"
+              alt="PatrickAI Logo"
+              className="w-full h-auto"
+              style={{ filter: 'drop-shadow(0 0 32px rgba(0,255,136,0.35))' }}
+            />
           </div>
-        </div>
+        </motion.div>
 
         {/* Main Title */}
-        <div className={`transition-all duration-1000 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <h1 className="text-white leading-tight tracking-tight mb-6" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '96px', fontWeight: 500, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 48 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <h1
+            className="leading-tight tracking-tight mb-6 text-white"
+            style={{
+              fontFamily: 'Playfair Display, serif',
+              fontSize: 'clamp(3rem, 8vw, 96px)',
+              fontWeight: 900,
+              letterSpacing: '-2.88px',
+              lineHeight: 1.1,
+            }}
+          >
             L'Evoluzione<br />
-            <span className="accent-italic">Intelligente</span><br />
+            <em style={{ color: NEON_GREEN, fontStyle: 'italic', textShadow: '0 0 40px rgba(0,255,136,0.5)' }}>
+              Intelligente
+            </em><br />
             del Business
           </h1>
-          <p className="text-sm md:text-base font-black text-[#4A9FFF] mb-6 tracking-[0.4em]">
+          <p className="text-sm md:text-base font-black mb-6 tracking-[0.4em]" style={{ color: 'rgba(0,255,136,0.6)' }}>
             — Oltre ogni confine digitale —
           </p>
-        </div>
+        </motion.div>
 
         {/* Subtitle */}
-        <div className={`transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <p className="text-lg sm:text-xl text-white/50 max-w-2xl mx-auto mb-14 leading-relaxed font-light">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-14 leading-relaxed font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
             Automazioni AI su misura per aziende, professionisti e imprenditori. Elimina il lavoro manuale e scala il tuo business senza limiti.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <button
+            <motion.button
+              style={{ border, boxShadow }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => scrollToSection('#contatti')}
-              className="group flex items-center gap-3 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95"
+              className="group flex items-center gap-3 font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-colors"
+              style={{ border, boxShadow, background: 'rgba(0,255,136,0.08)', color: '#fff' } as React.CSSProperties}
             >
               Prenota una Call Gratuita
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </motion.button>
             <button
               onClick={() => scrollToSection('#soluzioni')}
-              className="group flex items-center gap-3 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95"
+              className="group flex items-center gap-3 font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:scale-105 active:scale-95"
+              style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)', background: 'transparent' }}
             >
               Scopri i Servizi
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
-
-      {/* Orbs */}
-      <div className="absolute top-1/3 -left-64 w-[600px] h-[600px] bg-[#3B82F6]/5 blur-[180px] rounded-full animate-pulse" />
-      <div className="absolute bottom-1/4 -right-64 w-[500px] h-[500px] bg-[#3B82F6]/5 blur-[150px] rounded-full animate-pulse delay-1000" />
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-25 animate-bounce">
-        <span className="text-[9px] tracking-[0.4em] font-black text-[#3B82F6]">Scroll</span>
-        <div className="w-[1px] h-8 bg-gradient-to-b from-[#3B82F6] to-transparent" />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
+        <span className="text-[9px] tracking-[0.4em] font-black" style={{ color: NEON_GREEN }}>Scroll</span>
+        <div className="w-[1px] h-8" style={{ background: `linear-gradient(to bottom, ${NEON_GREEN}, transparent)` }} />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

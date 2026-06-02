@@ -23,10 +23,10 @@ const ParticlesBackground: React.FC = () => {
         fpsLimit: 60,
         particles: {
           number: { value: 80, density: { enable: true } },
-          color: { value: '#ffffff' },
+          color: { value: '#2A5C3F' },
           shape: { type: 'circle' },
           opacity: {
-            value: { min: 0.2, max: 0.9 },
+            value: { min: 0.15, max: 0.45 },
             animation: {
               enable: true,
               speed: 0.8,

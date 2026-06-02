@@ -17,6 +17,7 @@ import FluxAgentPage from './pages/FluxAgentPage';
 import NovaAgentPage from './pages/NovaAgentPage';
 import AxisPartnerPage from './pages/AxisPartnerPage';
 import ChiSonePage from './pages/ChiSonePage';
+import ScrollProgressLine from './components/ScrollProgressLine';
 import { useRoute } from './hooks/useRoute';
 
 const App: React.FC = () => {
@@ -25,33 +26,34 @@ const App: React.FC = () => {
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
 
   if (path === '/contatti') {
-    return <ContactPage />;
+    return <><ScrollProgressLine /><ContactPage /></>;
   }
 
   if (path === '/prodotti') {
-    return <ProductsPage />;
+    return <><ScrollProgressLine /><ProductsPage /></>;
   }
 
   if (path === '/flux-agent') {
-    return <FluxAgentPage />;
+    return <><ScrollProgressLine /><FluxAgentPage /></>;
   }
 
   if (path === '/nova-agent') {
-    return <NovaAgentPage />;
+    return <><ScrollProgressLine /><NovaAgentPage /></>;
   }
 
   if (path === '/axis-partner') {
-    return <AxisPartnerPage />;
+    return <><ScrollProgressLine /><AxisPartnerPage /></>;
   }
 
   if (path === '/chi-sono') {
-    return <ChiSonePage />;
+    return <><ScrollProgressLine /><ChiSonePage /></>;
   }
 
   const isAnyModalOpen = isCVModalOpen || isVoiceModalOpen;
 
   return (
-    <div className="min-h-screen bg-black selection:bg-[#0066FF]/20">
+    <div className="min-h-screen bg-[#EDEAE3] selection:bg-[#2A5C3F]/15">
+      <ScrollProgressLine />
       <CustomCursor />
       <Navbar forceSolid={isAnyModalOpen} />
 

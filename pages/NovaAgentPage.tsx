@@ -68,18 +68,18 @@ const LeadCalculator: React.FC = () => {
   return (
     <Reveal>
       <div
-        className="neon-card relative rounded-[2rem] overflow-hidden border border-[rgba(59,130,246,0.2)] p-8 md:p-12"
-        style={{ background: '#0D1117' }}
+        className="neon-card relative rounded-[2rem] overflow-hidden border border-[#C8C3BB] p-8 md:p-12"
+        style={{ background: '#E4E0D8' }}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
       >
         <div ref={glowRef} style={glowDivStyle} />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/40 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
 
         {/* Title */}
         <div className="text-center mb-12 relative z-10">
-          <p className="text-[#4A9FFF] text-[10px] tracking-[0.3em] font-black mb-5">— CALCOLATORE —</p>
-          <h2 className="text-white tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
+          <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-5">— CALCOLATORE —</p>
+          <h2 className="text-[#1C1C1C] tracking-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
             Quanti lead stai<br />
             <span className="accent-italic">perdendo?</span>
           </h2>
@@ -88,7 +88,7 @@ const LeadCalculator: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-10 relative z-10">
           {/* Left — inputs */}
           <div>
-            <p className="text-white/30 text-[10px] tracking-[0.25em] font-black mb-4">STEP 1 — SETTORE</p>
+            <p className="text-[#857E78] text-[10px] tracking-[0.25em] font-black mb-4">STEP 1 — SETTORE</p>
             <div className="flex flex-wrap gap-3 mb-10">
               {sectors.map((s, i) => (
                 <button
@@ -97,7 +97,7 @@ const LeadCalculator: React.FC = () => {
                   className="px-5 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-200"
                   style={
                     sector === i
-                      ? { background: '#0066FF', color: '#fff', border: '1px solid #0066FF' }
+                      ? { background: '#2A5C3F', color: '#fff', border: '1px solid #2A5C3F' }
                       : { background: 'transparent', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.12)' }
                   }
                 >
@@ -106,28 +106,28 @@ const LeadCalculator: React.FC = () => {
               ))}
             </div>
 
-            <p className="text-white/30 text-[10px] tracking-[0.25em] font-black mb-5">STEP 2 — LEAD RICEVUTI A SETTIMANA</p>
+            <p className="text-[#857E78] text-[10px] tracking-[0.25em] font-black mb-5">STEP 2 — LEAD RICEVUTI A SETTIMANA</p>
             <div className="flex items-center gap-5 mb-4">
               <button
                 onClick={() => setLeads(h => Math.max(5, h - 1))}
-                className="w-11 h-11 rounded-full border border-white/12 text-white/50 hover:border-[#3B82F6]/50 hover:text-white transition-all duration-200 text-xl font-bold flex items-center justify-center flex-shrink-0"
+                className="w-11 h-11 rounded-full border border-white/12 text-[#857E78] hover:border-[#2A5C3F]/50 hover:text-white transition-all duration-200 text-xl font-bold flex items-center justify-center flex-shrink-0"
               >−</button>
               <div className="flex-1 text-center">
-                <span className="text-white font-black" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '52px', lineHeight: 1 }}>{leads}</span>
-                <span className="text-white/35 text-sm ml-2">lead / sett.</span>
+                <span className="text-[#1C1C1C] font-black" style={{ fontFamily: 'Playfair Display, serif', fontSize: '52px', lineHeight: 1 }}>{leads}</span>
+                <span className="text-[#857E78] text-sm ml-2">lead / sett.</span>
               </div>
               <button
                 onClick={() => setLeads(h => Math.min(100, h + 1))}
-                className="w-11 h-11 rounded-full border border-white/12 text-white/50 hover:border-[#3B82F6]/50 hover:text-white transition-all duration-200 text-xl font-bold flex items-center justify-center flex-shrink-0"
+                className="w-11 h-11 rounded-full border border-white/12 text-[#857E78] hover:border-[#2A5C3F]/50 hover:text-white transition-all duration-200 text-xl font-bold flex items-center justify-center flex-shrink-0"
               >+</button>
             </div>
             <input
               type="range" min={5} max={100} value={leads}
               onChange={e => setLeads(Number(e.target.value))}
               className="w-full"
-              style={{ accentColor: '#3B82F6' }}
+              style={{ accentColor: '#2A5C3F' }}
             />
-            <div className="flex justify-between text-white/20 text-xs mt-1.5">
+            <div className="flex justify-between text-[#857E78]/70 text-xs mt-1.5">
               <span>5 lead</span><span>100 lead</span>
             </div>
           </div>
@@ -135,37 +135,37 @@ const LeadCalculator: React.FC = () => {
           {/* Right — result */}
           <div className="flex flex-col justify-center">
             <div
-              className="rounded-2xl border border-[rgba(59,130,246,0.2)] p-8"
+              className="rounded-2xl border border-[#C8C3BB] p-8"
               style={{ background: 'rgba(0,102,255,0.04)' }}
             >
-              <p className="text-white/30 text-[10px] tracking-[0.25em] font-black mb-6">RISULTATO STIMATO</p>
+              <p className="text-[#857E78] text-[10px] tracking-[0.25em] font-black mb-6">RISULTATO STIMATO</p>
 
               <div className="mb-6">
                 <span
                   className="font-black leading-none"
-                  style={{ fontFamily: 'Outfit, sans-serif', fontSize: '64px', color: '#3B82F6' }}
+                  style={{ fontFamily: 'Playfair Display, serif', fontSize: '64px', color: '#2A5C3F' }}
                 >
                   {display}
                 </span>
-                <span className="text-white/40 text-base ml-2">lead recuperati / mese</span>
+                <span className="text-[#857E78] text-base ml-2">lead recuperati / mese</span>
               </div>
 
               <div className="space-y-3 mb-8">
-                <div className="h-px bg-white/6" />
+                <div className="h-px bg-[#C8C3BB]/60" />
                 <div className="flex justify-between items-center py-1">
-                  <span className="text-white/40 text-sm">Valore stimato mensile</span>
-                  <span className="text-white font-black text-2xl">€{valueMonthly.toLocaleString('it-IT')}</span>
+                  <span className="text-[#857E78] text-sm">Valore stimato mensile</span>
+                  <span className="text-[#1C1C1C] font-black text-2xl">€{valueMonthly.toLocaleString('it-IT')}</span>
                 </div>
-                <div className="h-px bg-white/6" />
+                <div className="h-px bg-[#C8C3BB]/60" />
                 <div className="flex justify-between items-center py-1">
-                  <span className="text-white/40 text-sm">Lead persi a settimana</span>
-                  <span className="text-white font-black text-2xl">{lostPerWeek} lead</span>
+                  <span className="text-[#857E78] text-sm">Lead persi a settimana</span>
+                  <span className="text-[#1C1C1C] font-black text-2xl">{lostPerWeek} lead</span>
                 </div>
               </div>
 
               <button
                 onClick={() => navigate('/contatti')}
-                className="w-full bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_40px_rgba(59,130,246,0.45)] hover:scale-[1.01] active:scale-[0.99]"
+                className="w-full bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-[1.01] active:scale-[0.99]"
               >
                 Recupera i tuoi lead
                 <ArrowRight className="w-4 h-4" />
@@ -223,13 +223,13 @@ const TimelineSection: React.FC = () => {
 
         const circ = circleRefs.current[i];
         if (circ) {
-          circ.style.borderColor = on ? '#3B82F6'               : 'rgba(255,255,255,0.08)';
-          circ.style.background  = on ? 'rgba(59,130,246,0.18)' : 'rgba(255,255,255,0.02)';
-          circ.style.boxShadow   = on ? '0 0 32px rgba(59,130,246,0.6), inset 0 0 12px rgba(59,130,246,0.15)' : 'none';
+          circ.style.borderColor = on ? '#2A5C3F'               : 'rgba(200,195,187,0.3)';
+          circ.style.background  = on ? 'rgba(42,92,63,0.15)'   : 'rgba(200,195,187,0.1)';
+          circ.style.boxShadow   = on ? '0 0 16px rgba(42,92,63,0.3)' : 'none';
         }
 
         const wrap = iconWrpRefs.current[i];
-        if (wrap) wrap.style.color = on ? '#3B82F6' : 'rgba(255,255,255,0.18)';
+        if (wrap) wrap.style.color = on ? '#2A5C3F' : 'rgba(28,28,28,0.2)';
 
         const txt = textRefs.current[i];
         if (txt) {
@@ -252,7 +252,7 @@ const TimelineSection: React.FC = () => {
 
             line.style.height    = `${fill * 100}%`;
             line.style.opacity   = fill > 0.01 ? '1' : '0';
-            line.style.boxShadow = fill > 0.05 ? '0 0 10px rgba(59,130,246,0.55)' : 'none';
+            line.style.boxShadow = fill > 0.05 ? '0 0 10px rgba(42,92,63,0.3)' : 'none';
           }
         }
       });
@@ -264,17 +264,17 @@ const TimelineSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="pt-16 pb-28 relative" style={{ background: '#050d1a' }}>
+    <section className="pt-16 pb-28 relative" style={{ background: '#EDEAE3' }}>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-14 items-start">
 
           {/* ── Left: sticky copy + results card ── */}
           <div className="md:sticky md:top-12 -ml-1">
-            <p className="text-[#4A9FFF] text-[10px] tracking-[0.3em] font-black mb-5">— COME FUNZIONA —</p>
+            <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-5">— COME FUNZIONA —</p>
             <h2
-              className="text-white tracking-tight leading-tight mb-3"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 500, letterSpacing: '-1.8px', lineHeight: '66px' }}
+              className="text-[#1C1C1C] tracking-tight leading-tight mb-3"
+              style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, letterSpacing: '-1.8px', lineHeight: '66px' }}
             >
               Attivo in 72h.<br />Tuo per sempre.
             </h2>
@@ -283,7 +283,7 @@ const TimelineSection: React.FC = () => {
             </p>
             <button
               onClick={() => navigate('/contatti')}
-              className="group flex items-center gap-2 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] hover:scale-105 active:scale-95 mb-10"
+              className="group flex items-center gap-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95 mb-10"
             >
               Prenota una Call
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -291,46 +291,46 @@ const TimelineSection: React.FC = () => {
 
             {/* Results card */}
             <div
-              className="neon-card relative rounded-[1.75rem] overflow-hidden border border-[rgba(59,130,246,0.12)]"
-              style={{ background: '#0a1628' }}
+              className="neon-card relative rounded-[1.75rem] overflow-hidden border border-[#C8C3BB]"
+              style={{ background: '#E4E0D8' }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/25 to-transparent" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(59,130,246,0.07)_0%,transparent_60%)]" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(42,92,63,0.05)_0%,transparent_60%)]" />
               <div className="p-8 relative z-10">
-                <p className="text-white/25 text-[9px] tracking-[0.3em] font-black mb-7">— RISULTATI MEDI DEI NOSTRI CLIENTI —</p>
+                <p className="text-[#857E78] text-[9px] tracking-[0.3em] font-black mb-7">— RISULTATI MEDI DEI NOSTRI CLIENTI —</p>
                 <div className="space-y-6">
                   <div className="flex items-start gap-5">
                     <div
                       className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center"
-                      style={{ background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.2)' }}
+                      style={{ background: 'rgba(42,92,63,0.06)', border: '1px solid rgba(59,130,246,0.2)' }}
                     >
-                      <TrendingUp className="w-6 h-6 text-[#3B82F6]" />
+                      <TrendingUp className="w-6 h-6 text-[#2A5C3F]" />
                     </div>
                     <div>
-                      <div className="text-white font-black leading-none mb-1" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '36px' }}>
-                        3<span className="text-[#3B82F6]">x</span>
+                      <div className="text-[#1C1C1C] font-black leading-none mb-1" style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px' }}>
+                        3<span className="text-[#2A5C3F]">x</span>
                       </div>
-                      <p className="text-white/40 text-sm leading-snug">
+                      <p className="text-[#857E78] text-sm leading-snug">
                         lead qualificati ogni mese.<br />
-                        <span className="text-white/60">Pipeline piena, agenda piena.</span>
+                        <span className="text-[#1C1C1C]/70">Pipeline piena, agenda piena.</span>
                       </p>
                     </div>
                   </div>
-                  <div className="h-px bg-white/5" />
+                  <div className="h-px bg-[#C8C3BB]/50" />
                   <div className="flex items-start gap-5">
                     <div
                       className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center"
-                      style={{ background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.2)' }}
+                      style={{ background: 'rgba(42,92,63,0.06)', border: '1px solid rgba(59,130,246,0.2)' }}
                     >
-                      <Zap className="w-6 h-6 text-[#3B82F6]" />
+                      <Zap className="w-6 h-6 text-[#2A5C3F]" />
                     </div>
                     <div>
-                      <div className="text-white font-black leading-none mb-1" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '36px' }}>
-                        ROI <span className="text-[#3B82F6]">+</span>
+                      <div className="text-[#1C1C1C] font-black leading-none mb-1" style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px' }}>
+                        ROI <span className="text-[#2A5C3F]">+</span>
                       </div>
-                      <p className="text-white/40 text-sm leading-snug">
+                      <p className="text-[#857E78] text-sm leading-snug">
                         misurabile già dal primo mese.<br />
-                        <span className="text-white/60">Costi fissi, risultati che scalano.</span>
+                        <span className="text-[#1C1C1C]/70">Costi fissi, risultati che scalano.</span>
                       </p>
                     </div>
                   </div>
@@ -375,10 +375,10 @@ const TimelineSection: React.FC = () => {
                       transition: 'opacity 0.55s ease, transform 0.55s ease',
                     }}
                   >
-                    <h3 className="text-white font-black mb-2 leading-snug" style={{ fontSize: '24px' }}>
+                    <h3 className="text-[#1C1C1C] font-black mb-2 leading-snug" style={{ fontSize: '24px' }}>
                       {step.label}
                     </h3>
-                    <p className="text-white/45 leading-relaxed" style={{ fontSize: '15px' }}>
+                    <p className="text-[#857E78] leading-relaxed" style={{ fontSize: '15px' }}>
                       {step.desc}
                     </p>
                   </div>
@@ -395,7 +395,7 @@ const TimelineSection: React.FC = () => {
                       className="absolute left-0 top-0 w-[2px]"
                       style={{
                         height: '0%',
-                        background: 'linear-gradient(to bottom, #3B82F6, rgba(59,130,246,0.35))',
+                        background: 'linear-gradient(to bottom, #2A5C3F, rgba(42,92,63,0.35))',
                         transition: 'height 0.08s linear, opacity 0.2s ease',
                         borderRadius: '2px',
                       }}
@@ -425,7 +425,7 @@ const NovaAgentPage: React.FC = () => {
   const panel1Glow = useMouseGlow();
 
   return (
-    <div style={{ background: '#050d1a' }} className="min-h-screen selection:bg-[#3B82F6]/20 overflow-x-hidden">
+    <div style={{ background: '#EDEAE3' }} className="min-h-screen selection:bg-[#2A5C3F]/20 overflow-x-hidden">
       <CustomCursor />
       <Navbar ctaLabel="Prova Nova" />
 
@@ -434,27 +434,27 @@ const NovaAgentPage: React.FC = () => {
       ══════════════════════════════════════ */}
       <section className="relative pt-36 pb-0 px-4 overflow-hidden">
         {/* bg glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(59,130,246,0.12)_0%,transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0  pointer-events-none" />
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
 
           {/* badge */}
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 border border-[#3B82F6]/25 bg-[#3B82F6]/8 transition-all duration-600 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3'}`}>
-            <Zap className="w-3 h-3 text-[#3B82F6]" />
-            <span className="text-[#3B82F6] text-[10px] tracking-[0.25em] font-black">AI AGENT & LEAD GENERATION</span>
+          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 border border-[#2A5C3F]/25 bg-[#2A5C3F]/8 transition-all duration-600 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3'}`}>
+            <Zap className="w-3 h-3 text-[#2A5C3F]" />
+            <span className="text-[#2A5C3F] text-[10px] tracking-[0.25em] font-black">AI AGENT & LEAD GENERATION</span>
           </div>
 
           {/* H1 */}
           <h1
             className={`tracking-tight leading-tight mb-5 transition-all duration-800 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '96px', fontWeight: 500, letterSpacing: '-2.88px', lineHeight: '105.6px' }}
+            style={{ fontFamily: 'Playfair Display, serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}
           >
-            <span className="text-white">Nova </span>
+            <span className="text-[#1C1C1C]">Nova </span>
             <em className="accent-italic">Agent</em>
           </h1>
 
           {/* subtitle */}
-          <p className={`text-white/45 text-base sm:text-lg font-light leading-relaxed max-w-lg mx-auto mb-9 transition-all duration-700 delay-150 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+          <p className={`text-[#857E78] text-base sm:text-lg font-light leading-relaxed max-w-lg mx-auto mb-9 transition-all duration-700 delay-150 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             L'agente AI intelligente che gestisce i tuoi contatti, qualifica i lead e prenota appuntamenti automaticamente. Nova lavora per te 24/7.
           </p>
 
@@ -462,14 +462,14 @@ const NovaAgentPage: React.FC = () => {
           <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 mb-14 transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             <button
               onClick={() => navigate('/contatti')}
-              className="group flex items-center gap-2 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] hover:scale-105 active:scale-95"
+              className="group flex items-center gap-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
             >
               Inizia Ora
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
             <button
               onClick={() => document.querySelector('#come-funziona')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group flex items-center gap-2 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] hover:scale-105 active:scale-95"
+              className="group flex items-center gap-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
             >
               Scopri di più
             </button>
@@ -479,35 +479,35 @@ const NovaAgentPage: React.FC = () => {
         {/* Video box — full bleed feel */}
         <div className={`relative max-w-5xl mx-auto transition-all duration-1000 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* outer glow */}
-          <div className="absolute -inset-1 rounded-[2rem] bg-[#3B82F6]/10 blur-2xl pointer-events-none" />
+          <div className="absolute -inset-1 rounded-[2rem] bg-[#2A5C3F]/10 blur-2xl pointer-events-none" />
           <div
-            className="relative rounded-[1.75rem] overflow-hidden border border-[rgba(59,130,246,0.2)]"
-            style={{ background: '#0a1628', aspectRatio: '16/9' }}
+            className="relative rounded-[1.75rem] overflow-hidden border border-[#C8C3BB]"
+            style={{ background: '#E4E0D8', aspectRatio: '16/9' }}
           >
             {/* top bar */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
             {/* grid */}
             <svg className="absolute inset-0 w-full h-full opacity-[0.035]">
               <defs>
                 <pattern id="g-nova" width="48" height="48" patternUnits="userSpaceOnUse">
-                  <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#3B82F6" strokeWidth="0.6" />
+                  <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#C8C3BB" strokeWidth="0.6" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#g-nova)" />
             </svg>
             {/* center radial glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(59,130,246,0.07)_0%,transparent_65%)]" />
+            <div className="absolute inset-0 " />
             {/* play button */}
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <div className="w-16 h-16 rounded-full border border-[#3B82F6]/35 bg-[#3B82F6]/10 flex items-center justify-center hover:bg-[#3B82F6]/20 hover:border-[#3B82F6]/60 hover:scale-110 transition-all duration-300 cursor-pointer group">
-                <svg className="w-5 h-5 text-[#3B82F6] ml-0.5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 rounded-full border border-[#2A5C3F]/35 bg-[#2A5C3F]/10 flex items-center justify-center hover:bg-[#2A5C3F]/20 hover:border-[#2A5C3F]/60 hover:scale-110 transition-all duration-300 cursor-pointer group">
+                <svg className="w-5 h-5 text-[#2A5C3F] ml-0.5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
-              <p className="text-white/20 text-[10px] tracking-[0.3em] font-bold">DEMO VIDEO IN ARRIVO</p>
+              <p className="text-[#857E78]/70 text-[10px] tracking-[0.3em] font-bold">DEMO VIDEO IN ARRIVO</p>
             </div>
             {/* bottom fade */}
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#080808] to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#DEDAD2] to-transparent" />
           </div>
         </div>
       </section>
@@ -527,15 +527,15 @@ const NovaAgentPage: React.FC = () => {
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="neon-card rounded-2xl border border-white/6 bg-[#0a1628] p-6 text-center"
+                  className="neon-card rounded-2xl border border-[#C8C3BB] bg-[#E4E0D8] p-6 text-center"
                 >
                   <div
                     className="font-black leading-none mb-2"
-                    style={{ fontFamily: 'Outfit, sans-serif', fontSize: '48px', color: '#3B82F6' }}
+                    style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', color: '#2A5C3F' }}
                   >
                     {stat.value}
                   </div>
-                  <p className="text-white/40 text-sm">{stat.label}</p>
+                  <p className="text-[#857E78] text-sm">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -554,9 +554,9 @@ const NovaAgentPage: React.FC = () => {
               {/* IL PROBLEMA */}
               <div
                 className="rounded-lg p-8 relative overflow-hidden flex flex-col"
-                style={{ background: '#1a0808', border: '1px solid rgba(255,50,50,0.3)' }}
+                style={{ background: '#f9f2f2', border: '1px solid rgba(200,100,100,0.3)' }}
               >
-                <h3 className="font-black font-montserrat mb-6" style={{ fontSize: '30px', color: '#FF3333' }}>Il Problema</h3>
+                <h3 className="font-black font-montserrat mb-6" style={{ fontSize: '30px', color: '#cc4444' }}>Il Problema</h3>
                 <ul className="space-y-5 flex-1">
                   {[
                     { bold: 'Lead non seguiti', desc: 'I tuoi contatti aspettano ore senza risposta.' },
@@ -565,10 +565,10 @@ const NovaAgentPage: React.FC = () => {
                     { bold: 'Pipeline cieca', desc: 'Non sai chi è caldo, chi è freddo, chi è pronto.' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm leading-relaxed">
-                      <span className="flex-shrink-0 font-black mt-0.5" style={{ color: '#FF3333' }}>✗</span>
+                      <span className="flex-shrink-0 font-black mt-0.5" style={{ color: '#cc4444' }}>✗</span>
                       <span>
-                        <span className="font-bold text-white/70">{item.bold}</span>
-                        <span className="text-white/40"> — {item.desc}</span>
+                        <span className="font-bold text-[#1C1C1C]/75">{item.bold}</span>
+                        <span className="text-[#857E78]"> — {item.desc}</span>
                       </span>
                     </li>
                   ))}
@@ -578,10 +578,10 @@ const NovaAgentPage: React.FC = () => {
               {/* LA SOLUZIONE + RISULTATI */}
               <div
                 className="rounded-lg p-8 relative overflow-hidden flex flex-col"
-                style={{ background: '#080d1a', border: '1px solid rgba(0,102,255,0.3)' }}
+                style={{ background: '#EDEAE3', border: '1px solid rgba(0,102,255,0.3)' }}
               >
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/40 to-transparent" />
-                <h3 className="font-black font-montserrat mb-6 relative z-10" style={{ fontSize: '30px', color: '#0066FF' }}>
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2A5C3F]/40 to-transparent" />
+                <h3 className="font-black font-montserrat mb-6 relative z-10" style={{ fontSize: '30px', color: '#2A5C3F' }}>
                   La Soluzione: Nova
                 </h3>
                 <ul className="space-y-5 flex-1 relative z-10">
@@ -594,10 +594,10 @@ const NovaAgentPage: React.FC = () => {
                     { bold: 'ROI dal primo mese', desc: 'Zero contatti persi, risultati misurabili subito.' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm leading-relaxed">
-                      <span className="flex-shrink-0 font-black mt-0.5" style={{ color: '#0066FF' }}>✓</span>
+                      <span className="flex-shrink-0 font-black mt-0.5" style={{ color: '#2A5C3F' }}>✓</span>
                       <span>
-                        <span className="font-bold text-white/80">{item.bold}</span>
-                        <span className="text-white/45"> — {item.desc}</span>
+                        <span className="font-bold text-[#1C1C1C]/85">{item.bold}</span>
+                        <span className="text-[#857E78]"> — {item.desc}</span>
                       </span>
                     </li>
                   ))}
@@ -616,8 +616,8 @@ const NovaAgentPage: React.FC = () => {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center mb-16">
-            <p className="text-[#4A9FFF] text-[10px] tracking-[0.3em] font-black mb-4">— IL PROCESSO —</p>
-            <h2 className="text-white tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
+            <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-4">— IL PROCESSO —</p>
+            <h2 className="text-[#1C1C1C] tracking-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
               Come funziona <em className="accent-italic">Nova</em>
             </h2>
           </Reveal>
@@ -630,19 +630,19 @@ const NovaAgentPage: React.FC = () => {
             ].map((step, i) => (
               <Reveal key={i} delay={i * 100}>
                 <div
-                  className="neon-card relative rounded-lg border border-white/6 bg-[#0a1628] h-full overflow-hidden group transition-all duration-300 hover:border-[#0066FF] hover:scale-[1.03] hover:shadow-[0_8px_30px_rgba(0,102,255,0.2)]"
+                  className="neon-card relative rounded-lg border border-[#C8C3BB] bg-[#E4E0D8] h-full overflow-hidden group transition-all duration-300 hover:border-[#2A5C3F] hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)]"
                   style={{ padding: '32px 40px' }}
                   onMouseMove={stepGlows.onMouseMove(i)}
                   onMouseLeave={stepGlows.onMouseLeave(i)}
                 >
                   <div ref={el => { stepGlows.glowRefs.current[i] = el; }} style={glowDivStyle} />
-                  <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-[#0066FF]/60 to-transparent rounded-t-2xl" />
+                  <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent rounded-t-2xl" />
                   <div className="relative z-10">
-                    <div className="text-[4rem] font-black font-montserrat leading-none mb-5" style={{ color: 'rgba(0,102,255,0.15)' }}>
+                    <div className="text-[4rem] font-black font-montserrat leading-none mb-5" style={{ color: 'rgba(42,92,63,0.15)' }}>
                       {step.n}
                     </div>
-                    <h3 className="text-white font-black text-xl font-montserrat mb-3 leading-snug">{step.title}</h3>
-                    <p className="text-white/35 leading-relaxed" style={{ fontSize: '17px' }}>{step.desc}</p>
+                    <h3 className="text-[#1C1C1C] font-black text-xl font-montserrat mb-3 leading-snug">{step.title}</h3>
+                    <p className="text-[#857E78] leading-relaxed" style={{ fontSize: '17px' }}>{step.desc}</p>
                   </div>
                 </div>
               </Reveal>
@@ -671,32 +671,32 @@ const NovaAgentPage: React.FC = () => {
             {/* Visual */}
             <Reveal className="h-full">
               <div
-                className="neon-card relative rounded-[1.75rem] overflow-hidden border border-[rgba(59,130,246,0.15)] h-[340px] md:h-[420px] transition-all duration-300"
-                style={{ background: '#0a1628' }}
+                className="neon-card relative rounded-[1.75rem] overflow-hidden border border-[#C8C3BB] h-[340px] md:h-[420px] transition-all duration-300"
+                style={{ background: '#E4E0D8' }}
                 onMouseMove={panel1Glow.onMouseMove}
                 onMouseLeave={panel1Glow.onMouseLeave}
               >
                 <div ref={panel1Glow.glowRef} style={glowDivStyle} />
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/40 to-transparent" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(59,130,246,0.12)_0%,transparent_65%)]" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+                <div className="absolute inset-0 " />
                 <NovaFlowVisual />
               </div>
             </Reveal>
 
             {/* Text */}
             <Reveal delay={100}>
-              <p className="text-[#4A9FFF] text-[10px] tracking-[0.3em] font-black mb-4">— INTEGRAZIONE —</p>
-              <h2 className="text-white tracking-tight leading-tight mb-5" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
+              <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-4">— INTEGRAZIONE —</p>
+              <h2 className="text-[#1C1C1C] tracking-tight leading-tight mb-5" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
                 Connette tutti<br />i tuoi canali
               </h2>
-              <p className="text-white/40 text-base leading-relaxed mb-8">
+              <p className="text-[#857E78] text-base leading-relaxed mb-8">
                 Nova si integra con WhatsApp, email, CRM e form di contatto. Ogni lead viene catturato, qualificato e gestito in automatico, senza nessun intervento manuale.
               </p>
               <ul className="space-y-3 mb-8">
                 {['Integrazione nativa con WhatsApp e CRM', 'Qualifica automatica in tempo reale', 'Setup in meno di 48 ore'].map((t, i) => (
-                  <li key={i} className="flex items-center gap-3 text-white/55 text-base">
-                    <span className="w-4 h-4 rounded-full bg-[#3B82F6]/15 border border-[#3B82F6]/30 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-2.5 h-2.5 text-[#3B82F6]" />
+                  <li key={i} className="flex items-center gap-3 text-[#1C1C1C]/70 text-base">
+                    <span className="w-4 h-4 rounded-full bg-[#2A5C3F]/15 border border-[#2A5C3F]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#2A5C3F]" />
                     </span>
                     {t}
                   </li>
@@ -704,7 +704,7 @@ const NovaAgentPage: React.FC = () => {
               </ul>
               <button
                 onClick={() => navigate('/contatti')}
-                className="group flex items-center gap-2 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] hover:scale-105 active:scale-95"
+                className="group flex items-center gap-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
               >
                 Inizia ora <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
@@ -722,12 +722,12 @@ const NovaAgentPage: React.FC = () => {
           PRICING
       ══════════════════════════════════════ */}
       <section className="py-28 relative">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/15 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB]/50 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <Reveal className="text-center mb-16">
-            <p className="text-[#4A9FFF] text-[10px] tracking-[0.3em] font-black mb-4">— PRICING —</p>
-            <h2 className="text-white tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
+            <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-4">— PRICING —</p>
+            <h2 className="text-[#1C1C1C] tracking-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
               Pricing <em className="accent-italic">Trasparente.</em>
             </h2>
           </Reveal>
@@ -735,16 +735,16 @@ const NovaAgentPage: React.FC = () => {
           {/* ── CONFIGURAZIONE INIZIALE ── */}
           <Reveal className="flex justify-center mb-16">
             <div
-              className="neon-card relative rounded-[1.75rem] border border-[rgba(59,130,246,0.2)] overflow-hidden"
-              style={{ background: '#0D1117', width: '280px' }}
+              className="neon-card relative rounded-[1.75rem] border border-[#C8C3BB] overflow-hidden"
+              style={{ background: '#E4E0D8', width: '280px' }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/30 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
               <div className="p-7 flex flex-col relative z-10">
-                <p className="text-white/30 text-[10px] tracking-[0.3em] font-black mb-5">CONFIGURAZIONE INIZIALE</p>
+                <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-5">CONFIGURAZIONE INIZIALE</p>
                 <div className="mb-1">
-                  <span className="text-white font-black" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '38px', lineHeight: 1 }}>€1.500</span>
+                  <span className="text-[#1C1C1C] font-black" style={{ fontFamily: 'Playfair Display, serif', fontSize: '38px', lineHeight: 1 }}>€1.500</span>
                 </div>
-                <p className="text-white/30 text-xs mb-6">una tantum + IVA</p>
+                <p className="text-[#857E78] text-xs mb-6">una tantum + IVA</p>
                 <ul className="space-y-2.5 mb-7">
                   {[
                     'Setup completo di Nova',
@@ -752,15 +752,15 @@ const NovaAgentPage: React.FC = () => {
                     'Configurazione workflow',
                     'Test e go-live inclusi',
                   ].map((f, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-white/45 text-sm">
-                      <span className="flex-shrink-0 mt-0.5" style={{ color: '#3B82F6' }}>✓</span>
+                    <li key={i} className="flex items-start gap-2.5 text-[#857E78] text-sm">
+                      <span className="flex-shrink-0 mt-0.5" style={{ color: '#2A5C3F' }}>✓</span>
                       {f}
                     </li>
                   ))}
                 </ul>
                 <button
                   onClick={() => navigate('/contatti')}
-                  className="w-full font-semibold px-5 py-3 rounded-xl text-sm tracking-widest bg-white/8 border border-white/15 text-white hover:bg-white/15 hover:border-white/30 transition-all duration-200"
+                  className="w-full font-semibold px-5 py-3 rounded-xl text-sm tracking-widest bg-[#C8C3BB]/30 border border-[#C8C3BB] text-white hover:bg-[#C8C3BB]/50 hover:border-[#2A5C3F]/40 transition-all duration-200"
                 >
                   Inizia Ora
                 </button>
@@ -773,20 +773,20 @@ const NovaAgentPage: React.FC = () => {
             {/* ── STARTER ── */}
             <Reveal delay={0}>
               <div
-                className="neon-card relative rounded-[1.75rem] border border-white/8 flex flex-col h-full overflow-hidden group hover:-translate-y-1 transition-all duration-300"
-                style={{ background: '#0D1117' }}
+                className="neon-card relative rounded-[1.75rem] border border-[#C8C3BB] flex flex-col h-full overflow-hidden group hover:-translate-y-1 transition-all duration-300"
+                style={{ background: '#E4E0D8' }}
                 onMouseMove={pricingGlows.onMouseMove(0)}
                 onMouseLeave={pricingGlows.onMouseLeave(0)}
               >
                 <div ref={el => { pricingGlows.glowRefs.current[0] = el; }} style={glowDivStyle} />
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="p-8 flex flex-col flex-1 relative z-10">
-                  <p className="text-white/30 text-[10px] tracking-[0.3em] font-black mb-6">STARTER</p>
+                  <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-6">STARTER</p>
                   <div className="mb-2">
-                    <span className="text-white font-black" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '48px', lineHeight: 1 }}>€200</span>
-                    <span className="text-white/40 text-sm ml-1">/mese + IVA</span>
+                    <span className="text-[#1C1C1C] font-black" style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', lineHeight: 1 }}>€200</span>
+                    <span className="text-[#857E78] text-sm ml-1">/mese + IVA</span>
                   </div>
-                  <p className="text-white/25 text-xs mb-8">+ setup iniziale una tantum</p>
+                  <p className="text-[#857E78] text-xs mb-8">+ setup iniziale una tantum</p>
                   <ul className="space-y-3 mb-10 flex-1">
                     {[
                       'Fino a 3 workflow di qualifica',
@@ -795,15 +795,15 @@ const NovaAgentPage: React.FC = () => {
                       'Supporto via email',
                       'Aggiornamenti inclusi',
                     ].map((f, i) => (
-                      <li key={i} className="flex items-start gap-3 text-white/55 text-sm">
-                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: '#3B82F6' }}>✓</span>
+                      <li key={i} className="flex items-start gap-3 text-[#1C1C1C]/70 text-sm">
+                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: '#2A5C3F' }}>✓</span>
                         {f}
                       </li>
                     ))}
                   </ul>
                   <button
                     onClick={() => navigate('/contatti')}
-                    className="w-full font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest bg-white/8 border border-white/15 text-white hover:bg-white/15 hover:border-white/30 transition-all duration-200"
+                    className="w-full font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest bg-[#C8C3BB]/30 border border-[#C8C3BB] text-white hover:bg-[#C8C3BB]/50 hover:border-[#2A5C3F]/40 transition-all duration-200"
                   >
                     Inizia Ora
                   </button>
@@ -815,28 +815,28 @@ const NovaAgentPage: React.FC = () => {
             <Reveal delay={100}>
               <div
                 className="neon-card relative rounded-[1.75rem] flex flex-col h-full overflow-hidden group hover:-translate-y-2 transition-all duration-300"
-                style={{ background: '#0D1117', border: '1.5px solid rgba(59,130,246,0.5)', boxShadow: '0 0 40px rgba(59,130,246,0.12)' }}
+                style={{ background: '#E4E0D8', border: '1.5px solid rgba(42,92,63,0.2)', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
                 onMouseMove={pricingGlows.onMouseMove(1)}
                 onMouseLeave={pricingGlows.onMouseLeave(1)}
               >
                 <div ref={el => { pricingGlows.glowRefs.current[1] = el; }} style={glowDivStyle} />
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/60 to-transparent" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(59,130,246,0.07)_0%,transparent_60%)] pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(42,92,63,0.05)_0%,transparent_60%)] pointer-events-none" />
 
                 {/* Badge */}
                 <div className="absolute top-5 right-5 z-20">
-                  <span className="bg-[#3B82F6] text-black text-[10px] font-black tracking-[0.2em] px-4 py-1.5 rounded-full">
+                  <span className="bg-[#2A5C3F] text-white text-[10px] font-black tracking-[0.2em] px-4 py-1.5 rounded-full">
                     PIÙ SCELTO
                   </span>
                 </div>
 
                 <div className="p-8 flex flex-col flex-1 relative z-10">
-                  <p className="text-[#3B82F6] text-[10px] tracking-[0.3em] font-black mb-6">BUSINESS</p>
+                  <p className="text-[#2A5C3F] text-[10px] tracking-[0.3em] font-black mb-6">BUSINESS</p>
                   <div className="mb-2">
-                    <span className="text-white font-black" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '48px', lineHeight: 1 }}>€500</span>
-                    <span className="text-white/40 text-sm ml-1">/mese + IVA</span>
+                    <span className="text-[#1C1C1C] font-black" style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', lineHeight: 1 }}>€500</span>
+                    <span className="text-[#857E78] text-sm ml-1">/mese + IVA</span>
                   </div>
-                  <p className="text-white/25 text-xs mb-8">+ setup iniziale una tantum</p>
+                  <p className="text-[#857E78] text-xs mb-8">+ setup iniziale una tantum</p>
                   <ul className="space-y-3 mb-10 flex-1">
                     {[
                       'Workflow illimitati',
@@ -846,15 +846,15 @@ const NovaAgentPage: React.FC = () => {
                       'Supporto prioritario dedicato',
                       'Accesso anticipato nuove funzionalità',
                     ].map((f, i) => (
-                      <li key={i} className="flex items-start gap-3 text-white/75 text-sm">
-                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: '#3B82F6' }}>✓</span>
+                      <li key={i} className="flex items-start gap-3 text-[#1C1C1C]/80 text-sm">
+                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: '#2A5C3F' }}>✓</span>
                         {f}
                       </li>
                     ))}
                   </ul>
                   <button
                     onClick={() => navigate('/contatti')}
-                    className="w-full bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-[1.02] active:scale-[0.98]"
                   >
                     Inizia Ora
                   </button>
@@ -865,19 +865,19 @@ const NovaAgentPage: React.FC = () => {
             {/* ── ENTERPRISE ── */}
             <Reveal delay={200}>
               <div
-                className="neon-card relative rounded-[1.75rem] border border-white/8 flex flex-col h-full overflow-hidden group hover:-translate-y-1 transition-all duration-300"
-                style={{ background: '#0D1117' }}
+                className="neon-card relative rounded-[1.75rem] border border-[#C8C3BB] flex flex-col h-full overflow-hidden group hover:-translate-y-1 transition-all duration-300"
+                style={{ background: '#E4E0D8' }}
                 onMouseMove={pricingGlows.onMouseMove(2)}
                 onMouseLeave={pricingGlows.onMouseLeave(2)}
               >
                 <div ref={el => { pricingGlows.glowRefs.current[2] = el; }} style={glowDivStyle} />
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="p-8 flex flex-col flex-1 relative z-10">
-                  <p className="text-white/30 text-[10px] tracking-[0.3em] font-black mb-6">ENTERPRISE</p>
+                  <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-6">ENTERPRISE</p>
                   <div className="mb-2">
-                    <span className="text-white font-black" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '36px', lineHeight: 1.2 }}>Contattaci</span>
+                    <span className="text-[#1C1C1C] font-black" style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px', lineHeight: 1.2 }}>Contattaci</span>
                   </div>
-                  <p className="text-white/25 text-xs mb-8">+ setup iniziale una tantum</p>
+                  <p className="text-[#857E78] text-xs mb-8">+ setup iniziale una tantum</p>
                   <ul className="space-y-3 mb-10 flex-1">
                     {[
                       'Tutto il piano Business incluso',
@@ -887,15 +887,15 @@ const NovaAgentPage: React.FC = () => {
                       'SLA garantito',
                       'Formazione del team inclusa',
                     ].map((f, i) => (
-                      <li key={i} className="flex items-start gap-3 text-white/55 text-sm">
-                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: '#3B82F6' }}>✓</span>
+                      <li key={i} className="flex items-start gap-3 text-[#1C1C1C]/70 text-sm">
+                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: '#2A5C3F' }}>✓</span>
                         {f}
                       </li>
                     ))}
                   </ul>
                   <button
                     onClick={() => navigate('/contatti')}
-                    className="w-full font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest bg-white/8 border border-white/15 text-white hover:bg-white/15 hover:border-white/30 transition-all duration-200"
+                    className="w-full font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest bg-[#C8C3BB]/30 border border-[#C8C3BB] text-white hover:bg-[#C8C3BB]/50 hover:border-[#2A5C3F]/40 transition-all duration-200"
                   >
                     Prenota una Call
                   </button>
@@ -907,7 +907,7 @@ const NovaAgentPage: React.FC = () => {
 
           {/* Nota */}
           <Reveal>
-            <p className="text-center text-white/25 text-xs italic mt-10 max-w-xl mx-auto leading-relaxed">
+            <p className="text-center text-[#857E78] text-xs italic mt-10 max-w-xl mx-auto leading-relaxed">
               Il canone mensile è fisso. Il setup iniziale è una fee una tantum il cui costo varia in base alle integrazioni richieste.
             </p>
           </Reveal>
@@ -925,7 +925,7 @@ const NovaAgentPage: React.FC = () => {
 
           {/* Title */}
           <Reveal className="text-center mb-16">
-            <h2 className="text-white tracking-tight leading-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '60px', fontWeight: 400, lineHeight: '60px' }}>
+            <h2 className="text-[#1C1C1C] tracking-tight leading-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
               I tuoi dati sono{' '}
               <em className="accent-italic">al sicuro.</em>
             </h2>
@@ -934,16 +934,16 @@ const NovaAgentPage: React.FC = () => {
           {/* Single wide card */}
           <Reveal>
             <div
-              className="neon-card relative rounded-[2rem] border border-white/10 overflow-hidden"
-              style={{ background: '#0a1628' }}
+              className="neon-card relative rounded-[2rem] border border-[#C8C3BB] overflow-hidden"
+              style={{ background: '#E4E0D8' }}
             >
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
               <div className="grid md:grid-cols-[3fr_2fr] gap-0 items-center">
 
                 {/* Left — compliance list */}
-                <div className="p-10 md:p-14 border-b md:border-b-0 md:border-r border-white/6">
-                  <p className="text-white/30 text-[10px] tracking-[0.3em] font-black mb-8">
+                <div className="p-10 md:p-14 border-b md:border-b-0 md:border-r border-[#C8C3BB]">
+                  <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-8">
                     NOVA È PROGETTATO IN CONFORMITÀ AL GDPR EUROPEO
                   </p>
                   <ul className="space-y-6">
@@ -956,8 +956,8 @@ const NovaAgentPage: React.FC = () => {
                       <li key={i} className="flex items-start gap-4">
                         <span className="mt-1 flex-shrink-0 font-black text-white" style={{ fontSize: '16px' }}>✓</span>
                         <div>
-                          <span className="text-white text-base font-bold">{item.title}</span>
-                          <span className="text-white/40 text-base"> — {item.desc}</span>
+                          <span className="text-[#1C1C1C] text-base font-bold">{item.title}</span>
+                          <span className="text-[#857E78] text-base"> — {item.desc}</span>
                         </div>
                       </li>
                     ))}
@@ -993,14 +993,14 @@ const NovaAgentPage: React.FC = () => {
                     </svg>
 
                     <div
-                      className="relative w-48 h-48 rounded-full flex flex-col items-center justify-center border border-white/15"
-                      style={{ background: '#0d1520', boxShadow: '0 0 50px rgba(255,255,255,0.04), inset 0 0 30px rgba(255,255,255,0.02)' }}
+                      className="relative w-48 h-48 rounded-full flex flex-col items-center justify-center border border-[#C8C3BB]"
+                      style={{ background: '#DEDAD2', boxShadow: '0 0 50px rgba(255,255,255,0.04), inset 0 0 30px rgba(255,255,255,0.02)' }}
                     >
                       <svg className="w-16 h-16 mb-2" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={1.2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                       </svg>
-                      <span className="text-white text-lg font-black tracking-[0.2em]">GDPR</span>
-                      <span className="text-white/35 text-[9px] tracking-[0.25em] font-bold mt-0.5">COMPLIANT</span>
+                      <span className="text-[#1C1C1C] text-lg font-black tracking-[0.2em]">GDPR</span>
+                      <span className="text-[#857E78] text-[9px] tracking-[0.25em] font-bold mt-0.5">COMPLIANT</span>
                     </div>
                   </div>
                 </div>
@@ -1016,24 +1016,24 @@ const NovaAgentPage: React.FC = () => {
       ══════════════════════════════════════ */}
       <section className="py-28 relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(59,130,246,0.09)_0%,transparent_65%)] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[220px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(59,130,246,0.35) 0%, rgba(59,130,246,0.1) 40%, transparent 70%)', filter: 'blur(8px)' }} />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[120px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(59,130,246,0.5) 0%, transparent 65%)', filter: 'blur(4px)' }} />
+        <div className="absolute inset-0  pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[220px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(42,92,63,0.15) 0%, rgba(42,92,63,0.06) 40%, transparent 70%)', filter: 'blur(8px)' }} />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[120px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(42,92,63,0.2) 0%, transparent 65%)', filter: 'blur(4px)' }} />
 
         <div className="max-w-2xl mx-auto px-4 text-center relative z-10">
           <Reveal>
-            <p className="text-[#4A9FFF] text-[10px] tracking-[0.3em] font-black mb-5">— INIZIA ORA —</p>
-            <h2 className="text-white tracking-tight leading-tight mb-5" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '96px', fontWeight: 500, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
+            <p className="text-[#857E78] text-[10px] tracking-[0.3em] font-black mb-5">— INIZIA ORA —</p>
+            <h2 className="text-[#1C1C1C] tracking-tight leading-tight mb-5" style={{ fontFamily: 'Playfair Display, serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
               Pronto a non<br />
               <em className="accent-italic">perdere più</em><br />
               un lead?
             </h2>
-            <p className="text-white/35 text-lg font-light leading-relaxed mb-10 max-w-sm mx-auto">
+            <p className="text-[#857E78] text-lg font-light leading-relaxed mb-10 max-w-sm mx-auto">
               Prenota una call gratuita e scopri come Nova può riempire la tua agenda in meno di 48 ore.
             </p>
             <button
               onClick={() => navigate('/contatti')}
-              className="group inline-flex items-center gap-3 bg-[#3B82F6] text-black font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_50px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95"
+              className="group inline-flex items-center gap-3 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
             >
               Prenota una Call Gratuita
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -1065,7 +1065,7 @@ const NovaFlowVisual: React.FC = () => {
           key={i}
           x1={nodes[a].x} y1={nodes[a].y}
           x2={nodes[b].x} y2={nodes[b].y}
-          stroke="rgba(59,130,246,0.25)"
+          stroke="rgba(42,92,63,0.25)"
           strokeWidth="0.6"
           strokeDasharray="2 2"
         >
@@ -1078,7 +1078,7 @@ const NovaFlowVisual: React.FC = () => {
         return (
           <g key={i}>
             {isCenter && (
-              <circle cx={node.x} cy={node.y} r="7" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.2)" strokeWidth="0.4">
+              <circle cx={node.x} cy={node.y} r="7" fill="rgba(42,92,63,0.06)" stroke="rgba(59,130,246,0.2)" strokeWidth="0.4">
                 <animate attributeName="r" values="7;9;7" dur="2.5s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite" />
               </circle>
@@ -1086,14 +1086,14 @@ const NovaFlowVisual: React.FC = () => {
             <circle
               cx={node.x} cy={node.y}
               r={isCenter ? 5 : 3.5}
-              fill={isCenter ? '#3B82F6' : '#0a1628'}
-              stroke={isCenter ? '#3B82F6' : 'rgba(59,130,246,0.4)'}
+              fill={isCenter ? '#2A5C3F' : '#E4E0D8'}
+              stroke={isCenter ? '#2A5C3F' : 'rgba(42,92,63,0.4)'}
               strokeWidth={isCenter ? '0' : '0.6'}
             />
             <text
               x={node.x} y={node.y + (isCenter ? 9 : 7.5)}
               textAnchor="middle"
-              fill="rgba(255,255,255,0.35)"
+              fill="rgba(28,28,28,0.35)"
               fontSize={isCenter ? '3.5' : '3'}
               fontWeight="700"
             >

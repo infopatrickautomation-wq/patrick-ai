@@ -8,55 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,500;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       body {
-        font-family: 'Manrope', sans-serif;
-        background-color: #050d1a;
-        color: white;
+        font-family: 'Inter', sans-serif;
+        background-color: #EDEAE3;
+        color: #1C1C1C;
         overflow-x: hidden;
-        cursor: none;
+        cursor: auto;
       }
 
-      /* Ensure interactive elements also hide the cursor */
       a, button, input, textarea, [role="button"] {
-        cursor: none !important;
+        cursor: pointer;
       }
 
       .font-montserrat {
-        font-family: 'Manrope', sans-serif;
+        font-family: 'Inter', sans-serif;
       }
 
       .gradient-text {
-        background: linear-gradient(90deg, #4A6FFF, #00BFFF);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #2A5C3F;
       }
 
       .accent-italic {
         font-family: 'Playfair Display', serif;
         font-style: italic;
-        font-weight: 400;
+        font-weight: 700;
         letter-spacing: -2.88px;
         line-height: 105.6px;
-        background: linear-gradient(90deg, #4A6FFF, #00BFFF);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #2A5C3F;
+        -webkit-text-fill-color: unset;
+        background: none;
       }
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #000000;
+        background: #E4E0D8;
       }
       ::-webkit-scrollbar-thumb {
-        background: #0066FF;
+        background: #2A5C3F;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #0066FF;
+        background: #3D7055;
       }
       @keyframes sphere-float {
         0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -85,55 +80,29 @@
         transform: translateY(0);
       }
 
-      /* Effetto Evidenziatore Personalizzato - BLU e PIÙ GROSSA */
+      /* Effetto Evidenziatore Personalizzato */
       .marker-underline {
         text-decoration: underline;
-        text-decoration-color: #2563EB; /* Blu vibrante */
-        text-decoration-thickness: 12px; /* Più grossa */
+        text-decoration-color: #2A5C3F;
+        text-decoration-thickness: 12px;
         text-underline-offset: 2px;
         text-decoration-skip-ink: none;
       }
 
-      /* ── Neon card global effect ── */
+      /* ── Card global effect ── */
       .neon-card {
-        border-width: 1.5px !important;
-      }
-      .neon-card::before {
-        content: '';
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 65%);
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.35s ease;
-        transform: translate(-50%, -50%);
-        top: var(--gly, -9999px);
-        left: var(--glx, -9999px);
-        z-index: 0;
-      }
-      .neon-card:hover::before {
-        opacity: 1;
+        border-width: 2.5px !important;
+        border-color: rgba(42,92,63,0.55) !important;
+        box-shadow: 0 0 12px rgba(42,92,63,0.12), 0 2px 16px rgba(0,0,0,0.06) !important;
       }
       .neon-card:hover {
-        border-color: rgba(59,130,246,0.8) !important;
-        box-shadow: 0 0 18px rgba(59,130,246,0.35), 0 0 50px rgba(59,130,246,0.12), 0 20px 50px rgba(0,0,0,0.25) !important;
+        border-color: #2A5C3F !important;
+        box-shadow: 0 0 22px rgba(42,92,63,0.28), 0 4px 24px rgba(0,0,0,0.08) !important;
       }
     </style>
 </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-    <script>
-      document.addEventListener('mousemove', function(e) {
-        var cards = document.querySelectorAll('.neon-card');
-        for (var i = 0; i < cards.length; i++) {
-          var r = cards[i].getBoundingClientRect();
-          cards[i].style.setProperty('--glx', (e.clientX - r.left) + 'px');
-          cards[i].style.setProperty('--gly', (e.clientY - r.top) + 'px');
-        }
-      });
-    </script>
   </body>
 </html>

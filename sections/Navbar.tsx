@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks: { label: string; href: string; isModal?: boolean; isPage?: boolean }[] = [
     { label: 'Home', href: '/' },
     { label: 'Casi Studio', href: '/#casi-studio' },
     { label: 'Prodotti', href: '/prodotti', isPage: true },
@@ -55,8 +55,8 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
       <div className="fixed top-5 left-0 right-0 z-[200] flex justify-center px-4">
         <nav
           style={{
-            background: 'rgba(5,13,26,0.85)',
-            border: '1px solid #1e3a5f',
+            background: 'rgba(237,234,227,0.92)',
+            border: '1px solid #C8C3BB',
             borderRadius: '50px',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
@@ -66,9 +66,9 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
           {/* Logo */}
           <a href="/" onClick={(e) => handleLinkClick(e, '/')} className="flex items-center mr-3">
             <img
-              src="https://i.ibb.co/zh2W9Mcs/Chat-GPT-Image-4-feb-2026-10-54-50.png"
+              src="/logo.png"
               alt="PatrickAI Logo"
-              className="h-9 w-auto filter drop-shadow-[0_0_8px_rgba(0,102,255,0.3)] hover:scale-105 transition-transform"
+              className="h-9 w-auto hover:scale-105 transition-transform"
             />
           </a>
 
@@ -79,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href, link.isModal, link.isPage)}
-                className="text-white/60 hover:text-white text-[11px] tracking-widest font-semibold px-4 py-2 rounded-full hover:bg-white/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
+                className="text-[#857E78] hover:text-[#1C1C1C] text-[11px] tracking-widest font-semibold px-4 py-2 rounded-full hover:bg-[#1C1C1C]/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -89,14 +89,14 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
           {/* CTA */}
           <button
             onClick={() => navigate('/contatti')}
-            className="hidden md:block ml-2 bg-[#3B82F6] text-white font-semibold px-7 py-[14px] text-[11px] tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] hover:scale-105 active:scale-95 whitespace-nowrap"
+            className="hidden md:block ml-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] text-[11px] tracking-widest transition-all duration-300 hover:bg-[#3D7055] hover:scale-105 active:scale-95 whitespace-nowrap"
             style={{ borderRadius: '50px' }}
           >
             {ctaLabel}
           </button>
 
           {/* Mobile hamburger */}
-          <button className="md:hidden text-white p-2 ml-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button className="md:hidden text-[#1C1C1C] p-2 ml-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </nav>
@@ -107,8 +107,8 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
         isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
       }`}
         style={{
-          background: 'rgba(0,0,0,0.95)',
-          border: '1px solid rgba(255,255,255,0.1)',
+          background: 'rgba(237,234,227,0.98)',
+          border: '1px solid #C8C3BB',
           borderRadius: '24px',
           backdropFilter: 'blur(10px)',
         }}
@@ -119,16 +119,16 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
               key={link.label}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href, link.isModal, link.isPage)}
-              className="block text-white/70 hover:text-white font-bold tracking-widest transition-colors cursor-pointer py-2"
+              className="block text-[#857E78] hover:text-[#1C1C1C] font-bold tracking-widest transition-colors cursor-pointer py-2"
               style={{ fontSize: '12px' }}
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-4 border-t border-white/10">
+          <div className="pt-4 border-t border-[#C8C3BB]">
             <button
               onClick={() => { setIsMobileMenuOpen(false); navigate('/contatti'); }}
-              className="block w-full text-center bg-[#3B82F6] text-white font-semibold px-7 py-[14px] text-sm tracking-widest active:scale-95 transition-transform"
+              className="block w-full text-center bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] text-sm tracking-widest active:scale-95 transition-transform hover:bg-[#3D7055]"
               style={{ borderRadius: '50px' }}
             >
               {ctaLabel}

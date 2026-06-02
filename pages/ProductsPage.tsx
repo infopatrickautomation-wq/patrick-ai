@@ -32,15 +32,18 @@ const STYLES = `
 }
 .product-card {
   position: relative;
-  background: #0a1628;
-  border: 1.5px solid rgba(59,130,246,0.15);
+  background: #E4E0D8;
+  border: 1.5px solid #C8C3BB;
   border-radius: 28px;
   overflow: hidden;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
   cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
+  border-color: #2A5C3F;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 .product-card .card-btn .btn-arrow {
   display: inline-block;
@@ -76,13 +79,12 @@ function useCardGlows(count: number) {
 const FluxVisual: React.FC = () => (
   <div
     style={{
-      background: 'linear-gradient(135deg, #001a4d, #0033aa, #0066ff, #003399, #001a66)',
+      background: 'linear-gradient(135deg, #1a3d2b, #2A5C3F, #3D7055, #2A5C3F, #1a3d2b)',
       backgroundSize: '400% 400%',
       animation: 'flux-flow 6s ease infinite',
     }}
     className="relative w-full h-[200px] overflow-hidden"
   >
-    {/* Particles */}
     {[
       { top: '20%', left: '15%', size: 8,  delay: '0s',    dur: '3.2s' },
       { top: '60%', left: '40%', size: 5,  delay: '0.8s',  dur: '4s'   },
@@ -107,22 +109,21 @@ const FluxVisual: React.FC = () => (
         }}
       />
     ))}
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #0a1628)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)',
-      fontSize: 52, fontWeight: 900, color: 'rgba(255,255,255,0.08)',
-      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Montserrat, sans-serif',
+      fontSize: 52, fontWeight: 900, color: 'rgba(255,255,255,0.12)',
+      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif',
     }}>FLUX</div>
   </div>
 );
 
 const NovaVisual: React.FC = () => (
   <div
-    style={{ background: '#0a1628', position: 'relative' }}
+    style={{ background: '#E4E0D8', position: 'relative' }}
     className="w-full h-[200px] overflow-hidden"
   >
-    {/* Pulse rings */}
     {[80, 130, 180].map((size, i) => (
       <div
         key={i}
@@ -131,27 +132,26 @@ const NovaVisual: React.FC = () => (
           top: '50%', left: '50%',
           width: size, height: size,
           borderRadius: '50%',
-          border: '1px solid rgba(59,130,246,0.4)',
+          border: '1px solid rgba(42,92,63,0.4)',
           transform: 'translate(-50%, -50%)',
           animation: `nova-pulse 2.4s ${i * 0.6}s ease-in-out infinite`,
         }}
       />
     ))}
-    {/* Core glow */}
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       width: 40, height: 40, borderRadius: '50%',
-      background: 'radial-gradient(circle, #0066ff 0%, rgba(59,130,246,0.3) 60%, transparent 100%)',
+      background: '#2A5C3F',
       transform: 'translate(-50%, -50%)',
-      boxShadow: '0 0 40px rgba(59,130,246,0.7)',
+      boxShadow: '0 0 20px rgba(42,92,63,0.4)',
       animation: 'nova-pulse 2.4s ease-in-out infinite',
     }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #0a1628)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)',
-      fontSize: 52, fontWeight: 900, color: 'rgba(59,130,246,0.07)',
-      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Montserrat, sans-serif',
+      fontSize: 52, fontWeight: 900, color: 'rgba(42,92,63,0.10)',
+      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif',
     }}>NOVA</div>
   </div>
 );
@@ -159,43 +159,41 @@ const NovaVisual: React.FC = () => (
 const AxisVisual: React.FC = () => (
   <div
     style={{
-      background: 'linear-gradient(135deg, #000510 0%, #001040 50%, #000510 100%), linear-gradient(225deg, #0022880d 0%, transparent 50%)',
+      background: '#DEDAD2',
       backgroundSize: '300% 300%, 200% 200%',
       animation: 'axis-mesh 8s ease infinite',
       position: 'relative',
     }}
     className="w-full h-[200px] overflow-hidden"
   >
-    {/* Grid mesh lines */}
-    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.18 }}>
+    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.5 }}>
       {[0, 1, 2, 3, 4, 5, 6].map(i => (
         <line key={`v${i}`} x1={`${(i / 6) * 100}%`} y1="0" x2={`${(i / 6) * 100}%`} y2="100%"
-          stroke="#0066ff" strokeWidth="0.5" />
+          stroke="#C8C3BB" strokeWidth="0.5" />
       ))}
       {[0, 1, 2, 3, 4].map(i => (
         <line key={`h${i}`} x1="0" y1={`${(i / 4) * 100}%`} x2="100%" y2={`${(i / 4) * 100}%`}
-          stroke="#0066ff" strokeWidth="0.5" />
+          stroke="#C8C3BB" strokeWidth="0.5" />
       ))}
     </svg>
-    {/* Corner accents */}
     <div style={{
       position: 'absolute', top: 18, left: 18,
       width: 28, height: 28,
-      borderTop: '2px solid rgba(59,130,246,0.7)',
-      borderLeft: '2px solid rgba(59,130,246,0.7)',
+      borderTop: '2px solid rgba(42,92,63,0.5)',
+      borderLeft: '2px solid rgba(42,92,63,0.5)',
     }} />
     <div style={{
       position: 'absolute', top: 18, right: 18,
       width: 28, height: 28,
-      borderTop: '2px solid rgba(59,130,246,0.7)',
-      borderRight: '2px solid rgba(59,130,246,0.7)',
+      borderTop: '2px solid rgba(42,92,63,0.5)',
+      borderRight: '2px solid rgba(42,92,63,0.5)',
     }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #0a1628)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)',
-      fontSize: 52, fontWeight: 900, color: 'rgba(59,130,246,0.1)',
-      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Montserrat, sans-serif',
+      fontSize: 52, fontWeight: 900, color: 'rgba(42,92,63,0.12)',
+      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif',
     }}>AXIS</div>
   </div>
 );
@@ -264,7 +262,7 @@ const ProductCard: React.FC<{
           position: 'absolute',
           width: 500, height: 500,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(42,92,63,0.08) 0%, transparent 65%)',
           opacity: 0,
           pointerEvents: 'none',
           transition: 'opacity 0.3s ease',
@@ -272,25 +270,22 @@ const ProductCard: React.FC<{
         }}
       />
 
-      {/* Top highlight line */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent)', zIndex: 2 }} />
-
       {/* Visual */}
       <Visual />
 
       {/* Content */}
       <div className="relative z-10 p-7">
         <h3
-          style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 900, letterSpacing: '-0.5px' }}
-          className={`text-white mb-3 ${large ? 'text-4xl' : 'text-3xl'}`}
+          style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, letterSpacing: '-0.5px' }}
+          className={`text-[#1C1C1C] mb-3 ${large ? 'text-4xl' : 'text-3xl'}`}
         >
           {title}
         </h3>
-        <p className="text-white/50 text-sm leading-relaxed mb-6">
+        <p className="text-[#857E78] text-sm leading-relaxed mb-6">
           {description}
         </p>
         <button
-          className="card-btn group flex items-center gap-2 bg-[#3B82F6] text-black text-sm font-semibold tracking-widest px-7 py-[14px] rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95"
+          className="card-btn group flex items-center gap-2 bg-[#2A5C3F] text-white text-sm font-semibold tracking-widest px-7 py-[14px] rounded-xl transition-all duration-300 hover:bg-[#3D7055] hover:scale-105 active:scale-95"
           onClick={() => navigate(href)}
         >
           {cta}
@@ -310,7 +305,7 @@ const ProductsPage: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ background: '#050d1a' }} className="min-h-screen selection:bg-[#3B82F6]/20">
+    <div style={{ background: '#EDEAE3' }} className="min-h-screen selection:bg-[#2A5C3F]/15">
       <style>{STYLES}</style>
       <CustomCursor />
       <Navbar />
@@ -320,17 +315,17 @@ const ProductsPage: React.FC = () => {
 
           {/* Header */}
           <div className="text-center mb-20">
-            <p className="text-[#4A9FFF] text-[10px] tracking-[0.35em] font-black mb-5">
+            <p className="text-[#857E78] text-[10px] tracking-[0.35em] font-medium mb-5 uppercase" style={{ letterSpacing: '0.14em' }}>
               — I NOSTRI PRODOTTI —
             </p>
             <h1
-              className="tracking-tight leading-tight text-white mb-6"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '96px', fontWeight: 500, letterSpacing: '-2.88px', lineHeight: '105.6px' }}
+              className="tracking-tight leading-tight text-[#1C1C1C] mb-6"
+              style={{ fontFamily: 'Playfair Display, serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}
             >
               I Nostri{' '}
-              <em className="accent-italic">Prodotti</em>
+              <em style={{ color: '#2A5C3F', fontStyle: 'italic' }}>Prodotti</em>
             </h1>
-            <p className="text-white/40 text-lg font-light max-w-md mx-auto leading-relaxed">
+            <p className="text-[#857E78] text-lg font-light max-w-md mx-auto leading-relaxed">
               Agenti AI e automazioni pronti all'uso per far evolvere il tuo business.
             </p>
           </div>

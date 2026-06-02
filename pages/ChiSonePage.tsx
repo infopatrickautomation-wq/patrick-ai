@@ -47,7 +47,7 @@ const glowDivStyle: React.CSSProperties = {
   width: 500,
   height: 500,
   borderRadius: '50%',
-  background: 'radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 65%)',
+  background: 'radial-gradient(circle, rgba(42,92,63,0.08) 0%, transparent 65%)',
   opacity: 0,
   pointerEvents: 'none',
   transition: 'opacity 0.3s ease',
@@ -86,7 +86,7 @@ const ChiSonePage: React.FC = () => {
   const { glowRefs, onMouseMove, onMouseLeave } = useCardGlows(3);
 
   return (
-    <div style={{ background: '#050d1a' }} className="min-h-screen selection:bg-[#3B82F6]/20">
+    <div style={{ background: '#EDEAE3' }} className="min-h-screen selection:bg-[#2A5C3F]/15">
       <CustomCursor />
       <Navbar ctaLabel="Contattaci" />
 
@@ -97,13 +97,13 @@ const ChiSonePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
             {/* Left */}
             <Reveal>
-              <p className="text-[#4A9FFF] text-[10px] tracking-[0.35em] font-black mb-5">
+              <p className="text-[#2A5C3F] text-[10px] tracking-[0.35em] font-black mb-5">
                 — CHI SONO —
               </p>
               <h1
-                className="text-white tracking-tight leading-tight mb-4"
+                className="text-[#1C1C1C] tracking-tight leading-tight mb-4"
                 style={{
-                  fontFamily: 'Manrope, sans-serif',
+                  fontFamily: 'Playfair Display, serif',
                   fontSize: '80px',
                   fontWeight: 700,
                   letterSpacing: '-2.5px',
@@ -114,11 +114,11 @@ const ChiSonePage: React.FC = () => {
               </h1>
               <p
                 className="mb-8 accent-italic"
-                style={{ fontSize: '24px', color: '#3B82F6' }}
+                style={{ fontSize: '24px', color: '#2A5C3F' }}
               >
                 Fondatore di PatrickAI Automation
               </p>
-              <p className="text-white/50 text-lg leading-relaxed max-w-lg">
+              <p className="text-[#857E78] text-lg leading-relaxed max-w-lg">
                 34 anni, tre figli, e una convinzione profonda: l'AI non è il futuro — è il
                 presente. E chi non lo capisce oggi, resterà indietro domani.
               </p>
@@ -129,13 +129,13 @@ const ChiSonePage: React.FC = () => {
               <div
                 className="w-full aspect-[4/5] rounded-3xl flex items-center justify-center relative overflow-hidden"
                 style={{
-                  background: '#0a1628',
-                  border: '1.5px solid rgba(59,130,246,0.25)',
+                  background: '#E4E0D8',
+                  border: '1.5px solid #C8C3BB',
                 }}
               >
                 {/* glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
-                <span className="relative z-10 text-white/25 text-sm tracking-widest font-semibold uppercase">
+                <div className="absolute inset-0 " />
+                <span className="relative z-10 text-[#857E78]/50 text-sm tracking-widest font-semibold uppercase">
                   Foto Patrick
                 </span>
                 {/* top line */}
@@ -146,7 +146,7 @@ const ChiSonePage: React.FC = () => {
                     left: 0,
                     right: 0,
                     height: 1,
-                    background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.4), transparent)',
+                    background: 'linear-gradient(90deg, transparent, #C8C3BB, transparent)',
                   }}
                 />
               </div>
@@ -156,15 +156,15 @@ const ChiSonePage: React.FC = () => {
           {/* ── SEZIONE 2 — La mia storia ── */}
           <div className="mb-32">
             <Reveal className="mb-12">
-              <p className="text-[#4A9FFF] text-[10px] tracking-[0.35em] font-black mb-4">
+              <p className="text-[#2A5C3F] text-[10px] tracking-[0.35em] font-black mb-4">
                 — LA MIA STORIA —
               </p>
               <h2
-                className="text-white tracking-tight leading-tight"
+                className="text-[#1C1C1C] tracking-tight leading-tight"
                 style={{
-                  fontFamily: 'Manrope, sans-serif',
+                  fontFamily: 'Playfair Display, serif',
                   fontSize: '60px',
-                  fontWeight: 500,
+                  fontWeight: 700,
                   letterSpacing: '-1.5px',
                   lineHeight: '66px',
                 }}
@@ -184,17 +184,17 @@ const ChiSonePage: React.FC = () => {
                   <div
                     className="h-full rounded-2xl p-8"
                     style={{
-                      background: '#0a1628',
-                      border: '1px solid rgba(59,130,246,0.12)',
+                      background: '#E4E0D8',
+                      border: '1px solid rgba(42,92,63,0.10)',
                     }}
                   >
                     <span
                       className="block font-black mb-4"
-                      style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '40px', color: '#3B82F6', opacity: 0.18 }}
+                      style={{ fontFamily: 'Inter, sans-serif', fontSize: '40px', color: '#2A5C3F', opacity: 0.18 }}
                     >
                       0{i + 1}
                     </span>
-                    <p className="text-white/55 text-base leading-relaxed">{text}</p>
+                    <p className="text-[#857E78] text-base leading-relaxed">{text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -204,15 +204,15 @@ const ChiSonePage: React.FC = () => {
           {/* ── SEZIONE 3 — I miei valori ── */}
           <div className="mb-32">
             <Reveal className="text-center mb-14">
-              <p className="text-[#4A9FFF] text-[10px] tracking-[0.35em] font-black mb-4">
+              <p className="text-[#2A5C3F] text-[10px] tracking-[0.35em] font-black mb-4">
                 — I MIEI VALORI —
               </p>
               <h2
-                className="text-white tracking-tight"
+                className="text-[#1C1C1C] tracking-tight"
                 style={{
-                  fontFamily: 'Manrope, sans-serif',
+                  fontFamily: 'Playfair Display, serif',
                   fontSize: '60px',
-                  fontWeight: 500,
+                  fontWeight: 700,
                   letterSpacing: '-1.5px',
                   lineHeight: '66px',
                 }}
@@ -228,8 +228,8 @@ const ChiSonePage: React.FC = () => {
                   <div
                     className="neon-card relative rounded-2xl overflow-hidden h-full"
                     style={{
-                      background: '#0a1628',
-                      border: '1.5px solid rgba(59,130,246,0.15)',
+                      background: '#E4E0D8',
+                      border: '1.5px solid rgba(42,92,63,0.12)',
                       cursor: 'default',
                     }}
                     onMouseMove={onMouseMove(i)}
@@ -238,22 +238,22 @@ const ChiSonePage: React.FC = () => {
                     {/* mouse glow */}
                     <div ref={el => { glowRefs.current[i] = el; }} style={glowDivStyle} />
                     {/* top line */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent)', zIndex: 2 }} />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, #C8C3BB, transparent)', zIndex: 2 }} />
 
                     <div className="relative z-10 p-8">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                        style={{ background: 'rgba(59,130,246,0.12)', border: '1px solid rgba(59,130,246,0.25)' }}
+                        style={{ background: 'rgba(42,92,63,0.10)', border: '1px solid rgba(42,92,63,0.2)' }}
                       >
-                        <Icon className="w-6 h-6" style={{ color: '#3B82F6' }} />
+                        <Icon className="w-6 h-6" style={{ color: '#2A5C3F' }} />
                       </div>
                       <h3
-                        className="text-white font-black mb-3"
-                        style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '20px', letterSpacing: '-0.3px' }}
+                        className="text-[#1C1C1C] font-black mb-3"
+                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '20px', letterSpacing: '-0.3px' }}
                       >
                         {title}
                       </h3>
-                      <p className="text-white/45 text-sm leading-relaxed">{text}</p>
+                      <p className="text-[#857E78] text-sm leading-relaxed">{text}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -266,8 +266,8 @@ const ChiSonePage: React.FC = () => {
             <div
               className="rounded-3xl p-12 grid grid-cols-2 md:grid-cols-4 gap-8"
               style={{
-                background: '#0a1628',
-                border: '1px solid rgba(59,130,246,0.12)',
+                background: '#E4E0D8',
+                border: '1px solid rgba(42,92,63,0.10)',
               }}
             >
               {stats.map(({ value, label }, i) => (
@@ -275,15 +275,15 @@ const ChiSonePage: React.FC = () => {
                   <div
                     className="font-black mb-2"
                     style={{
-                      fontFamily: 'Manrope, sans-serif',
+                      fontFamily: 'Playfair Display, serif',
                       fontSize: '52px',
-                      color: '#3B82F6',
+                      color: '#2A5C3F',
                       letterSpacing: '-1.5px',
                     }}
                   >
                     {value}
                   </div>
-                  <div className="text-white/40 text-sm tracking-widest font-semibold uppercase">
+                  <div className="text-[#857E78] text-sm tracking-widest font-semibold uppercase">
                     {label}
                   </div>
                 </Reveal>
@@ -296,31 +296,31 @@ const ChiSonePage: React.FC = () => {
             <div
               className="relative rounded-3xl overflow-hidden max-w-3xl w-full text-center p-14"
               style={{
-                background: '#0a1628',
-                border: '1.5px solid rgba(59,130,246,0.2)',
+                background: '#E4E0D8',
+                border: '1.5px solid #C8C3BB',
               }}
             >
               {/* glow */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(59,130,246,0.1)_0%,transparent_60%)] pointer-events-none" />
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.4), transparent)' }} />
+              <div className="absolute inset-0  pointer-events-none" />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, #C8C3BB, transparent)' }} />
 
               <div className="relative z-10">
-                <p className="text-[#4A9FFF] text-[10px] tracking-[0.35em] font-black mb-5">
+                <p className="text-[#2A5C3F] text-[10px] tracking-[0.35em] font-black mb-5">
                   — LAVORIAMO INSIEME —
                 </p>
                 <h2
-                  className="text-white font-black mb-5 tracking-tight"
-                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '44px', letterSpacing: '-1.2px', lineHeight: '50px' }}
+                  className="text-[#1C1C1C] font-black mb-5 tracking-tight"
+                  style={{ fontFamily: 'Playfair Display, serif', fontSize: '44px', letterSpacing: '-1.2px', lineHeight: '50px' }}
                 >
                   Parliamo del tuo progetto
                 </h2>
-                <p className="text-white/45 text-base leading-relaxed mb-10 max-w-md mx-auto">
+                <p className="text-[#857E78] text-base leading-relaxed mb-10 max-w-md mx-auto">
                   Sono una persona diretta e concreta. Niente presentazioni lunghe — una call di
                   30 minuti per capire se posso aiutarti davvero.
                 </p>
                 <button
                   onClick={() => navigate('/contatti')}
-                  className="inline-flex items-center gap-3 bg-[#3B82F6] text-black font-semibold px-8 py-4 rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95"
+                  className="inline-flex items-center gap-3 bg-[#2A5C3F] text-white font-semibold px-8 py-4 rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-105 active:scale-95"
                 >
                   Prenota una Call Gratuita →
                 </button>
