@@ -1,8 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Zap } from 'lucide-react';
-import { Stars } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { AntiGravityCanvas } from '../components/ui/particle-effect-for-hero';
 import {
   useMotionTemplate,
   useMotionValue,
@@ -41,15 +40,10 @@ const Hero: React.FC = () => {
 
   return (
     <motion.section
-      style={{ backgroundImage }}
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-4"
     >
-      {/* Stars canvas */}
-      <div className="absolute inset-0 z-0">
-        <Canvas>
-          <Stars radius={50} count={2500} factor={4} fade speed={1.5} />
-        </Canvas>
-      </div>
+      {/* Particle canvas */}
+      <AntiGravityCanvas />
 
       <div className="relative z-10 text-center max-w-7xl mx-auto pt-32 pb-24">
 
