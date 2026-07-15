@@ -3,6 +3,8 @@ import React, { useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { navigate } from '../hooks/useRoute';
+import DotMatrixText from '../components/DotMatrixText';
+import FloatingDots from '../components/FloatingDots';
 
 const STYLES = `
 @keyframes svc-flux-flow {
@@ -31,18 +33,17 @@ const STYLES = `
 }
 .svc-product-card {
   position: relative;
-  background: #E4E0D8;
-  border: 2.5px solid rgba(42,92,63,0.55);
-  border-radius: 28px;
+  background: var(--bg-alt);
+  border: 1.5px solid rgba(var(--title-rgb),0.85);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 12px rgba(42,92,63,0.12), 0 2px 16px rgba(0,0,0,0.06);
+  box-shadow: 7px 7px 0 0 rgba(var(--accent-rgb),0.6);
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
   cursor: pointer;
 }
 .svc-product-card:hover {
-  transform: translateY(-3px);
-  border-color: #2A5C3F !important;
-  box-shadow: 0 0 22px rgba(42,92,63,0.28), 0 4px 24px rgba(0,0,0,0.08) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 0 rgba(var(--accent-rgb),0.75) !important;
 }
 .svc-product-card .svc-card-btn .svc-btn-arrow {
   display: inline-flex;
@@ -77,7 +78,7 @@ const glowStyle: React.CSSProperties = {
   position: 'absolute',
   width: 500, height: 500,
   borderRadius: '50%',
-  background: 'radial-gradient(circle, rgba(42,92,63,0.08) 0%, transparent 65%)',
+  background: 'radial-gradient(circle, rgba(var(--accent-rgb),0.08) 0%, transparent 65%)',
   opacity: 0,
   pointerEvents: 'none',
   transition: 'opacity 0.3s ease',
@@ -87,7 +88,7 @@ const glowStyle: React.CSSProperties = {
 const FluxVisual: React.FC = () => (
   <div
     style={{
-      background: 'linear-gradient(135deg, #1a3d2b, #2A5C3F, #3D7055, #2A5C3F, #1a3d2b)',
+      background: 'linear-gradient(135deg, #5C2A0E, var(--accent), var(--accent-light), var(--accent), #5C2A0E)',
       backgroundSize: '400% 400%',
       animation: 'svc-flux-flow 6s ease infinite',
       position: 'relative',
@@ -110,18 +111,18 @@ const FluxVisual: React.FC = () => (
         boxShadow: '0 0 6px rgba(255,255,255,0.6)',
       }} />
     ))}
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
-    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: 52, fontWeight: 900, color: 'rgba(255,255,255,0.12)', letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif' }}>FLUX</div>
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--bg-alt))' }} />
+    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: 52, fontWeight: 900, color: 'rgba(255,255,255,0.12)', letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Outfit, sans-serif' }}>FLUX</div>
   </div>
 );
 
 const NovaVisual: React.FC = () => (
-  <div style={{ background: '#E4E0D8', position: 'relative' }} className="w-full h-[180px] overflow-hidden">
+  <div style={{ background: 'var(--bg-alt)', position: 'relative' }} className="w-full h-[180px] overflow-hidden">
     {[80, 130, 180].map((size, i) => (
       <div key={i} style={{
         position: 'absolute', top: '50%', left: '50%',
         width: size, height: size, borderRadius: '50%',
-        border: '1px solid rgba(42,92,63,0.4)',
+        border: '1px solid rgba(var(--accent-rgb),0.4)',
         transform: 'translate(-50%, -50%)',
         animation: `svc-nova-pulse 2.4s ${i * 0.6}s ease-in-out infinite`,
       }} />
@@ -129,42 +130,42 @@ const NovaVisual: React.FC = () => (
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       width: 40, height: 40, borderRadius: '50%',
-      background: '#2A5C3F',
+      background: 'var(--accent)',
       transform: 'translate(-50%, -50%)',
-      boxShadow: '0 0 20px rgba(42,92,63,0.4)',
+      boxShadow: '0 0 20px rgba(var(--accent-rgb),0.4)',
       animation: 'svc-nova-pulse 2.4s ease-in-out infinite',
     }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
-    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: 52, fontWeight: 900, color: 'rgba(42,92,63,0.10)', letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif' }}>NOVA</div>
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--bg-alt))' }} />
+    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: 52, fontWeight: 900, color: 'rgba(var(--accent-rgb),0.10)', letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Outfit, sans-serif' }}>NOVA</div>
   </div>
 );
 
 const AxisVisual: React.FC = () => (
   <div style={{
-    background: '#DEDAD2',
+    background: '#241A10',
     backgroundSize: '300% 300%, 200% 200%',
     animation: 'svc-axis-mesh 8s ease infinite',
     position: 'relative',
   }} className="w-full h-[180px] overflow-hidden">
     <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.5 }}>
       {[0, 1, 2, 3, 4, 5, 6].map(i => (
-        <line key={`v${i}`} x1={`${(i / 6) * 100}%`} y1="0" x2={`${(i / 6) * 100}%`} y2="100%" stroke="#C8C3BB" strokeWidth="0.5" />
+        <line key={`v${i}`} x1={`${(i / 6) * 100}%`} y1="0" x2={`${(i / 6) * 100}%`} y2="100%" stroke="var(--border-soft)" strokeWidth="0.5" />
       ))}
       {[0, 1, 2, 3, 4].map(i => (
-        <line key={`h${i}`} x1="0" y1={`${(i / 4) * 100}%`} x2="100%" y2={`${(i / 4) * 100}%`} stroke="#C8C3BB" strokeWidth="0.5" />
+        <line key={`h${i}`} x1="0" y1={`${(i / 4) * 100}%`} x2="100%" y2={`${(i / 4) * 100}%`} stroke="var(--border-soft)" strokeWidth="0.5" />
       ))}
     </svg>
-    <div style={{ position: 'absolute', top: 18, left: 18, width: 28, height: 28, borderTop: '2px solid rgba(42,92,63,0.5)', borderLeft: '2px solid rgba(42,92,63,0.5)' }} />
-    <div style={{ position: 'absolute', top: 18, right: 18, width: 28, height: 28, borderTop: '2px solid rgba(42,92,63,0.5)', borderRight: '2px solid rgba(42,92,63,0.5)' }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #DEDAD2)' }} />
-    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: 52, fontWeight: 900, color: 'rgba(42,92,63,0.12)', letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif' }}>AXIS</div>
+    <div style={{ position: 'absolute', top: 18, left: 18, width: 28, height: 28, borderTop: '2px solid rgba(var(--accent-rgb),0.5)', borderLeft: '2px solid rgba(var(--accent-rgb),0.5)' }} />
+    <div style={{ position: 'absolute', top: 18, right: 18, width: 28, height: 28, borderTop: '2px solid rgba(var(--accent-rgb),0.5)', borderRight: '2px solid rgba(var(--accent-rgb),0.5)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #241A10)' }} />
+    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: 52, fontWeight: 900, color: 'rgba(var(--accent-rgb),0.12)', letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Outfit, sans-serif' }}>AXIS</div>
   </div>
 );
 
 const products = [
   {
     Visual: AxisVisual,
-    title: <><em className="accent-italic">Axis</em> Partner</>,
+    title: <><span className="inline-block mr-3 align-middle"><DotMatrixText text="AXIS" dot={5.5} gap={1.5} charGap={5} /></span> Partner</>,
     description: "Il tuo partner strategico per l'analisi e progettazione di sistemi AI su misura. Analizziamo i tuoi processi, identifichiamo le opportunità e costruiamo la roadmap perfetta per la tua azienda.",
     href: '/axis-partner',
     cta: 'Scopri Axis',
@@ -172,7 +173,7 @@ const products = [
   },
   {
     Visual: FluxVisual,
-    title: <><em className="accent-italic">Flux</em> Agent</>,
+    title: <><span className="inline-block mr-3 align-middle"><DotMatrixText text="FLUX" dot={5.5} gap={1.5} charGap={5} /></span> Agent</>,
     description: "L'agente AI che automatizza i tuoi processi aziendali. Elimina le attività manuali ripetitive, integra i tuoi strumenti e fa girare il tuo business in automatico 24/7.",
     href: '/flux-agent',
     cta: 'Scopri Flux',
@@ -180,7 +181,7 @@ const products = [
   },
   {
     Visual: NovaVisual,
-    title: <><em className="accent-italic">Nova</em> Agent</>,
+    title: <><span className="inline-block mr-3 align-middle"><DotMatrixText text="NOVA" dot={5.5} gap={1.5} charGap={5} /></span> Agent</>,
     description: "L'agente AI intelligente per lead generation e customer service. Gestisce conversazioni, qualifica contatti e prenota appuntamenti automaticamente.",
     href: '/nova-agent',
     cta: 'Scopri Nova',
@@ -193,28 +194,29 @@ const Services: React.FC = () => {
   const { glowRefs, onMouseMove, onMouseLeave } = useCardGlows(3);
 
   return (
-    <section id="soluzioni" className="py-32 bg-[#EDEAE3] relative">
+    <section id="soluzioni" className="py-32 bg-[var(--bg)] relative overflow-hidden">
       <style>{STYLES}</style>
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+      <FloatingDots />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--border-soft)] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={headerRef}
           className={`text-center mb-20 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <p className="text-[#857E78] text-xs tracking-[0.3em] font-medium mb-4 uppercase" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.14em' }}>— I nostri prodotti —</p>
-          <h2 className="text-[#1C1C1C] mb-6 tracking-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
-            Scegli il tuo<br />
-            <em style={{ color: '#2A5C3F', fontStyle: 'italic' }}>Percorso.</em>
+          <p className="mono-label text-sm mb-4" style={{ color: 'var(--accent)' }}>I NOSTRI PRODOTTI</p>
+          <h2 className="text-[var(--title)] mb-6 tracking-tight flex flex-col items-center gap-3" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
+            <span>Scegli il tuo</span>
+            <DotMatrixText text="PERCORSO" dot={5.5} gap={1.5} charGap={5} />
           </h2>
-          <p className="text-[#857E78] text-lg max-w-2xl mx-auto font-light">
+          <p className="text-[var(--body)] text-lg max-w-2xl mx-auto font-light">
             Agenti AI e automazioni pronti all'uso per far evolvere il tuo business.
           </p>
         </div>
 
         {/* Axis — full width */}
         <div
-          className="neon-card svc-product-card mb-6"
+          className="svc-product-card mb-6"
           onMouseMove={onMouseMove(0)}
           onMouseLeave={onMouseLeave(0)}
           onClick={() => navigate(products[0].href)}
@@ -222,11 +224,11 @@ const Services: React.FC = () => {
           <div ref={el => { glowRefs.current[0] = el; }} style={glowStyle} />
           <AxisVisual />
           <div className="relative z-10 p-7">
-            <h3 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, letterSpacing: '-0.5px', fontSize: '60px' }} className="text-[#1C1C1C] mb-3">
+            <h3 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, letterSpacing: '-0.5px', fontSize: '60px' }} className="text-[var(--title)] mb-3">
               {products[0].title}
             </h3>
-            <p className="text-[#857E78] text-sm leading-relaxed mb-6">{products[0].description}</p>
-            <button className="svc-card-btn group flex items-center gap-2 bg-[#2A5C3F] text-white text-sm font-semibold tracking-widest px-7 py-[14px] rounded-xl transition-all duration-300 hover:bg-[#3D7055] hover:scale-105 active:scale-95">
+            <p className="text-[var(--body)] text-sm leading-relaxed mb-6">{products[0].description}</p>
+            <button className="rubric-btn svc-card-btn group flex items-center gap-2 text-sm tracking-widest px-7 py-[14px] rounded-lg">
               {products[0].cta} <span className="svc-btn-arrow"><ArrowUpRight size={16} /></span>
             </button>
           </div>
@@ -237,7 +239,7 @@ const Services: React.FC = () => {
           {products.slice(1).map((product, i) => (
             <div
               key={i}
-              className="neon-card svc-product-card"
+              className="svc-product-card"
               onMouseMove={onMouseMove(i + 1)}
               onMouseLeave={onMouseLeave(i + 1)}
               onClick={() => navigate(product.href)}
@@ -245,11 +247,11 @@ const Services: React.FC = () => {
               <div ref={el => { glowRefs.current[i + 1] = el; }} style={glowStyle} />
               <product.Visual />
               <div className="relative z-10 p-7">
-                <h3 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, letterSpacing: '-0.5px', fontSize: '60px' }} className="text-[#1C1C1C] mb-3">
+                <h3 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, letterSpacing: '-0.5px', fontSize: '60px' }} className="text-[var(--title)] mb-3">
                   {product.title}
                 </h3>
-                <p className="text-[#857E78] text-sm leading-relaxed mb-6">{product.description}</p>
-                <button className="svc-card-btn group flex items-center gap-2 bg-[#2A5C3F] text-white text-sm font-semibold tracking-widest px-7 py-[14px] rounded-xl transition-all duration-300 hover:bg-[#3D7055] hover:scale-105 active:scale-95">
+                <p className="text-[var(--body)] text-sm leading-relaxed mb-6">{product.description}</p>
+                <button className="rubric-btn svc-card-btn group flex items-center gap-2 text-sm tracking-widest px-7 py-[14px] rounded-lg">
                   {product.cta} <span className="svc-btn-arrow"><ArrowUpRight size={16} /></span>
                 </button>
               </div>

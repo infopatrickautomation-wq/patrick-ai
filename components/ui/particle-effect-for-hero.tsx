@@ -14,7 +14,7 @@ interface MouseState { x: number; y: number; isActive: boolean; }
 const PARTICLE_DENSITY = 0.00015;
 const BG_PARTICLE_DENSITY = 0.00005;
 const MOUSE_RADIUS = 180;
-const RETURN_SPEED = 0.08;
+const RETURN_SPEED = 0.045;
 const DAMPING = 0.90;
 const REPULSION_STRENGTH = 1.2;
 const randomRange = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -34,7 +34,7 @@ export const AntiGravityCanvas: React.FC = () => {
     const newParticles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
       const x = Math.random() * width; const y = Math.random() * height;
-      newParticles.push({ x, y, originX: x, originY: y, vx: 0, vy: 0, size: randomRange(1, 2.5), color: Math.random() > 0.9 ? '#2A5C3F' : '#ffffff', angle: Math.random() * Math.PI * 2 });
+      newParticles.push({ x, y, originX: x, originY: y, vx: 0, vy: 0, size: randomRange(1, 2.5), color: Math.random() > 0.9 ? '#1A2CB0' : '#ffffff', angle: Math.random() * Math.PI * 2 });
     }
     particlesRef.current = newParticles;
     const bgCount = Math.floor(width * height * BG_PARTICLE_DENSITY);
@@ -55,7 +55,7 @@ export const AntiGravityCanvas: React.FC = () => {
     const centerX = canvas.width / 2; const centerY = canvas.height / 2;
     const pulseOpacity = Math.sin(time * 0.0008) * 0.035 + 0.085;
     const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, Math.max(canvas.width, canvas.height) * 0.7);
-    gradient.addColorStop(0, `rgba(42, 92, 63, ${pulseOpacity})`);
+    gradient.addColorStop(0, `rgba(26, 44, 176, ${pulseOpacity})`);
     gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
     ctx.fillStyle = gradient; ctx.fillRect(0, 0, canvas.width, canvas.height);
     const bgParticles = backgroundParticlesRef.current; ctx.fillStyle = '#ffffff';
@@ -78,7 +78,10 @@ export const AntiGravityCanvas: React.FC = () => {
         p.vx -= forceDirectionX * force * REPULSION_STRENGTH * 5;
         p.vy -= forceDirectionY * force * REPULSION_STRENGTH * 5;
       }
-      p.vx += (p.originX - p.x) * RETURN_SPEED; p.vy += (p.originY - p.y) * RETURN_SPEED;
+      // Fluttuazione: l'ancora oscilla dolcemente nel tempo -> senso di galleggiamento
+      const driftX = p.originX + Math.cos(time * 0.0004 + p.angle) * 24;
+      const driftY = p.originY + Math.sin(time * 0.00052 + p.angle) * 24;
+      p.vx += (driftX - p.x) * RETURN_SPEED; p.vy += (driftY - p.y) * RETURN_SPEED;
     }
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -142,7 +145,7 @@ export const AntiGravityCanvas: React.FC = () => {
   const handleMouseLeave = () => { mouseRef.current.isActive = false; };
 
   return (
-    <div ref={containerRef} className="absolute inset-0 z-0 overflow-hidden bg-black cursor-crosshair" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <div ref={containerRef} className="absolute inset-0 z-0 overflow-hidden bg-black cursor-none" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <canvas ref={canvasRef} className="block w-full h-full" />
     </div>
   );

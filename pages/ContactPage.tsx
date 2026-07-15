@@ -5,14 +5,15 @@ import Navbar from '../sections/Navbar';
 import Footer from '../sections/Footer';
 import CustomCursor from '../components/CustomCursor';
 import { useMouseGlow, glowDivStyle } from '../hooks/useMouseGlow';
+import DotMatrixText from '../components/DotMatrixText';
 
 const inputClass =
-  'w-full bg-[#EDEAE3] border border-[#C8C3BB] rounded-2xl px-5 py-4 text-[#1C1C1C] placeholder-[#857E78]/60 text-sm outline-none transition-all duration-200 focus:border-[#2A5C3F] focus:shadow-[0_0_0_3px_rgba(42,92,63,0.08)]';
+  'w-full bg-[var(--bg)] border border-[var(--border-soft)] rounded-2xl px-5 py-4 text-[var(--title)] placeholder-[#8d8775]/60 text-sm outline-none transition-all duration-200 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)]';
 
-const labelClass = 'block text-[10px] tracking-[0.25em] font-black text-[#857E78] mb-2 ml-1';
+const labelClass = 'block text-[10px] tracking-[0.25em] font-black text-[var(--body)] mb-2 ml-1';
 
 const selectClass =
-  'w-full bg-[#EDEAE3] border border-[#C8C3BB] rounded-2xl px-5 py-4 text-[#1C1C1C] text-sm outline-none transition-all duration-200 focus:border-[#2A5C3F] focus:shadow-[0_0_0_3px_rgba(42,92,63,0.08)] appearance-none cursor-pointer';
+  'w-full bg-[var(--bg)] border border-[var(--border-soft)] rounded-2xl px-5 py-4 text-[var(--title)] text-sm outline-none transition-all duration-200 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] appearance-none cursor-pointer';
 
 const Field: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
   <div className="space-y-1">
@@ -32,7 +33,7 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div style={{ background: '#EDEAE3' }} className="min-h-screen selection:bg-[#2A5C3F]/15">
+    <div style={{ background: 'var(--bg)' }} className="min-h-screen selection:bg-[#1A2CB0]/15">
       <CustomCursor />
       <Navbar />
 
@@ -41,31 +42,31 @@ const ContactPage: React.FC = () => {
 
           {/* Header */}
           <div className="mb-16">
-            <p className="text-[#857E78] text-[10px] tracking-[0.35em] font-medium mb-5 uppercase" style={{ letterSpacing: '0.14em' }}>— CONTATTACI —</p>
-            <h1 className="text-[#1C1C1C] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Playfair Display, serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
-              Parliamo del<br />
-              <em style={{ color: '#2A5C3F', fontStyle: 'italic' }}>tuo progetto.</em>
+            <p className="text-[var(--body)] text-[10px] tracking-[0.35em] font-medium mb-5 uppercase" style={{ letterSpacing: '0.14em' }}>— CONTATTACI —</p>
+            <h1 className="text-[var(--title)] tracking-tight leading-tight mb-6 flex flex-col items-start gap-2" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}>
+              <span>Parliamo del</span>
+              <DotMatrixText text="TUO PROGETTO" dot={5} gap={1.3} charGap={4} />
             </h1>
-            <p className="text-[#857E78] text-lg font-light">
+            <p className="text-[var(--body)] text-lg font-light">
               Compila il form per fissare una call conoscitiva gratuita.
             </p>
           </div>
 
           {/* Form card */}
           <div
-            className="neon-card relative rounded-[2rem] overflow-hidden border border-[#C8C3BB] transition-all duration-300"
-            style={{ background: '#E4E0D8', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
+            className="neon-card relative rounded-[2rem] overflow-hidden border border-[var(--border-soft)] transition-all duration-300"
+            style={{ background: 'var(--bg-alt)', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
             onMouseMove={onMouseMove}
             onMouseLeave={onMouseLeave}
           >
             <div ref={glowRef} style={glowDivStyle} />
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--border-soft)] to-transparent" />
 
             {isSubmitted ? (
               <div className="text-center py-24 px-8 relative z-10">
-                <CheckCircle className="w-20 h-20 text-[#2A5C3F] mx-auto mb-8" />
-                <h2 className="text-[#1C1C1C] mb-3" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>Richiesta Inviata!</h2>
-                <p className="text-[#857E78] text-lg">Ti contatterò personalmente entro 24 ore.</p>
+                <CheckCircle className="w-20 h-20 text-[var(--accent)] mx-auto mb-8" />
+                <h2 className="text-[var(--title)] mb-3" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>Richiesta Inviata!</h2>
+                <p className="text-[var(--body)] text-lg">Ti contatterò personalmente entro 24 ore.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-6 relative z-10">
@@ -84,12 +85,12 @@ const ContactPage: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <Field label="Numero di Telefono">
                     <div className="relative flex">
-                      <span className="flex items-center px-4 bg-[#EDEAE3] border border-r-0 border-[#C8C3BB] rounded-l-2xl text-[#857E78] text-sm font-bold whitespace-nowrap">
+                      <span className="flex items-center px-4 bg-[var(--bg)] border border-r-0 border-[var(--border-soft)] rounded-l-2xl text-[var(--body)] text-sm font-bold whitespace-nowrap">
                         +39
                       </span>
                       <input
                         type="tel"
-                        className="flex-1 bg-[#EDEAE3] border border-[#C8C3BB] rounded-r-2xl px-5 py-4 text-[#1C1C1C] placeholder-[#857E78]/60 text-sm outline-none transition-all duration-200 focus:border-[#2A5C3F] focus:shadow-[0_0_0_3px_rgba(42,92,63,0.08)]"
+                        className="flex-1 bg-[var(--bg)] border border-[var(--border-soft)] rounded-r-2xl px-5 py-4 text-[var(--title)] placeholder-[#8d8775]/60 text-sm outline-none transition-all duration-200 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)]"
                         placeholder="351 830 2839"
                       />
                     </div>
@@ -113,7 +114,7 @@ const ContactPage: React.FC = () => {
                         <option value="analisi">Analisi &amp; Progettazione</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                        <svg className="w-4 h-4 text-[#857E78]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -133,7 +134,7 @@ const ContactPage: React.FC = () => {
                         <option value="gt1m">Oltre 1M</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                        <svg className="w-4 h-4 text-[#857E78]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -149,7 +150,7 @@ const ContactPage: React.FC = () => {
                         <option value="gt200">Oltre 200</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                        <svg className="w-4 h-4 text-[#857E78]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -169,7 +170,7 @@ const ContactPage: React.FC = () => {
                       <option value="altro">Altro</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                      <svg className="w-4 h-4 text-[#857E78]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -187,13 +188,13 @@ const ContactPage: React.FC = () => {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest flex items-center justify-center gap-3 transition-all duration-300 hover:bg-[#3D7055] hover:scale-[1.01] active:scale-[0.99]"
+                  className="rubric-btn w-full px-7 py-[14px] rounded-lg text-sm tracking-widest flex items-center justify-center gap-3"
                 >
                   Invia Richiesta
                   <Send className="w-5 h-5" />
                 </button>
 
-                <p className="text-center text-[#857E78] text-xs tracking-wide">
+                <p className="text-center text-[var(--body)] text-xs tracking-wide">
                   Rispondo entro 24 ore. Nessuno spam, promesso.
                 </p>
               </form>

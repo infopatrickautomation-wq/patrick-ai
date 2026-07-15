@@ -16,34 +16,34 @@ const Solutions: React.FC = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <section className="py-32 bg-[#EDEAE3] relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB]/50 to-transparent" />
+    <section className="py-32 bg-[var(--bg)] relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#332A20]/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4">
         <div
           ref={headerRef}
           className={`text-center mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <p className="text-[#2A5C3F] text-xs tracking-[0.3em] font-black mb-4">— Suite completa —</p>
-          <h2 className="text-[#1C1C1C] mb-4 tracking-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
+          <p className="text-[var(--accent)] text-xs tracking-[0.3em] font-black mb-4">— Suite completa —</p>
+          <h2 className="text-[var(--title)] mb-4 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
             Soluzioni<br />
             <span className="accent-italic">Complete.</span>
           </h2>
-          <p className="text-[#857E78] text-lg max-w-2xl mx-auto font-light">Una suite di strumenti pronti a scalare il tuo business.</p>
+          <p className="text-[var(--body)] text-lg max-w-2xl mx-auto font-light">Una suite di strumenti pronti a scalare il tuo business.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {solutions.map((s, i) => (
             <div
               key={i}
-              className="neon-card group p-10 rounded-[2rem] bg-[#E4E0D8] border border-[#C8C3BB] transition-all duration-500 relative overflow-hidden"
+              className="neon-card group p-10 rounded-[2rem] bg-[var(--bg-alt)] border border-[var(--border-soft)] transition-all duration-500 relative overflow-hidden"
             >
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-14 h-14 rounded-2xl bg-[#2A5C3F]/10 border border-[#2A5C3F]/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#2A5C3F]/20 transition-all duration-300">
-                <s.icon className="w-7 h-7 text-[#2A5C3F]" />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--border-soft)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-14 h-14 rounded-2xl bg-[#1A2CB0]/10 border border-[#1A2CB0]/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#1A2CB0]/20 transition-all duration-300">
+                <s.icon className="w-7 h-7 text-[var(--accent)]" />
               </div>
-              <h3 className="text-xl font-black text-[#1C1C1C] mb-3 tracking-tight">{s.title}</h3>
-              <p className="text-[#857E78] leading-relaxed font-light">{s.desc}</p>
+              <h3 className="text-xl font-black text-[var(--title)] mb-3 tracking-tight">{s.title}</h3>
+              <p className="text-[var(--body)] leading-relaxed font-light">{s.desc}</p>
             </div>
           ))}
         </div>

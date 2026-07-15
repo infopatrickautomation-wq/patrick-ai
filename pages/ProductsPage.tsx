@@ -3,6 +3,7 @@ import Navbar from '../sections/Navbar';
 import Footer from '../sections/Footer';
 import CustomCursor from '../components/CustomCursor';
 import { navigate } from '../hooks/useRoute';
+import DotMatrixText from '../components/DotMatrixText';
 
 /* ── Keyframe animations injected once ── */
 const STYLES = `
@@ -32,8 +33,8 @@ const STYLES = `
 }
 .product-card {
   position: relative;
-  background: #E4E0D8;
-  border: 1.5px solid #C8C3BB;
+  background: var(--bg-alt);
+  border: 1.5px solid var(--border-soft);
   border-radius: 28px;
   overflow: hidden;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
@@ -42,7 +43,7 @@ const STYLES = `
 }
 .product-card:hover {
   transform: translateY(-3px);
-  border-color: #2A5C3F;
+  border-color: var(--accent);
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 .product-card .card-btn .btn-arrow {
@@ -79,7 +80,7 @@ function useCardGlows(count: number) {
 const FluxVisual: React.FC = () => (
   <div
     style={{
-      background: 'linear-gradient(135deg, #1a3d2b, #2A5C3F, #3D7055, #2A5C3F, #1a3d2b)',
+      background: 'linear-gradient(135deg, #5C2A0E, var(--accent), var(--accent-light), var(--accent), #5C2A0E)',
       backgroundSize: '400% 400%',
       animation: 'flux-flow 6s ease infinite',
     }}
@@ -109,19 +110,19 @@ const FluxVisual: React.FC = () => (
         }}
       />
     ))}
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--bg-alt))' }} />
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)',
       fontSize: 52, fontWeight: 900, color: 'rgba(255,255,255,0.12)',
-      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif',
+      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Outfit, sans-serif',
     }}>FLUX</div>
   </div>
 );
 
 const NovaVisual: React.FC = () => (
   <div
-    style={{ background: '#E4E0D8', position: 'relative' }}
+    style={{ background: 'var(--bg-alt)', position: 'relative' }}
     className="w-full h-[200px] overflow-hidden"
   >
     {[80, 130, 180].map((size, i) => (
@@ -132,7 +133,7 @@ const NovaVisual: React.FC = () => (
           top: '50%', left: '50%',
           width: size, height: size,
           borderRadius: '50%',
-          border: '1px solid rgba(42,92,63,0.4)',
+          border: '1px solid rgba(var(--accent-rgb),0.4)',
           transform: 'translate(-50%, -50%)',
           animation: `nova-pulse 2.4s ${i * 0.6}s ease-in-out infinite`,
         }}
@@ -141,17 +142,17 @@ const NovaVisual: React.FC = () => (
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       width: 40, height: 40, borderRadius: '50%',
-      background: '#2A5C3F',
+      background: 'var(--accent)',
       transform: 'translate(-50%, -50%)',
-      boxShadow: '0 0 20px rgba(42,92,63,0.4)',
+      boxShadow: '0 0 20px rgba(var(--accent-rgb),0.4)',
       animation: 'nova-pulse 2.4s ease-in-out infinite',
     }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--bg-alt))' }} />
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)',
-      fontSize: 52, fontWeight: 900, color: 'rgba(42,92,63,0.10)',
-      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif',
+      fontSize: 52, fontWeight: 900, color: 'rgba(var(--accent-rgb),0.10)',
+      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Outfit, sans-serif',
     }}>NOVA</div>
   </div>
 );
@@ -159,7 +160,7 @@ const NovaVisual: React.FC = () => (
 const AxisVisual: React.FC = () => (
   <div
     style={{
-      background: '#DEDAD2',
+      background: '#1B212C',
       backgroundSize: '300% 300%, 200% 200%',
       animation: 'axis-mesh 8s ease infinite',
       position: 'relative',
@@ -169,31 +170,31 @@ const AxisVisual: React.FC = () => (
     <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.5 }}>
       {[0, 1, 2, 3, 4, 5, 6].map(i => (
         <line key={`v${i}`} x1={`${(i / 6) * 100}%`} y1="0" x2={`${(i / 6) * 100}%`} y2="100%"
-          stroke="#C8C3BB" strokeWidth="0.5" />
+          stroke="var(--border-soft)" strokeWidth="0.5" />
       ))}
       {[0, 1, 2, 3, 4].map(i => (
         <line key={`h${i}`} x1="0" y1={`${(i / 4) * 100}%`} x2="100%" y2={`${(i / 4) * 100}%`}
-          stroke="#C8C3BB" strokeWidth="0.5" />
+          stroke="var(--border-soft)" strokeWidth="0.5" />
       ))}
     </svg>
     <div style={{
       position: 'absolute', top: 18, left: 18,
       width: 28, height: 28,
-      borderTop: '2px solid rgba(42,92,63,0.5)',
-      borderLeft: '2px solid rgba(42,92,63,0.5)',
+      borderTop: '2px solid rgba(var(--accent-rgb),0.5)',
+      borderLeft: '2px solid rgba(var(--accent-rgb),0.5)',
     }} />
     <div style={{
       position: 'absolute', top: 18, right: 18,
       width: 28, height: 28,
-      borderTop: '2px solid rgba(42,92,63,0.5)',
-      borderRight: '2px solid rgba(42,92,63,0.5)',
+      borderTop: '2px solid rgba(var(--accent-rgb),0.5)',
+      borderRight: '2px solid rgba(var(--accent-rgb),0.5)',
     }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, #E4E0D8)' }} />
+    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--bg-alt))' }} />
     <div style={{
       position: 'absolute', top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)',
-      fontSize: 52, fontWeight: 900, color: 'rgba(42,92,63,0.12)',
-      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Inter, sans-serif',
+      fontSize: 52, fontWeight: 900, color: 'rgba(var(--accent-rgb),0.12)',
+      letterSpacing: '-2px', userSelect: 'none', fontFamily: 'Outfit, sans-serif',
     }}>AXIS</div>
   </div>
 );
@@ -204,7 +205,7 @@ const products = [
     Visual: FluxVisual,
     title: (
       <>
-        Flux <em className="accent-italic">Agent</em>
+        Flux <span className="inline-block align-middle"><DotMatrixText text="AGENT" dot={3.3} gap={1} charGap={3} /></span>
       </>
     ),
     description:
@@ -216,7 +217,7 @@ const products = [
     Visual: NovaVisual,
     title: (
       <>
-        Nova <em className="accent-italic">Agent</em>
+        Nova <span className="inline-block align-middle"><DotMatrixText text="AGENT" dot={3.3} gap={1} charGap={3} /></span>
       </>
     ),
     description:
@@ -228,7 +229,7 @@ const products = [
     Visual: AxisVisual,
     title: (
       <>
-        Axis <em className="accent-italic">Partner</em>
+        Axis <span className="inline-block align-middle"><DotMatrixText text="PARTNER" dot={3.3} gap={1} charGap={3} /></span>
       </>
     ),
     description:
@@ -262,7 +263,7 @@ const ProductCard: React.FC<{
           position: 'absolute',
           width: 500, height: 500,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(42,92,63,0.08) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(var(--accent-rgb),0.08) 0%, transparent 65%)',
           opacity: 0,
           pointerEvents: 'none',
           transition: 'opacity 0.3s ease',
@@ -276,16 +277,16 @@ const ProductCard: React.FC<{
       {/* Content */}
       <div className="relative z-10 p-7">
         <h3
-          style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, letterSpacing: '-0.5px' }}
-          className={`text-[#1C1C1C] mb-3 ${large ? 'text-4xl' : 'text-3xl'}`}
+          style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, letterSpacing: '-0.5px' }}
+          className={`text-[var(--title)] mb-3 ${large ? 'text-4xl' : 'text-3xl'}`}
         >
           {title}
         </h3>
-        <p className="text-[#857E78] text-sm leading-relaxed mb-6">
+        <p className="text-[var(--body)] text-sm leading-relaxed mb-6">
           {description}
         </p>
         <button
-          className="card-btn group flex items-center gap-2 bg-[#2A5C3F] text-white text-sm font-semibold tracking-widest px-7 py-[14px] rounded-xl transition-all duration-300 hover:bg-[#3D7055] hover:scale-105 active:scale-95"
+          className="rubric-btn card-btn group flex items-center gap-2 text-sm tracking-widest px-7 py-[14px] rounded-lg"
           onClick={() => navigate(href)}
         >
           {cta}
@@ -305,7 +306,7 @@ const ProductsPage: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ background: '#EDEAE3' }} className="min-h-screen selection:bg-[#2A5C3F]/15">
+    <div style={{ background: 'var(--bg)' }} className="min-h-screen selection:bg-[#1A2CB0]/15">
       <style>{STYLES}</style>
       <CustomCursor />
       <Navbar />
@@ -315,17 +316,17 @@ const ProductsPage: React.FC = () => {
 
           {/* Header */}
           <div className="text-center mb-20">
-            <p className="text-[#857E78] text-[10px] tracking-[0.35em] font-medium mb-5 uppercase" style={{ letterSpacing: '0.14em' }}>
+            <p className="text-[var(--body)] text-[10px] tracking-[0.35em] font-medium mb-5 uppercase" style={{ letterSpacing: '0.14em' }}>
               — I NOSTRI PRODOTTI —
             </p>
             <h1
-              className="tracking-tight leading-tight text-[#1C1C1C] mb-6"
-              style={{ fontFamily: 'Playfair Display, serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}
+              className="tracking-tight leading-tight text-[var(--title)] mb-6 flex flex-col items-center gap-2"
+              style={{ fontFamily: 'Outfit, sans-serif', fontSize: '96px', fontWeight: 900, letterSpacing: '-2.88px', lineHeight: '105.6px' }}
             >
-              I Nostri{' '}
-              <em style={{ color: '#2A5C3F', fontStyle: 'italic' }}>Prodotti</em>
+              <span>I Nostri</span>
+              <DotMatrixText text="PRODOTTI" dot={5} gap={1.3} charGap={4} />
             </h1>
-            <p className="text-[#857E78] text-lg font-light max-w-md mx-auto leading-relaxed">
+            <p className="text-[var(--body)] text-lg font-light max-w-md mx-auto leading-relaxed">
               Agenti AI e automazioni pronti all'uso per far evolvere il tuo business.
             </p>
           </div>

@@ -8,35 +8,115 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,500;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --bg: #131311;
+        --bg-rgb: 19,19,17;
+        --bg-alt: #1c1a16;
+        --bg-alt-rgb: 28,26,22;
+        --title: #e8e2d2;
+        --title-rgb: 232,226,210;
+        --body: #8d8775;
+        --body-rgb: 141,135,117;
+        --accent: #1A2CB0;
+        --accent-rgb: 26, 44, 176;
+        --accent-light: #3350F0;
+        --accent-light-rgb: 51, 80, 240;
+        --accent-dark: #0C1866;
+        --accent-dark-rgb: 12, 24, 102;
+        --border-soft: #332A20;
+        --border-soft-rgb: 51,42,32;
+        --dot-rgb: 26, 44, 176;
+        --shadow: rgba(232,226,210,0.30);
+      }
+      [data-theme="light"] {
+        --bg: #f2efe8;
+        --bg-rgb: 242,239,232;
+        --bg-alt: #faf8f2;
+        --bg-alt-rgb: 250,248,242;
+        --title: #1c1a16;
+        --title-rgb: 28,26,22;
+        --body: #6f6a5c;
+        --body-rgb: 111,106,92;
+        --border-soft: #E4DED2;
+        --border-soft-rgb: 228,222,210;
+        --dot-rgb: 28,26,22;
+        --shadow: rgba(28,26,22,0.85);
+      }
       body {
-        font-family: 'Inter', sans-serif;
-        background-color: #EDEAE3;
-        color: #1C1C1C;
+        font-family: 'Outfit', sans-serif;
+        background-color: var(--bg);
+        color: var(--title);
         overflow-x: hidden;
-        cursor: auto;
+        transition: background-color 0.4s ease, color 0.4s ease;
       }
 
-      a, button, input, textarea, [role="button"] {
-        cursor: pointer;
+      /* Custom cursor: nascondi il cursore nativo su dispositivi con mouse,
+         così resta visibile solo il pallino arancione. */
+      @media (pointer: fine) {
+        * { cursor: none !important; }
       }
 
-      .font-montserrat {
-        font-family: 'Inter', sans-serif;
+      /* CTA piena arancione con ombra sfalsata (stile Rubric) */
+      .rubric-btn {
+        background: var(--accent);
+        color: #131311;
+        font-weight: 700;
+        box-shadow: 5px 5px 0 0 var(--shadow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+      }
+      .rubric-btn:hover {
+        background: var(--accent-light);
+        transform: translate(-2px, -2px);
+        box-shadow: 7px 7px 0 0 var(--shadow);
+      }
+      .rubric-btn:active {
+        transform: translate(0, 0);
+        box-shadow: 2px 2px 0 0 var(--shadow);
+      }
+
+      /* Logo che cambia in base al tema (A bianca su dark, A nera su light) */
+      .logo-swap-light { display: none; }
+      [data-theme="light"] .logo-swap-dark { display: none; }
+      [data-theme="light"] .logo-swap-light { display: block; }
+
+      /* Numeri stile display digitale (statistiche, pannelli "in cifre") */
+      .lcd-number {
+        font-family: 'Silkscreen', 'Space Mono', monospace;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Parola/frase enfatizzata in stile monospace arancione dentro un titolo */
+      .mono-accent {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* ROBOGROUP brand type roles */
+      .font-montserrat { font-family: 'Outfit', sans-serif; }
+      .font-mono, .mono-label {
+        font-family: 'Space Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-weight: 700;
       }
 
       .gradient-text {
-        color: #2A5C3F;
+        color: #1A2CB0;
       }
 
+      /* Accent word: heavy Outfit in brand orange (replaces old serif italic) */
       .accent-italic {
-        font-family: 'Playfair Display', serif;
-        font-style: italic;
-        font-weight: 700;
+        font-family: 'Outfit', sans-serif;
+        font-style: normal;
+        font-weight: 800;
         letter-spacing: -2.88px;
         line-height: 105.6px;
-        color: #2A5C3F;
+        color: #1A2CB0;
         -webkit-text-fill-color: unset;
         background: none;
       }
@@ -44,14 +124,14 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #E4E0D8;
+        background: #141922;
       }
       ::-webkit-scrollbar-thumb {
-        background: #2A5C3F;
+        background: #1A2CB0;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #3D7055;
+        background: #3350F0;
       }
       @keyframes sphere-float {
         0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -83,7 +163,7 @@
       /* Effetto Evidenziatore Personalizzato */
       .marker-underline {
         text-decoration: underline;
-        text-decoration-color: #2A5C3F;
+        text-decoration-color: #1A2CB0;
         text-decoration-thickness: 12px;
         text-underline-offset: 2px;
         text-decoration-skip-ink: none;
@@ -92,12 +172,12 @@
       /* ── Card global effect ── */
       .neon-card {
         border-width: 2.5px !important;
-        border-color: rgba(42,92,63,0.55) !important;
-        box-shadow: 0 0 12px rgba(42,92,63,0.12), 0 2px 16px rgba(0,0,0,0.06) !important;
+        border-color: rgba(var(--accent-rgb),0.55) !important;
+        box-shadow: 0 0 12px rgba(var(--accent-rgb),0.12), 0 2px 16px rgba(0,0,0,0.06) !important;
       }
       .neon-card:hover {
-        border-color: #2A5C3F !important;
-        box-shadow: 0 0 22px rgba(42,92,63,0.28), 0 4px 24px rgba(0,0,0,0.08) !important;
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 22px rgba(var(--accent-rgb),0.28), 0 4px 24px rgba(0,0,0,0.08) !important;
       }
     </style>
 </head>

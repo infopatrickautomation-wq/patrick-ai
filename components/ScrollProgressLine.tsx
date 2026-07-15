@@ -18,7 +18,7 @@ const ScrollProgressLine: React.FC = () => {
       {/* Track */}
       <div
         className="fixed left-5 top-0 bottom-0 z-[300] pointer-events-none"
-        style={{ width: 2, background: 'rgba(42,92,63,0.12)' }}
+        style={{ width: 2, background: 'rgba(var(--accent-rgb),0.12)' }}
       />
 
       {/* Filled bar */}
@@ -28,8 +28,8 @@ const ScrollProgressLine: React.FC = () => {
           width: 2,
           height: '100vh',
           scaleY,
-          background: 'linear-gradient(to bottom, #00ff88, #2A5C3F)',
-          boxShadow: '0 0 8px rgba(0,255,136,0.5), 0 0 20px rgba(0,255,136,0.2)',
+          background: 'linear-gradient(to bottom, var(--accent), var(--accent))',
+          boxShadow: '0 0 8px rgba(var(--accent-rgb),0.5), 0 0 20px rgba(var(--accent-rgb),0.2)',
         }}
       />
 
@@ -44,8 +44,8 @@ const ScrollProgressLine: React.FC = () => {
           width: 8,
           height: 8,
           borderRadius: '50%',
-          background: '#00ff88',
-          boxShadow: '0 0 10px rgba(0,255,136,0.8), 0 0 24px rgba(0,255,136,0.4)',
+          background: 'var(--accent)',
+          boxShadow: '0 0 10px rgba(var(--accent-rgb),0.8), 0 0 24px rgba(var(--accent-rgb),0.4)',
         }}
       />
     </>

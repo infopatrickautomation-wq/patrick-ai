@@ -77,17 +77,15 @@ const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Puntatore Centrale */}
+      {/* Puntatore Centrale — pallino arancione fisso */}
       <div
         ref={cursorRef}
-        className={`fixed top-0 left-0 w-2.5 h-2.5 rounded-full z-[9999] pointer-events-none transition-colors duration-300 ${
-          isHovering ? 'bg-[#2A5C3F]' : 'bg-[#2A5C3F]'
-        }`}
+        className="fixed top-0 left-0 w-4 h-4 rounded-full z-[9999] pointer-events-none bg-[var(--accent)]"
         style={{
-          margin: '-5px 0 0 -5px',
+          margin: '-8px 0 0 -8px',
           boxShadow: isHovering
-            ? '0 0 15px rgba(42,92,63,0.6)'
-            : '0 0 10px rgba(42,92,63,0.4)',
+            ? '0 0 20px rgba(var(--accent-rgb),0.7)'
+            : '0 0 14px rgba(var(--accent-rgb),0.5)',
           willChange: 'transform',
           pointerEvents: 'none'
         }}
@@ -98,8 +96,8 @@ const CustomCursor: React.FC = () => {
         ref={cursorOutlineRef}
         className={`fixed top-0 left-0 rounded-full border z-[9998] pointer-events-none transition-all duration-300 ${
           isHovering
-            ? 'w-14 h-14 border-[#2A5C3F]/40 bg-[#2A5C3F]/5'
-            : 'w-10 h-10 border-[#2A5C3F]/20 bg-[#2A5C3F]/5'
+            ? 'w-14 h-14 border-[#1A2CB0]/40 bg-[#1A2CB0]/5'
+            : 'w-10 h-10 border-[#1A2CB0]/20 bg-[#1A2CB0]/5'
         } ${isClicking ? 'scale-75 opacity-50' : 'scale-100 opacity-100'}`}
         style={{
           margin: isHovering ? '-28px 0 0 -28px' : '-20px 0 0 -20px',

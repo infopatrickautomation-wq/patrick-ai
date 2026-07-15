@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Navbar from './sections/Navbar';
 import Hero from './sections/Hero';
 import LogoMarquee from './sections/LogoMarquee';
+import AgentsTeam from './sections/AgentsTeam';
 import Services from './sections/Services';
 import Stats from './sections/Stats';
 import CaseStudies from './sections/CaseStudies';
@@ -52,7 +53,7 @@ const App: React.FC = () => {
   const isAnyModalOpen = isCVModalOpen || isVoiceModalOpen;
 
   return (
-    <div className="min-h-screen bg-[#EDEAE3] selection:bg-[#2A5C3F]/15">
+    <div className="min-h-screen bg-[var(--bg)] selection:bg-[#1A2CB0]/15">
       <ScrollProgressLine />
       <CustomCursor />
       <Navbar forceSolid={isAnyModalOpen} />
@@ -63,6 +64,7 @@ const App: React.FC = () => {
         <Services />
         <Stats />
         <CaseStudies />
+        <AgentsTeam />
         <Contact />
       </main>
 

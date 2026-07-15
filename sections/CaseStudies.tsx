@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMouseGlow, glowDivStyle } from '../hooks/useMouseGlow';
+import DotMatrixText from '../components/DotMatrixText';
+import FloatingDots from '../components/FloatingDots';
 
 const caseStudies = [
   {
@@ -53,20 +55,22 @@ const CaseStudies: React.FC = () => {
   const { glowRef, onMouseMove, onMouseLeave } = useMouseGlow();
 
   return (
-    <section id="casi-studio" className="bg-[#EDEAE3] relative py-32">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+    <section id="casi-studio" className="bg-[var(--bg)] relative py-32 overflow-hidden">
+      <FloatingDots />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--border-soft)] to-transparent" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div
           ref={headerRef}
           className={`text-center mb-14 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <p className="text-[#857E78] text-xs tracking-[0.3em] font-medium mb-4 uppercase" style={{ letterSpacing: '0.14em' }}>— Case studies —</p>
-          <h2 className="text-[#1C1C1C] mb-4 tracking-tight" style={{ fontFamily: 'Playfair Display, serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
-            Casi di <em style={{ color: '#2A5C3F', fontStyle: 'italic' }}>Successo.</em>
+          <p className="mono-label text-sm mb-4" style={{ color: 'var(--accent)' }}>CASE STUDIES</p>
+          <h2 className="text-[var(--title)] mb-4 tracking-tight flex flex-col items-center gap-2" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>
+            <span>Casi di</span>
+            <DotMatrixText text="SUCCESSO" dot={5.5} gap={1.5} charGap={5} />
           </h2>
-          <p className="text-[#857E78] text-lg">Esempi concreti di processi trasformati dall'AI.</p>
+          <p className="text-[var(--body)] text-lg">Esempi concreti di processi trasformati dall'AI.</p>
         </div>
 
         {/* Tabs */}
@@ -78,8 +82,8 @@ const CaseStudies: React.FC = () => {
               className="px-7 py-[14px] rounded-full text-xs font-semibold tracking-widest transition-all duration-300"
               style={
                 active === i
-                  ? { background: '#2A5C3F', color: '#fff', border: '1px solid #2A5C3F' }
-                  : { background: 'transparent', color: '#857E78', border: '1px solid #C8C3BB' }
+                  ? { background: 'var(--accent)', color: '#fff', border: '1px solid var(--accent)' }
+                  : { background: 'transparent', color: 'var(--body)', border: '1px solid var(--border-soft)' }
               }
             >
               {s.tab}
@@ -100,26 +104,25 @@ const CaseStudies: React.FC = () => {
               whileHover={{ y: -3, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}
               className="neon-card relative overflow-hidden"
               style={{
-                background: '#E4E0D8',
-                border: isHovered ? '2.5px solid #2A5C3F' : '2.5px solid rgba(42,92,63,0.55)',
-                boxShadow: isHovered ? '0 0 22px rgba(42,92,63,0.28), 0 4px 24px rgba(0,0,0,0.08)' : '0 0 12px rgba(42,92,63,0.12), 0 2px 16px rgba(0,0,0,0.06)',
+                background: 'var(--bg-alt)',
+                border: isHovered ? '2.5px solid var(--accent)' : '2.5px solid rgba(var(--accent-rgb),0.55)',
+                boxShadow: isHovered ? '0 0 22px rgba(var(--accent-rgb),0.28), 0 4px 24px rgba(0,0,0,0.08)' : '0 0 12px rgba(var(--accent-rgb),0.12), 0 2px 16px rgba(0,0,0,0.06)',
                 borderRadius: '24px',
                 transition: 'border-color 0.3s ease',
-                boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
               }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseMove={(e) => { setIsHovered(true); onMouseMove(e); }}
               onMouseLeave={() => { setIsHovered(false); onMouseLeave(); }}
             >
               <div ref={glowRef} style={glowDivStyle} />
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C8C3BB] to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--border-soft)] to-transparent" />
 
               {/* Vertical divider */}
               <div
                 className="hidden md:block absolute top-0 bottom-0 w-px pointer-events-none"
                 style={{
                   left: 'calc(60% - 0.5px)',
-                  background: isHovered ? '#2A5C3F' : '#C8C3BB',
+                  background: isHovered ? 'var(--accent)' : 'var(--border-soft)',
                   transition: 'background 0.3s ease',
                 }}
               />
@@ -127,24 +130,24 @@ const CaseStudies: React.FC = () => {
               <div className="grid md:grid-cols-[3fr_2fr] gap-0">
                 {/* Left column */}
                 <div className="p-12 md:p-16">
-                  <span className="text-[#2A5C3F] text-xs font-black tracking-[0.3em] mb-6 block">
+                  <span className="text-[var(--accent)] text-xs font-black tracking-[0.3em] mb-6 block">
                     — {caseStudies[active].category} —
                   </span>
                   <h3
-                    className="text-5xl md:text-6xl text-[#1C1C1C] mb-12 leading-tight tracking-tighter"
-                    style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}
+                    className="text-5xl md:text-6xl text-[var(--title)] mb-12 leading-tight tracking-tighter"
+                    style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}
                   >
                     {caseStudies[active].title}
                   </h3>
 
                   <div className="space-y-8">
                     <div>
-                      <h4 className="text-[#857E78] text-xs tracking-[0.25em] font-black mb-4">La Sfida</h4>
-                      <p className="text-[#1C1C1C]/70 text-base leading-relaxed">{caseStudies[active].challenge}</p>
+                      <h4 className="text-[var(--body)] text-xs tracking-[0.25em] font-black mb-4">La Sfida</h4>
+                      <p className="text-[#e8e2d2]/70 text-base leading-relaxed">{caseStudies[active].challenge}</p>
                     </div>
                     <div>
-                      <h4 className="text-[#2A5C3F] text-xs tracking-[0.25em] font-black mb-4">La Nostra Soluzione</h4>
-                      <p className="text-[#1C1C1C]/70 text-base leading-relaxed">{caseStudies[active].solution}</p>
+                      <h4 className="text-[var(--accent)] text-xs tracking-[0.25em] font-black mb-4">La Nostra Soluzione</h4>
+                      <p className="text-[#e8e2d2]/70 text-base leading-relaxed">{caseStudies[active].solution}</p>
                     </div>
                   </div>
                 </div>
@@ -156,22 +159,22 @@ const CaseStudies: React.FC = () => {
                       {ri === 0 && (
                         <span
                           className="mt-4 w-2.5 h-2.5 rounded-full flex-shrink-0"
-                          style={{ background: '#2A5C3F' }}
+                          style={{ background: 'var(--accent)' }}
                         />
                       )}
                       <div className={ri !== 0 ? 'pl-5' : ''}>
                         <div
                           className="leading-none mb-2"
                           style={{
-                            fontFamily: 'Playfair Display, serif',
+                            fontFamily: 'Outfit, sans-serif',
                             fontWeight: 900,
                             fontSize: 'clamp(3.5rem, 6vw, 5.5rem)',
-                            color: '#2A5C3F',
+                            color: 'var(--accent)',
                           }}
                         >
                           {r.value}
                         </div>
-                        <div className="text-[#857E78] text-xs tracking-widest font-bold">{r.label}</div>
+                        <div className="text-[var(--body)] text-xs tracking-widest font-bold">{r.label}</div>
                       </div>
                     </div>
                   ))}

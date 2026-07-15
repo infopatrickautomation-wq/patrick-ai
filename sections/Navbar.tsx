@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { navigate } from '../hooks/useRoute';
+import { useTheme } from '../hooks/useTheme';
 
 interface NavbarProps {
   forceSolid?: boolean;
   ctaLabel?: string;
 }
 
+const ThemeToggleIcon: React.FC = () => (
+  <svg viewBox="0 0 24 24" width={15} height={15} aria-hidden="true">
+    <circle cx="12" cy="12" r="8.5" fill="none" stroke="var(--accent)" strokeWidth="1.6" />
+    <path d="M12 3.5a8.5 8.5 0 000 17z" fill="var(--accent)" />
+  </svg>
+);
+
 const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -55,8 +64,8 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
       <div className="fixed top-5 left-0 right-0 z-[200] flex justify-center px-4">
         <nav
           style={{
-            background: 'rgba(237,234,227,0.92)',
-            border: '1px solid #C8C3BB',
+            background: 'rgba(var(--bg-rgb),0.92)',
+            border: '1px solid var(--border-soft)',
             borderRadius: '50px',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
@@ -66,9 +75,14 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
           {/* Logo */}
           <a href="/" onClick={(e) => handleLinkClick(e, '/')} className="flex items-center mr-3">
             <img
-              src="/logo.png"
+              src="/logo-blue-dark.png"
               alt="PatrickAI Logo"
-              className="h-9 w-auto hover:scale-105 transition-transform"
+              className="logo-swap-dark h-9 w-auto hover:scale-105 transition-transform"
+            />
+            <img
+              src="/logo-blue-light.png"
+              alt="PatrickAI Logo"
+              className="logo-swap-light h-9 w-auto hover:scale-105 transition-transform"
             />
           </a>
 
@@ -79,7 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href, link.isModal, link.isPage)}
-                className="text-[#857E78] hover:text-[#1C1C1C] text-[11px] tracking-widest font-semibold px-4 py-2 rounded-full hover:bg-[#1C1C1C]/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
+                className="text-[var(--body)] hover:text-[var(--title)] text-[11px] tracking-widest font-semibold px-4 py-2 rounded-full hover:bg-[#e8e2d2]/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -89,14 +103,24 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
           {/* CTA */}
           <button
             onClick={() => navigate('/contatti')}
-            className="hidden md:block ml-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] text-[11px] tracking-widest transition-all duration-300 hover:bg-[#3D7055] hover:scale-105 active:scale-95 whitespace-nowrap"
-            style={{ borderRadius: '50px' }}
+            className="rubric-btn hidden md:block ml-2 px-7 py-[14px] rounded-lg text-[11px] tracking-widest whitespace-nowrap"
           >
             {ctaLabel}
           </button>
 
+          {/* Theme toggle */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Cambia tema"
+            className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ml-1 transition-colors duration-300"
+            style={{ border: '1.5px solid var(--accent)' }}
+          >
+            <ThemeToggleIcon />
+          </button>
+
           {/* Mobile hamburger */}
-          <button className="md:hidden text-[#1C1C1C] p-2 ml-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button className="md:hidden text-[var(--title)] p-2 ml-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </nav>
@@ -107,8 +131,8 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
         isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
       }`}
         style={{
-          background: 'rgba(237,234,227,0.98)',
-          border: '1px solid #C8C3BB',
+          background: 'rgba(var(--bg-rgb),0.98)',
+          border: '1px solid var(--border-soft)',
           borderRadius: '24px',
           backdropFilter: 'blur(10px)',
         }}
@@ -119,17 +143,16 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
               key={link.label}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href, link.isModal, link.isPage)}
-              className="block text-[#857E78] hover:text-[#1C1C1C] font-bold tracking-widest transition-colors cursor-pointer py-2"
+              className="block text-[var(--body)] hover:text-[var(--title)] font-bold tracking-widest transition-colors cursor-pointer py-2"
               style={{ fontSize: '12px' }}
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-4 border-t border-[#C8C3BB]">
+          <div className="pt-4 border-t border-[var(--border-soft)]">
             <button
               onClick={() => { setIsMobileMenuOpen(false); navigate('/contatti'); }}
-              className="block w-full text-center bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] text-sm tracking-widest active:scale-95 transition-transform hover:bg-[#3D7055]"
-              style={{ borderRadius: '50px' }}
+              className="rubric-btn block w-full text-center px-7 py-[14px] rounded-lg text-sm tracking-widest"
             >
               {ctaLabel}
             </button>

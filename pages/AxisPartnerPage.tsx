@@ -5,6 +5,7 @@ import Footer from '../sections/Footer';
 import CustomCursor from '../components/CustomCursor';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { navigate } from '../hooks/useRoute';
+import DotMatrixText from '../components/DotMatrixText';
 
 /* ── Reveal wrapper ── */
 const Reveal: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = '' }) => {
@@ -33,17 +34,17 @@ const PhaseSection: React.FC<{
     <Reveal delay={100} className="flex flex-col justify-center">
       <div
         className="font-black leading-none mb-4"
-        style={{ fontFamily: 'Inter, sans-serif', fontSize: '80px', color: '#2A5C3F', opacity: 0.18 }}
+        style={{ fontFamily: 'Outfit, sans-serif', fontSize: '80px', color: 'var(--accent)', opacity: 0.18 }}
       >
         {number}
       </div>
       <h2
-        className="text-[#1C1C1C] font-black mb-4 leading-tight"
-        style={{ fontFamily: 'Playfair Display, serif', fontSize: '52px', letterSpacing: '-1.5px', lineHeight: '56px' }}
+        className="text-[var(--title)] font-black mb-4 leading-tight"
+        style={{ fontFamily: 'Outfit, sans-serif', fontSize: '52px', letterSpacing: '-1.5px', lineHeight: '56px' }}
       >
         {title}
       </h2>
-      <p className="text-[#857E78] text-base leading-relaxed mb-8 max-w-md">
+      <p className="text-[var(--body)] text-base leading-relaxed mb-8 max-w-md">
         {description}
       </p>
       <ul className="space-y-5">
@@ -51,13 +52,13 @@ const PhaseSection: React.FC<{
           <li key={i} className="flex items-start gap-4">
             <span
               className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
-              style={{ background: 'rgba(42,92,63,0.12)', border: '1px solid rgba(42,92,63,0.3)' }}
+              style={{ background: 'rgba(var(--accent-rgb),0.12)', border: '1px solid rgba(var(--accent-rgb),0.3)' }}
             >
-              <Check className="w-3 h-3" style={{ color: '#2A5C3F' }} />
+              <Check className="w-3 h-3" style={{ color: 'var(--accent)' }} />
             </span>
             <div>
-              <span className="text-[#1C1C1C] font-semibold text-sm">{b.label}:</span>
-              <span className="text-[#857E78] text-sm"> {b.desc}</span>
+              <span className="text-[var(--title)] font-semibold text-sm">{b.label}:</span>
+              <span className="text-[var(--body)] text-sm"> {b.desc}</span>
             </div>
           </li>
         ))}
@@ -68,7 +69,7 @@ const PhaseSection: React.FC<{
   const imageBlock = (
     <Reveal className="h-full">
       <div
-        className="relative rounded-2xl overflow-hidden border border-[rgba(42,92,63,0.12)]"
+        className="relative rounded-2xl overflow-hidden border border-[rgba(var(--accent-rgb),0.12)]"
         style={{ height: '400px' }}
       >
         <img
@@ -77,8 +78,8 @@ const PhaseSection: React.FC<{
           className="w-full h-full object-cover"
           style={{ filter: 'brightness(0.75) saturate(0.8)' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#EDEAE3]/60 to-transparent" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2A5C3F]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#131311]/60 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1A2CB0]/30 to-transparent" />
       </div>
     </Reveal>
   );
@@ -108,7 +109,7 @@ const AxisPartnerPage: React.FC = () => {
   useEffect(() => { const t = setTimeout(() => setHeroVisible(true), 80); return () => clearTimeout(t); }, []);
 
   return (
-    <div style={{ background: '#EDEAE3' }} className="min-h-screen selection:bg-[#2A5C3F]/15 overflow-x-hidden">
+    <div style={{ background: 'var(--bg)' }} className="min-h-screen selection:bg-[#1A2CB0]/15 overflow-x-hidden">
       <CustomCursor />
       <Navbar ctaLabel="Inizia Ora" />
 
@@ -116,37 +117,37 @@ const AxisPartnerPage: React.FC = () => {
           HERO
       ══════════════════════════════════════ */}
       <section className="relative pt-36 pb-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_0%,rgba(42,92,63,0.08)_0%,transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_0%,rgba(var(--accent-rgb),0.08)_0%,transparent_60%)] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
 
             {/* Left — copy */}
             <div>
-              <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 border border-[#2A5C3F]/25 bg-[#2A5C3F]/8 transition-all duration-600 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3'}`}>
-                <span className="text-[#2A5C3F] text-[10px] tracking-[0.25em] font-black">IL METODO PATRICKIAI</span>
+              <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 border border-[#1A2CB0]/25 bg-[#1A2CB0]/8 transition-all duration-600 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3'}`}>
+                <span className="text-[var(--accent)] text-[10px] tracking-[0.25em] font-black">IL METODO PATRICKIAI</span>
               </div>
 
               <h1
-                className={`tracking-tight mb-4 transition-all duration-800 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                style={{ fontFamily: 'Playfair Display, serif', fontSize: '80px', fontWeight: 700, letterSpacing: '-2.4px', lineHeight: '88px' }}
+                className={`tracking-tight mb-4 flex items-center flex-wrap gap-4 transition-all duration-800 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+                style={{ fontFamily: 'Outfit, sans-serif', fontSize: '80px', fontWeight: 700, letterSpacing: '-2.4px', lineHeight: '88px' }}
               >
-                <span className="text-[#1C1C1C]">Framework </span>
-                <em className="accent-italic">APS</em>
+                <span className="text-[var(--title)]">Framework</span>
+                <DotMatrixText text="APS" dot={5} gap={1.3} charGap={4} />
               </h1>
 
-              <p className={`text-[#2A5C3F] font-black tracking-[0.2em] text-lg mb-5 transition-all duration-700 delay-150 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+              <p className={`text-[var(--accent)] font-black tracking-[0.2em] text-lg mb-5 transition-all duration-700 delay-150 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 Analyse. Plan. Scale.
               </p>
 
-              <p className={`text-[#857E78] text-base font-light leading-relaxed max-w-md mb-10 transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+              <p className={`text-[var(--body)] text-base font-light leading-relaxed max-w-md mb-10 transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 L'approccio strutturato per trasformare la tua azienda con l'AI. Tre fasi concrete per risultati misurabili.
               </p>
 
               <div className={`transition-all duration-700 delay-250 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 <button
                   onClick={() => navigate('/contatti')}
-                  className="group inline-flex items-center gap-2 bg-[#2A5C3F] text-white font-semibold px-7 py-[14px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_35px_rgba(42,92,63,0.4)] hover:scale-105 active:scale-95"
+                  className="rubric-btn group inline-flex items-center gap-2 px-7 py-[14px] rounded-lg text-sm tracking-widest"
                 >
                   Inizia Ora
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -156,31 +157,31 @@ const AxisPartnerPage: React.FC = () => {
 
             {/* Right — placeholder card */}
             <div className={`transition-all duration-1000 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="absolute -inset-1 rounded-[2rem] bg-[#2A5C3F]/8 blur-2xl pointer-events-none" />
+              <div className="absolute -inset-1 rounded-[2rem] bg-[#1A2CB0]/8 blur-2xl pointer-events-none" />
               <div
-                className="relative rounded-[1.75rem] overflow-hidden border border-[rgba(42,92,63,0.25)] flex items-center justify-center"
-                style={{ background: '#E4E0D8', aspectRatio: '4/3' }}
+                className="relative rounded-[1.75rem] overflow-hidden border border-[rgba(var(--accent-rgb),0.25)] flex items-center justify-center"
+                style={{ background: 'var(--bg-alt)', aspectRatio: '4/3' }}
               >
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2A5C3F]/50 to-transparent" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1A2CB0]/50 to-transparent" />
                 <svg className="absolute inset-0 w-full h-full opacity-[0.03]">
                   <defs>
                     <pattern id="g-axis" width="48" height="48" patternUnits="userSpaceOnUse">
-                      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#C8C3BB" strokeWidth="0.6" />
+                      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="var(--border-soft)" strokeWidth="0.6" />
                     </pattern>
                   </defs>
                   <rect width="100%" height="100%" fill="url(#g-axis)" />
                 </svg>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(42,92,63,0.06)_0%,transparent_65%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(var(--accent-rgb),0.06)_0%,transparent_65%)]" />
                 <div className="relative z-10 text-center">
                   <div
                     className="font-black mb-2"
-                    style={{ fontFamily: 'Inter, sans-serif', fontSize: '22px', color: 'rgba(42,92,63,0.5)', letterSpacing: '0.1em' }}
+                    style={{ fontFamily: 'Outfit, sans-serif', fontSize: '22px', color: 'rgba(var(--accent-rgb),0.5)', letterSpacing: '0.1em' }}
                   >
                     AXIS PARTNER
                   </div>
-                  <div className="text-[#857E78]/40 text-sm tracking-[0.3em] font-semibold">2026</div>
+                  <div className="text-[#8d8775]/40 text-sm tracking-[0.3em] font-semibold">2026</div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#E4E0D8] to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[var(--bg-alt)] to-transparent" />
               </div>
             </div>
 
@@ -191,20 +192,20 @@ const AxisPartnerPage: React.FC = () => {
       {/* ══════════════════════════════════════
           LOGHI CLIENTI
       ══════════════════════════════════════ */}
-      <section className="py-16 relative border-t border-[#C8C3BB]">
+      <section className="py-16 relative border-t border-[var(--border-soft)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center mb-10">
-            <p className="text-[#857E78] text-sm font-medium">Aziende che si fidano del nostro metodo</p>
+            <p className="text-[var(--body)] text-sm font-medium">Aziende che si fidano del nostro metodo</p>
           </Reveal>
           <Reveal delay={80}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {['Marco Coperture', 'Osteria del Orso', 'AlbiBarber', 'Studio Longhitano'].map((name, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-[#C8C3BB] flex items-center justify-center py-6 px-4"
-                  style={{ background: '#E4E0D8' }}
+                  className="rounded-xl border border-[var(--border-soft)] flex items-center justify-center py-6 px-4"
+                  style={{ background: 'var(--bg-alt)' }}
                 >
-                  <span className="text-[#857E78] text-sm font-semibold tracking-wide text-center">{name}</span>
+                  <span className="text-[var(--body)] text-sm font-semibold tracking-wide text-center">{name}</span>
                 </div>
               ))}
             </div>
@@ -216,7 +217,7 @@ const AxisPartnerPage: React.FC = () => {
           01 — ANALYSE
       ══════════════════════════════════════ */}
       <section className="py-24 relative">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB]/50 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#332A20]/50 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <PhaseSection
             number="01"
@@ -237,7 +238,7 @@ const AxisPartnerPage: React.FC = () => {
           02 — PLAN
       ══════════════════════════════════════ */}
       <section className="py-24 relative">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB]/50 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#332A20]/50 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <PhaseSection
             number="02"
@@ -258,7 +259,7 @@ const AxisPartnerPage: React.FC = () => {
           03 — SCALE
       ══════════════════════════════════════ */}
       <section className="py-24 relative">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB]/50 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#332A20]/50 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <PhaseSection
             number="03"
@@ -279,35 +280,35 @@ const AxisPartnerPage: React.FC = () => {
           CTA FINALE
       ══════════════════════════════════════ */}
       <section className="py-28 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C8C3BB]/50 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(42,92,63,0.06)_0%,transparent_65%)] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[220px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(42,92,63,0.25) 0%, rgba(42,92,63,0.06) 40%, transparent 70%)', filter: 'blur(8px)' }} />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[120px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(42,92,63,0.35) 0%, transparent 65%)', filter: 'blur(4px)' }} />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#332A20]/50 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(var(--accent-rgb),0.06)_0%,transparent_65%)] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[220px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(var(--accent-rgb),0.25) 0%, rgba(var(--accent-rgb),0.06) 40%, transparent 70%)', filter: 'blur(8px)' }} />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[120px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(var(--accent-rgb),0.35) 0%, transparent 65%)', filter: 'blur(4px)' }} />
 
         <div className="max-w-3xl mx-auto px-4 relative z-10">
           <Reveal>
             <div
-              className="rounded-[2rem] border border-[rgba(42,92,63,0.2)] p-14 text-center relative overflow-hidden"
-              style={{ background: '#E4E0D8' }}
+              className="rounded-[2rem] border border-[rgba(var(--accent-rgb),0.2)] p-14 text-center relative overflow-hidden"
+              style={{ background: 'var(--bg-alt)' }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2A5C3F]/40 to-transparent" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(42,92,63,0.06)_0%,transparent_60%)] pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1A2CB0]/40 to-transparent" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(var(--accent-rgb),0.06)_0%,transparent_60%)] pointer-events-none" />
 
               <div className="relative z-10">
-                <p className="text-[#2A5C3F] text-[10px] tracking-[0.3em] font-black mb-6">— INIZIA ORA —</p>
+                <p className="text-[var(--accent)] text-[10px] tracking-[0.3em] font-black mb-6">— INIZIA ORA —</p>
                 <h2
-                  className="text-[#1C1C1C] tracking-tight leading-tight mb-6"
-                  style={{ fontFamily: 'Playfair Display, serif', fontSize: '64px', fontWeight: 700, letterSpacing: '-1.8px', lineHeight: '70px' }}
+                  className="text-[var(--title)] tracking-tight leading-tight mb-6 flex flex-col items-center gap-2"
+                  style={{ fontFamily: 'Outfit, sans-serif', fontSize: '64px', fontWeight: 700, letterSpacing: '-1.8px', lineHeight: '70px' }}
                 >
-                  Il futuro della tua azienda<br />
-                  <em className="accent-italic">inizia qui.</em>
+                  <span>Il futuro della tua azienda</span>
+                  <DotMatrixText text="INIZIA QUI" dot={5} gap={1.3} charGap={4} />
                 </h2>
-                <p className="text-[#857E78] text-base font-light leading-relaxed mb-10 max-w-sm mx-auto">
+                <p className="text-[var(--body)] text-base font-light leading-relaxed mb-10 max-w-sm mx-auto">
                   Non lasciare che la tecnologia ti superi. Guidiamo la tua trasformazione digitale passo dopo passo.
                 </p>
                 <button
                   onClick={() => navigate('/contatti')}
-                  className="group inline-flex items-center gap-3 bg-[#2A5C3F] text-white font-semibold px-8 py-[15px] rounded-xl text-sm tracking-widest transition-all duration-300 hover:shadow-[0_0_50px_rgba(42,92,63,0.4)] hover:scale-105 active:scale-95"
+                  className="rubric-btn group inline-flex items-center gap-3 px-8 py-[15px] rounded-lg text-sm tracking-widest"
                 >
                   Contattaci ora
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

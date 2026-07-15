@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import FloatingDots from '../components/FloatingDots';
 
 const LogoMarquee: React.FC = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
@@ -41,10 +42,11 @@ const LogoMarquee: React.FC = () => {
   const allTools = [...tools, ...tools, ...tools, ...tools];
 
   return (
-    <section className="py-32 bg-[#EDEAE3] border-y border-[#C8C3BB] overflow-hidden">
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#EDEAE3] to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#EDEAE3] to-transparent z-10" />
+    <section className="py-32 bg-[var(--bg)] border-y border-[var(--border-soft)] overflow-hidden relative">
+      <FloatingDots />
+      <div className="relative z-10">
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--bg)] to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--bg)] to-transparent z-10" />
 
         <div
           ref={marqueeRef}
@@ -62,13 +64,13 @@ const LogoMarquee: React.FC = () => {
                 className="h-24 w-24 object-contain"
                 loading="lazy"
               />
-              <span className="text-[#857E78] text-[10px] tracking-widest font-bold">{tool.name}</span>
+              <span className="text-[var(--body)] text-[10px] tracking-widest font-bold">{tool.name}</span>
             </div>
           ))}
         </div>
       </div>
       <div className="text-center mt-12">
-        <p className="text-[#857E78]/60 text-[10px] tracking-[0.4em] font-black">
+        <p className="text-[#8d8775]/60 text-[10px] tracking-[0.4em] font-black">
           Powered by Industry Leading Tech
         </p>
       </div>
