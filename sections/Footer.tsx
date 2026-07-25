@@ -1,32 +1,43 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Linkedin, Instagram } from 'lucide-react';
 import FloatingDots from '../components/FloatingDots';
-import { useMotionTemplate, useMotionValue, motion, animate } from 'framer-motion';
+import { HexFloat } from '../components/canvasui/HexFloat';
 
-// framer-motion interpola numericamente i colori: non può leggere custom
-// property CSS, quindi l'animazione usa esadecimali letterali.
-const ACCENT_HEX = '#1A2CB0';
-const ACCENT_LIGHT_HEX = '#3350F0';
-const ACCENT_DARK_HEX = '#0C1866';
+/**
+ * Il fondo del footer è scuro in entrambi i temi (prima era un radial-gradient
+ * che partiva da questo blu quasi nero), quindi qui l'effetto a esagoni può
+ * restare sempre acceso: il problema di contrasto che si ha sul crema non si
+ * presenta. Nell'hero invece l'effetto è solo sul tema scuro.
+ */
+const FOOTER_BG = '#080B12';
+
+/* Stessi valori dell'hero, così le due sezioni si somigliano. */
+const FOOTER_HEX = {
+  size: 260,
+  gap: 0,
+  bevel: 2.2,
+  tilt: 24,
+  perspective: 0.5,
+  float: 0,
+  speed: 1,
+  shine: 0.85,
+  lift: 0.1,
+  radius: 1200,
+  flow: 0,
+  swirl: 0,
+  trail: 0,
+  iridescence: 1,
+  bloom: 0,
+  grain: 0.8,
+} as const;
 
 const Footer: React.FC = () => {
-  const color = useMotionValue(ACCENT_HEX);
-
-  useEffect(() => {
-    animate(color, [ACCENT_HEX, ACCENT_LIGHT_HEX, ACCENT_DARK_HEX, ACCENT_HEX], {
-      ease: 'easeInOut',
-      duration: 8,
-      repeat: Infinity,
-      repeatType: 'mirror',
-    });
-  }, []);
-
-  const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 100%, #080B12 50%, ${color})`;
   const linkClass = 'block text-gray-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed';
 
   return (
-    <motion.footer style={{ backgroundImage }} className="relative overflow-hidden">
+   <HexFloat {...FOOTER_HEX} gapColor="auto" className="block w-full">
+    <footer style={{ background: FOOTER_BG }} className="relative overflow-hidden">
       {/* Sfondo pallini animati */}
       <FloatingDots count={50} rise={360} />
 
@@ -132,7 +143,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </motion.footer>
+    </footer>
+   </HexFloat>
   );
 };
 
