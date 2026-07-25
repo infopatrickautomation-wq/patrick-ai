@@ -1,10 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import {
-  CONTACT_EMAIL,
-  FORMS_ENDPOINT,
-  WEB3FORMS_ACCESS_KEY,
-  isFormDeliveryConfigured,
-} from '../config/forms';
+import { CONTACT_EMAIL, FORMS_ENDPOINT } from '../config/forms';
 
 export type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -17,8 +12,14 @@ export type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
  * messaggio spariva. Se la consegna fallisce, qui si dice che è fallita e si
  * mostra l'indirizzo email come alternativa.
  *
- * Il campo `botcheck` è una trappola per i bot: è nascosto agli occhi, quindi un
- * umano non lo compila mai. Se arriva pieno, Web3Forms scarta il messaggio.
+ * Si invia un FormData e non un JSON di proposito: con `Content-Type:
+ * application/json` il browser fa prima una richiesta di preflight, e se quella
+ * viene rifiutata il messaggio non parte nemmeno. Il FormData rientra invece
+ * nelle richieste "semplici", che partono sempre.
+ *
+ * Il campo `_honey` è la trappola per i bot di FormSubmit: è nascosto agli
+ * occhi, quindi un umano non lo compila mai. Se arriva pieno, il messaggio viene
+ * scartato senza avvisare il mittente.
  */
 export function useContactForm(subject: string) {
   const [status, setStatus] = useState<FormStatus>('idle');
@@ -33,21 +34,13 @@ export function useContactForm(subject: string) {
     e.preventDefault();
     const form = e.currentTarget;
 
-    if (!isFormDeliveryConfigured()) {
-      setStatus('error');
-      setErrorMessage(
-        `L'invio dal sito non è ancora attivo. Scrivimi direttamente a ${CONTACT_EMAIL} e ti rispondo io.`
-      );
-      return;
-    }
-
     setStatus('sending');
     setErrorMessage('');
 
     const data = new FormData(form);
-    data.append('access_key', WEB3FORMS_ACCESS_KEY);
-    data.append('subject', subject);
-    data.append('from_name', 'Sito PatrickAI');
+    data.append('_subject', subject);
+    data.append('_template', 'table');
+    data.append('_captcha', 'false');
 
     try {
       const res = await fetch(FORMS_ENDPOINT, {
@@ -55,9 +48,10 @@ export function useContactForm(subject: string) {
         headers: { Accept: 'application/json' },
         body: data,
       });
-      const json = await res.json().catch(() => ({ success: false, message: '' }));
+      const json = await res.json().catch(() => ({}));
 
-      if (res.ok && json.success) {
+      // FormSubmit risponde con la stringa "true"/"false", non con un booleano
+      if (res.ok && String(json.success) === 'true') {
         setStatus('sent');
         form.reset();
         return;

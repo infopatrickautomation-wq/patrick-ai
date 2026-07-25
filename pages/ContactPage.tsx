@@ -74,7 +74,7 @@ const ContactPage: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-6 relative z-10">
                 {/* trappola per i bot: nascosta, un umano non la compila mai */}
-                <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
                 {/* Row 1 */}
                 <div className="grid md:grid-cols-2 gap-6">

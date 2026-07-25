@@ -1,23 +1,25 @@
 /**
  * Invio dei form di contatto.
  *
- * Il sito è statico (Vite su Vercel), quindi non ha un server proprio a cui
- * mandare i messaggi. I form passano da Web3Forms, che inoltra alla casella
- * di Patrick. La chiave è pubblica per progetto e non dà accesso a nulla:
- * serve solo a dire a Web3Forms a quale indirizzo consegnare. Sta nel bundle
- * del browser perché è lì che va usata (il piano gratuito accetta chiamate
- * solo dal client, non da server).
+ * Il sito è statico (Vite su Vercel) e non ha un backend proprio, quindi il
+ * recapito dei messaggi passa da un servizio esterno. Si usa FormSubmit.
  *
- * PER ATTIVARE: prendere la chiave su https://web3forms.com inserendo
- * info.patrickautomation@gmail.com, e incollarla qui sotto.
- * Finché la chiave non c'è, i form NON dicono che hanno inviato: mostrano
- * l'indirizzo email come alternativa. Meglio un ripiego onesto di un finto
- * "messaggio inviato".
+ * Perché non Web3Forms (provato prima, 2026-07-25): con la chiave attiva le
+ * richieste tornavano "riuscite" ma in casella non arrivava niente, e dal nostro
+ * server le chiamate venivano proprio rifiutate come "traffico server-side", il
+ * che rendeva impossibile verificare. FormSubmit invece è stato provato davvero:
+ * risponde con `access-control-allow-origin: *`, accetta multipart e la mail
+ * arriva in casella in una ventina di secondi.
+ *
+ * L'indirizzo sta nel bundle del browser, ed è una scelta consapevole: è lo
+ * stesso indirizzo già scritto in chiaro nel footer e nella sezione contatti del
+ * sito, quindi non si espone niente di nuovo. Se in futuro arrivasse spam,
+ * FormSubmit fornisce un alias criptato da usare al posto dell'indirizzo: si
+ * cambia solo la costante qui sotto.
  */
-export const WEB3FORMS_ACCESS_KEY = '96bf3a35-b208-4567-9329-640a4b23ab42';
-
 export const CONTACT_EMAIL = 'info.patrickautomation@gmail.com';
 
-export const FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+/** Alias FormSubmit (stringa criptata) se un giorno si vuole nascondere l'indirizzo. */
+const FORMSUBMIT_TARGET = CONTACT_EMAIL;
 
-export const isFormDeliveryConfigured = () => WEB3FORMS_ACCESS_KEY.trim().length > 0;
+export const FORMS_ENDPOINT = `https://formsubmit.co/ajax/${FORMSUBMIT_TARGET}`;

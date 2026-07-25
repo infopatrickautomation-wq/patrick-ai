@@ -52,8 +52,8 @@ const Contact: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
               {/* trappola per i bot: nascosta, un umano non la compila mai */}
               <input
-                type="checkbox"
-                name="botcheck"
+                type="text"
+                name="_honey"
                 tabIndex={-1}
                 autoComplete="off"
                 className="hidden"
