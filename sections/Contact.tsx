@@ -1,19 +1,18 @@
 
-import React, { useState } from 'react';
-import { Phone, Mail, Send, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { Phone, Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { useMouseGlow, glowDivStyle } from '../hooks/useMouseGlow';
 import DotMatrixText from '../components/DotMatrixText';
 import FloatingDots from '../components/FloatingDots';
+import { useContactForm } from '../hooks/useContactForm';
 
 const Contact: React.FC = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { glowRef, onMouseMove, onMouseLeave } = useMouseGlow();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+  const { status, errorMessage, handleSubmit, reset } = useContactForm(
+    'Nuova richiesta dal sito PatrickAI'
+  );
+  const isSubmitted = status === 'sent';
+  const isSending = status === 'sending';
 
   return (
     <section id="contatti" className="py-32 bg-[var(--bg)] relative overflow-hidden">
@@ -42,15 +41,33 @@ const Contact: React.FC = () => {
               <CheckCircle className="w-20 h-20 text-[var(--accent)] mx-auto mb-6" />
               <h3 className="text-3xl font-black text-[var(--title)]" style={{ fontFamily: 'Outfit, sans-serif' }}>Richiesta Inviata!</h3>
               <p className="text-[var(--body)] mt-3">Ti ricontatterò personalmente entro 24 ore.</p>
+              <button
+                onClick={reset}
+                className="mt-6 text-sm text-[var(--accent)] hover:underline"
+              >
+                Scrivi un altro messaggio
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              {/* trappola per i bot: nascosta, un umano non la compila mai */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-xs tracking-widest font-bold text-[var(--body)] ml-2">Nome</label>
                   <input
                     required
-                    className="w-full bg-[var(--bg)] border border-[var(--border-soft)] p-5 rounded-2xl text-[var(--title)] placeholder-[#8d8775]/60 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] transition-all outline-none"
+                    name="name"
+                    autoComplete="name"
+                    disabled={isSending}
+                    className="w-full bg-[var(--bg)] border border-[var(--border-soft)] p-5 rounded-2xl text-[var(--title)] placeholder-[#8d8775]/60 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] transition-all outline-none disabled:opacity-60"
                     placeholder="Inserisci il tuo nome"
                   />
                 </div>
@@ -59,7 +76,10 @@ const Contact: React.FC = () => {
                   <input
                     required
                     type="email"
-                    className="w-full bg-[var(--bg)] border border-[var(--border-soft)] p-5 rounded-2xl text-[var(--title)] placeholder-[#8d8775]/60 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] transition-all outline-none"
+                    name="email"
+                    autoComplete="email"
+                    disabled={isSending}
+                    className="w-full bg-[var(--bg)] border border-[var(--border-soft)] p-5 rounded-2xl text-[var(--title)] placeholder-[#8d8775]/60 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] transition-all outline-none disabled:opacity-60"
                     placeholder="nome@azienda.com"
                   />
                 </div>
@@ -68,16 +88,32 @@ const Contact: React.FC = () => {
                 <label className="text-xs tracking-widest font-bold text-[var(--body)] ml-2">Messaggio</label>
                 <textarea
                   required
-                  className="w-full bg-[var(--bg)] border border-[var(--border-soft)] p-5 rounded-2xl text-[var(--title)] placeholder-[#8d8775]/60 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] transition-all outline-none min-h-[150px] resize-none"
+                  name="message"
+                  disabled={isSending}
+                  className="w-full bg-[var(--bg)] border border-[var(--border-soft)] p-5 rounded-2xl text-[var(--title)] placeholder-[#8d8775]/60 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)] transition-all outline-none min-h-[150px] resize-none disabled:opacity-60"
                   placeholder="Descrivi brevemente il tuo progetto o le tue necessità..."
                 />
               </div>
+              {status === 'error' && (
+                <div
+                  role="alert"
+                  className="flex items-start gap-3 rounded-2xl border p-4 text-sm"
+                  style={{ borderColor: 'rgba(200,80,70,0.35)', background: 'rgba(200,80,70,0.07)', color: 'var(--title)' }}
+                >
+                  <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#C85046' }} />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="rubric-btn w-full px-7 py-[14px] rounded-lg text-sm tracking-widest flex items-center justify-center gap-3"
+                disabled={isSending}
+                className="rubric-btn w-full px-7 py-[14px] rounded-lg text-sm tracking-widest flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-wait"
               >
-                Invia Richiesta
-                <Send className="w-5 h-5" />
+                {isSending ? 'Invio in corso...' : 'Invia Richiesta'}
+                {isSending
+                  ? <Loader2 className="w-5 h-5 animate-spin" />
+                  : <Send className="w-5 h-5" />}
               </button>
             </form>
           )}

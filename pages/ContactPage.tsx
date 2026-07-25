@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import Navbar from '../sections/Navbar';
 import Footer from '../sections/Footer';
 import CustomCursor from '../components/CustomCursor';
 import { useMouseGlow, glowDivStyle } from '../hooks/useMouseGlow';
 import DotMatrixText from '../components/DotMatrixText';
+import { useContactForm } from '../hooks/useContactForm';
 
 const inputClass =
   'w-full bg-[var(--bg)] border border-[var(--border-soft)] rounded-2xl px-5 py-4 text-[var(--title)] placeholder-[#8d8775]/60 text-sm outline-none transition-all duration-200 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)]';
@@ -24,13 +25,12 @@ const Field: React.FC<{ label: string; children: React.ReactNode }> = ({ label, 
 
 const ContactPage: React.FC = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { glowRef, onMouseMove, onMouseLeave } = useMouseGlow();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-  };
+  const { status, errorMessage, handleSubmit, reset } = useContactForm(
+    'Nuova richiesta dal sito PatrickAI (pagina Contatti)'
+  );
+  const isSubmitted = status === 'sent';
+  const isSending = status === 'sending';
 
   return (
     <div style={{ background: 'var(--bg)' }} className="min-h-screen selection:bg-[#1A2CB0]/15">
@@ -67,17 +67,22 @@ const ContactPage: React.FC = () => {
                 <CheckCircle className="w-20 h-20 text-[var(--accent)] mx-auto mb-8" />
                 <h2 className="text-[var(--title)] mb-3" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '60px', fontWeight: 700, lineHeight: '60px' }}>Richiesta Inviata!</h2>
                 <p className="text-[var(--body)] text-lg">Ti contatterò personalmente entro 24 ore.</p>
+                <button onClick={reset} className="mt-6 text-sm text-[var(--accent)] hover:underline">
+                  Scrivi un altro messaggio
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-6 relative z-10">
+                {/* trappola per i bot: nascosta, un umano non la compila mai */}
+                <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
                 {/* Row 1 */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <Field label="Nome e Cognome *">
-                    <input required className={inputClass} placeholder="Mario Rossi" />
+                    <input required name="name" autoComplete="name" disabled={isSending} className={inputClass} placeholder="Mario Rossi" />
                   </Field>
                   <Field label="Email *">
-                    <input required type="email" className={inputClass} placeholder="mario@azienda.com" />
+                    <input required type="email" name="email" autoComplete="email" disabled={isSending} className={inputClass} placeholder="mario@azienda.com" />
                   </Field>
                 </div>
 
@@ -90,24 +95,27 @@ const ContactPage: React.FC = () => {
                       </span>
                       <input
                         type="tel"
+                        name="telefono"
+                        autoComplete="tel"
+                        disabled={isSending}
                         className="flex-1 bg-[var(--bg)] border border-[var(--border-soft)] rounded-r-2xl px-5 py-4 text-[var(--title)] placeholder-[#8d8775]/60 text-sm outline-none transition-all duration-200 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(var(--accent-rgb),0.08)]"
                         placeholder="351 830 2839"
                       />
                     </div>
                   </Field>
                   <Field label="Nome Azienda">
-                    <input className={inputClass} placeholder="Acme S.r.l." />
+                    <input name="azienda" autoComplete="organization" disabled={isSending} className={inputClass} placeholder="Acme S.r.l." />
                   </Field>
                 </div>
 
                 {/* Row 3 */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <Field label="Qual è il tuo ruolo in azienda?">
-                    <input className={inputClass} placeholder="CEO, Responsabile IT, ..." />
+                    <input name="ruolo" autoComplete="organization-title" disabled={isSending} className={inputClass} placeholder="CEO, Responsabile IT, ..." />
                   </Field>
                   <Field label="A quale servizio sei interessato?">
                     <div className="relative">
-                      <select className={selectClass} defaultValue="">
+                      <select name="servizio" disabled={isSending} className={selectClass} defaultValue="">
                         <option value="" disabled>Seleziona un servizio</option>
                         <option value="automazione">Automazione Processi</option>
                         <option value="agent">AI Agent</option>
@@ -126,7 +134,7 @@ const ContactPage: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <Field label="Fatturato Annuale">
                     <div className="relative">
-                      <select className={selectClass} defaultValue="">
+                      <select name="fatturato" disabled={isSending} className={selectClass} defaultValue="">
                         <option value="" disabled>Seleziona una fascia</option>
                         <option value="lt100k">Meno di 100k</option>
                         <option value="100k-500k">100k – 500k</option>
@@ -142,7 +150,7 @@ const ContactPage: React.FC = () => {
                   </Field>
                   <Field label="Dimensione Azienda">
                     <div className="relative">
-                      <select className={selectClass} defaultValue="">
+                      <select name="dimensione_azienda" disabled={isSending} className={selectClass} defaultValue="">
                         <option value="" disabled>Numero dipendenti</option>
                         <option value="1-10">1 – 10</option>
                         <option value="10-50">10 – 50</option>
@@ -161,7 +169,7 @@ const ContactPage: React.FC = () => {
                 {/* Row 5 – Come hai sentito */}
                 <Field label="Come hai sentito parlare di noi?">
                   <div className="relative">
-                    <select className={selectClass} defaultValue="">
+                    <select name="canale" disabled={isSending} className={selectClass} defaultValue="">
                       <option value="" disabled>Seleziona un canale</option>
                       <option value="linkedin">LinkedIn</option>
                       <option value="google">Google</option>
@@ -180,18 +188,34 @@ const ContactPage: React.FC = () => {
                 {/* Row 6 – Textarea */}
                 <Field label="Descrivi il tuo progetto">
                   <textarea
+                    name="message"
+                    disabled={isSending}
                     className={`${inputClass} min-h-[160px] resize-none`}
                     placeholder="Raccontaci il tuo progetto, le sfide che affronti e i risultati che vuoi raggiungere..."
                   />
                 </Field>
 
                 {/* Submit */}
+                {status === 'error' && (
+                  <div
+                    role="alert"
+                    className="flex items-start gap-3 rounded-2xl border p-4 text-sm"
+                    style={{ borderColor: 'rgba(200,80,70,0.35)', background: 'rgba(200,80,70,0.07)', color: 'var(--title)' }}
+                  >
+                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#C85046' }} />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="rubric-btn w-full px-7 py-[14px] rounded-lg text-sm tracking-widest flex items-center justify-center gap-3"
+                  disabled={isSending}
+                  className="rubric-btn w-full px-7 py-[14px] rounded-lg text-sm tracking-widest flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-wait"
                 >
-                  Invia Richiesta
-                  <Send className="w-5 h-5" />
+                  {isSending ? 'Invio in corso...' : 'Invia Richiesta'}
+                  {isSending
+                    ? <Loader2 className="w-5 h-5 animate-spin" />
+                    : <Send className="w-5 h-5" />}
                 </button>
 
                 <p className="text-center text-[var(--body)] text-xs tracking-wide">
