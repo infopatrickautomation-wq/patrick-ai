@@ -14,7 +14,7 @@
  * l'indirizzo email come alternativa. Meglio un ripiego onesto di un finto
  * "messaggio inviato".
  */
-export const WEB3FORMS_ACCESS_KEY = '';
+export const WEB3FORMS_ACCESS_KEY = '96bf3a35-b208-4567-9329-640a4b23ab42';
 
 export const CONTACT_EMAIL = 'info.patrickautomation@gmail.com';
 
