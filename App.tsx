@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import Navbar from './sections/Navbar';
-import Hero from './sections/Hero';
+import HeroHexFloat from './components/HeroHexFloat';
 import LogoMarquee from './sections/LogoMarquee';
 import AgentsTeam from './sections/AgentsTeam';
 import Services from './sections/Services';
@@ -18,6 +18,7 @@ import FluxAgentPage from './pages/FluxAgentPage';
 import NovaAgentPage from './pages/NovaAgentPage';
 import AxisPartnerPage from './pages/AxisPartnerPage';
 import ChiSonePage from './pages/ChiSonePage';
+import HexFloatTestPage from './pages/HexFloatTestPage'; // PROVA: rimuovere se l'effetto non passa
 import ScrollProgressLine from './components/ScrollProgressLine';
 import { useRoute } from './hooks/useRoute';
 
@@ -50,6 +51,13 @@ const App: React.FC = () => {
     return <><ScrollProgressLine /><ChiSonePage /></>;
   }
 
+  // PROVA HexFloat — pagina isolata, non linkata da nessuna parte.
+  // Se l'effetto non convince: togliere questo blocco, l'import sopra,
+  // pages/HexFloatTestPage.tsx e components/canvasui/.
+  if (path === '/prova-hexfloat') {
+    return <HexFloatTestPage />;
+  }
+
   const isAnyModalOpen = isCVModalOpen || isVoiceModalOpen;
 
   return (
@@ -59,7 +67,7 @@ const App: React.FC = () => {
       <Navbar forceSolid={isAnyModalOpen} />
 
       <main className="relative z-10">
-        <Hero />
+        <HeroHexFloat />
         <LogoMarquee />
         <Services />
         <Stats />

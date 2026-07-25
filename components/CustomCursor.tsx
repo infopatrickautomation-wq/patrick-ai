@@ -1,16 +1,27 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
+/**
+ * Cursore del sito: un cerchio vuoto col bordo blu.
+ *
+ * Il sito nasconde il puntatore nativo (`* { cursor: none }` in index.html), quindi
+ * questo componente non è decorativo: se non viene montato, il puntatore sparisce.
+ * Va incluso in OGNI pagina nuova.
+ *
+ * La misura sta vicina a quella di una freccia di sistema (~20px): un cerchio grande
+ * si mangia il punto che stai indicando e diventa scomodo da usare.
+ */
+const CURSOR_SIZE = 20;
+const CURSOR_SIZE_HOVER = 30;
+
 const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const cursorOutlineRef = useRef<HTMLDivElement>(null);
 
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  const mousePos = useRef({ x: 0, y: 0 });
-  const cursorPos = useRef({ x: 0, y: 0 });
-  const outlinePos = useRef({ x: 0, y: 0 });
+  const mousePos = useRef({ x: -100, y: -100 });
+  const cursorPos = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     // Disabilita su dispositivi touch per evitare comportamenti inaspettati
@@ -20,20 +31,14 @@ const CustomCursor: React.FC = () => {
     let rafId: number;
 
     const animate = () => {
-      const dotEasing = 0.5;
-      const outlineEasing = 0.15;
+      // abbastanza rapido da restare sotto il dito, abbastanza morbido da non scattare
+      const easing = 0.35;
 
-      cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * dotEasing;
-      cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * dotEasing;
-
-      outlinePos.current.x += (mousePos.current.x - outlinePos.current.x) * outlineEasing;
-      outlinePos.current.y += (mousePos.current.y - outlinePos.current.y) * outlineEasing;
+      cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * easing;
+      cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * easing;
 
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${cursorPos.current.x}px, ${cursorPos.current.y}px, 0)`;
-      }
-      if (cursorOutlineRef.current) {
-        cursorOutlineRef.current.style.transform = `translate3d(${outlinePos.current.x}px, ${outlinePos.current.y}px, 0)`;
       }
 
       rafId = requestAnimationFrame(animate);
@@ -75,38 +80,26 @@ const CustomCursor: React.FC = () => {
   // Impedisce il rendering su mobile
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return null;
 
-  return (
-    <>
-      {/* Puntatore Centrale — pallino arancione fisso */}
-      <div
-        ref={cursorRef}
-        className="fixed top-0 left-0 w-4 h-4 rounded-full z-[9999] pointer-events-none bg-[var(--accent)]"
-        style={{
-          margin: '-8px 0 0 -8px',
-          boxShadow: isHovering
-            ? '0 0 20px rgba(var(--accent-rgb),0.7)'
-            : '0 0 14px rgba(var(--accent-rgb),0.5)',
-          willChange: 'transform',
-          pointerEvents: 'none'
-        }}
-      />
+  const size = isHovering ? CURSOR_SIZE_HOVER : CURSOR_SIZE;
 
-      {/* Alone Fluido */}
-      <div
-        ref={cursorOutlineRef}
-        className={`fixed top-0 left-0 rounded-full border z-[9998] pointer-events-none transition-all duration-300 ${
-          isHovering
-            ? 'w-14 h-14 border-[#1A2CB0]/40 bg-[#1A2CB0]/5'
-            : 'w-10 h-10 border-[#1A2CB0]/20 bg-[#1A2CB0]/5'
-        } ${isClicking ? 'scale-75 opacity-50' : 'scale-100 opacity-100'}`}
-        style={{
-          margin: isHovering ? '-28px 0 0 -28px' : '-20px 0 0 -20px',
-          willChange: 'transform',
-          backdropFilter: isHovering ? 'blur(1px)' : 'none',
-          pointerEvents: 'none'
-        }}
-      />
-    </>
+  return (
+    <div
+      ref={cursorRef}
+      className="fixed top-0 left-0 rounded-full z-[9999] pointer-events-none"
+      style={{
+        width: size,
+        height: size,
+        margin: `${-size / 2}px 0 0 ${-size / 2}px`,
+        border: '2px solid var(--accent-light)',
+        background: 'transparent',
+        boxShadow: '0 0 10px rgba(var(--accent-rgb),0.5)',
+        transform: 'translate3d(-100px,-100px,0)',
+        transition: 'width .18s ease, height .18s ease, margin .18s ease, opacity .18s ease',
+        opacity: isClicking ? 0.55 : 1,
+        willChange: 'transform',
+        pointerEvents: 'none',
+      }}
+    />
   );
 };
 
