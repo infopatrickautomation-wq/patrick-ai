@@ -42,6 +42,11 @@ export function useContactForm(subject: string) {
     data.append('_template', 'table');
     data.append('_captcha', 'false');
 
+    // Così rispondere alla notifica scrive direttamente al lead, invece che al
+    // servizio: senza questo il tasto Rispondi porta a un indirizzo inutile.
+    const email = data.get('email');
+    if (typeof email === 'string' && email) data.append('_replyto', email);
+
     try {
       const res = await fetch(FORMS_ENDPOINT, {
         method: 'POST',

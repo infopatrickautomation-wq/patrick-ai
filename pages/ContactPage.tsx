@@ -117,9 +117,9 @@ const ContactPage: React.FC = () => {
                     <div className="relative">
                       <select name="servizio" disabled={isSending} className={selectClass} defaultValue="">
                         <option value="" disabled>Seleziona un servizio</option>
-                        <option value="automazione">Automazione Processi</option>
-                        <option value="agent">AI Agent</option>
-                        <option value="analisi">Analisi &amp; Progettazione</option>
+                        <option value="Automazione Processi">Automazione Processi</option>
+                        <option value="AI Agent">AI Agent</option>
+                        <option value="Analisi e Progettazione">Analisi &amp; Progettazione</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                         <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -136,10 +136,10 @@ const ContactPage: React.FC = () => {
                     <div className="relative">
                       <select name="fatturato" disabled={isSending} className={selectClass} defaultValue="">
                         <option value="" disabled>Seleziona una fascia</option>
-                        <option value="lt100k">Meno di 100k</option>
-                        <option value="100k-500k">100k – 500k</option>
-                        <option value="500k-1m">500k – 1M</option>
-                        <option value="gt1m">Oltre 1M</option>
+                        <option value="Meno di 100k">Meno di 100k</option>
+                        <option value="100k - 500k">100k – 500k</option>
+                        <option value="500k - 1M">500k – 1M</option>
+                        <option value="Oltre 1M">Oltre 1M</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                         <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,10 +152,10 @@ const ContactPage: React.FC = () => {
                     <div className="relative">
                       <select name="dimensione_azienda" disabled={isSending} className={selectClass} defaultValue="">
                         <option value="" disabled>Numero dipendenti</option>
-                        <option value="1-10">1 – 10</option>
-                        <option value="10-50">10 – 50</option>
-                        <option value="50-200">50 – 200</option>
-                        <option value="gt200">Oltre 200</option>
+                        <option value="1 - 10 dipendenti">1 – 10</option>
+                        <option value="10 - 50 dipendenti">10 – 50</option>
+                        <option value="50 - 200 dipendenti">50 – 200</option>
+                        <option value="Oltre 200 dipendenti">Oltre 200</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                         <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,11 +171,11 @@ const ContactPage: React.FC = () => {
                   <div className="relative">
                     <select name="canale" disabled={isSending} className={selectClass} defaultValue="">
                       <option value="" disabled>Seleziona un canale</option>
-                      <option value="linkedin">LinkedIn</option>
-                      <option value="google">Google</option>
-                      <option value="passaparola">Passaparola</option>
-                      <option value="social">Social Media</option>
-                      <option value="altro">Altro</option>
+                      <option value="LinkedIn">LinkedIn</option>
+                      <option value="Google">Google</option>
+                      <option value="Passaparola">Passaparola</option>
+                      <option value="Social Media">Social Media</option>
+                      <option value="Altro">Altro</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                       <svg className="w-4 h-4 text-[var(--body)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
