@@ -60,18 +60,25 @@ curl -s http://localhost:5185/blog/<slug>/ | grep "una frase dell'articolo"
 
 Se il grep trova la frase, i crawler vedono l'articolo.
 
-## Da controllare al primo deploy
+## Dopo ogni deploy
 
-Su Vercel i rewrite scattano **dopo** il controllo del filesystem, quindi il catch-all su
-`index.html` non dovrebbe mangiarsi le pagine statiche del blog. È l'unica cosa che non si può
-verificare in locale. Appena il sito è online:
+Su Vercel i rewrite scattano **dopo** il controllo del filesystem: verificato online il 2026-07-28,
+il catch-all su `index.html` **non** si mangia le pagine statiche del blog e non serve nessuna
+esclusione. Il `vercel.json` va lasciato com'è.
+
+⚠️ **Non aggiungere chiavi al `vercel.json`.** Il 2026-07-28 un `cleanUrls: true` messo "per
+sicurezza" ha fatto tornare 404 tutte le rotte della SPA (`/chi-sono`, `/prodotti`, `/contatti`, le
+pagine prodotto) mentre il blog funzionava. Ogni chiave lì dentro cambia il routing di tutto il sito.
+
+Controllo da fare dopo il deploy, **incluse le pagine che non c'entrano con la modifica**:
 
 ```bash
-curl -s https://<dominio>/blog/<slug> | grep "una frase dell'articolo"   # deve trovarla
-curl -s -o /dev/null -w "%{http_code}\n" https://<dominio>/chi-sono      # deve restare 200
+S=https://<dominio>
+curl -s $S/blog/<slug> | grep "una frase dell'articolo"          # deve trovarla
+for p in / /chi-sono /prodotti /contatti; do
+  echo "$p → $(curl -s -o /dev/null -w '%{http_code}' $S$p)"     # devono essere tutte 200
+done
 ```
 
-Se il primo comando non trova la frase, la pagina è stata riscritta sulla SPA: in quel caso si
-escludono le rotte del blog dal rewrite in `vercel.json`, con
-`"source": "/((?!blog|sitemap\\.xml|robots\\.txt).*)"`. Il secondo comando serve a controllare che
-quella modifica non abbia rotto le altre pagine.
+Se qualcosa è rotto: `git show <commit-precedente>:vercel.json`, rimettere esattamente quel
+contenuto e ripushare. Non provare configurazioni alternative con la produzione rotta.
