@@ -31,6 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ ctaLabel = 'Contattaci' }) => {
     { label: 'Casi Studio', href: '/#casi-studio' },
     { label: 'Prodotti', href: '/prodotti', isPage: true },
     { label: 'Chi Sono', href: '/chi-sono', isPage: true },
+    { label: 'Blog', href: '/blog', isPage: true },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string, isModal?: boolean, isPage?: boolean) => {
