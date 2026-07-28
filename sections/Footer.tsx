@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
             <h4 className="text-white text-xs font-black tracking-widest mb-5">Risorse</h4>
             <ul className="space-y-3">
               <li><a href="/#chi-siamo" className={linkClass}>Chi Sono</a></li>
-              <li><a href="#" className={linkClass}>Blog</a></li>
+              <li><a href="/blog" className={linkClass}>Blog</a></li>
               <li><a href="/#contatti" className={linkClass}>Contattaci</a></li>
               <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className={linkClass}>LinkedIn</a></li>
             </ul>

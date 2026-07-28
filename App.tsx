@@ -18,6 +18,8 @@ import FluxAgentPage from './pages/FluxAgentPage';
 import NovaAgentPage from './pages/NovaAgentPage';
 import AxisPartnerPage from './pages/AxisPartnerPage';
 import ChiSonePage from './pages/ChiSonePage';
+import BlogIndexPage from './pages/BlogIndexPage';
+import BlogPostPage from './pages/BlogPostPage';
 import HexFloatTestPage from './pages/HexFloatTestPage'; // PROVA: rimuovere se l'effetto non passa
 import ScrollProgressLine from './components/ScrollProgressLine';
 import { useRoute } from './hooks/useRoute';
@@ -49,6 +51,18 @@ const App: React.FC = () => {
 
   if (path === '/chi-sono') {
     return <><ScrollProgressLine /><ChiSonePage /></>;
+  }
+
+  // Blog: unico ramo che NON fa un confronto esatto, perché lo slug è variabile.
+  // La barra finale va tollerata: le pagine statiche stanno in /blog/<slug>/index.html
+  // e Vercel serve lo stesso file con e senza slash.
+  if (path === '/blog' || path === '/blog/') {
+    return <><ScrollProgressLine /><BlogIndexPage /></>;
+  }
+
+  if (path.startsWith('/blog/')) {
+    const slug = path.slice('/blog/'.length).replace(/\/$/, '');
+    return <><ScrollProgressLine /><BlogPostPage slug={slug} /></>;
   }
 
   // PROVA HexFloat — pagina isolata, non linkata da nessuna parte.

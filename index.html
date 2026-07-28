@@ -179,6 +179,74 @@
         border-color: var(--accent) !important;
         box-shadow: 0 0 22px rgba(var(--accent-rgb),0.28), 0 4px 24px rgba(0,0,0,0.08) !important;
       }
+
+      /* ── Corpo degli articoli del blog ──────────────────────────────────────
+         Il markdown diventa HTML nudo (h2, p, ul, blockquote…), quindi lo stile
+         va dato qui e non con le classi Tailwind. Vale sia per la pagina React
+         sia per l'HTML statico generato da scripts/prerender.mjs: unico posto.
+         Misura di riga ~70 caratteri: la larghezza la dà il contenitore, qui si
+         governano dimensione e respiro. */
+      .prose-blog { color: var(--body); font-size: 18px; line-height: 1.75; }
+      .prose-blog > * + * { margin-top: 1.4em; }
+      .prose-blog h2 {
+        color: var(--title);
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-top: 2.4em;
+        margin-bottom: 0.2em;
+      }
+      .prose-blog h3 {
+        color: var(--title);
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-top: 2em;
+        margin-bottom: 0.1em;
+      }
+      .prose-blog strong { color: var(--title); font-weight: 700; }
+      .prose-blog a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1.5px;
+      }
+      .prose-blog ul, .prose-blog ol { padding-left: 1.35em; }
+      .prose-blog ul { list-style: disc; }
+      .prose-blog ol { list-style: decimal; }
+      .prose-blog li { margin-top: 0.55em; }
+      .prose-blog li::marker { color: var(--accent); }
+      .prose-blog blockquote {
+        border-left: 3px solid var(--accent);
+        padding-left: 1.2em;
+        color: var(--title);
+        font-style: normal;
+      }
+      .prose-blog code {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.88em;
+        background: rgba(var(--title-rgb), 0.07);
+        border-radius: 5px;
+        padding: 0.15em 0.4em;
+      }
+      .prose-blog pre {
+        background: var(--bg-alt);
+        border: 1px solid var(--border-soft);
+        border-radius: 14px;
+        padding: 1.2em 1.4em;
+        overflow-x: auto;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .prose-blog pre code { background: none; padding: 0; font-size: inherit; }
+      .prose-blog img { border-radius: 14px; max-width: 100%; height: auto; }
+      .prose-blog hr { border: 0; border-top: 1px solid var(--border-soft); margin: 2.6em 0; }
+      @media (max-width: 640px) {
+        .prose-blog { font-size: 17px; }
+        .prose-blog h2 { font-size: 25px; }
+        .prose-blog h3 { font-size: 20px; }
+      }
     </style>
 </head>
   <body>
